@@ -115,7 +115,7 @@ N/A
 
 Copyright © 2022 - 2023 John Crawley
 Licensed under the GNU license.
-[READ MORE](license.md) on the license
+[READ MORE](LICENSE.md) on the license
 
 ## Credits
 
