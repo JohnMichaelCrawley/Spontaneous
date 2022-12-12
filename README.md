@@ -15,7 +15,7 @@ Spontaneous is a six month long univeristy project I'm working on. Spontaneous a
 
 ## APIs Used
 
-* Google
+* GoogleMap API
 
 ## FAQs
 <br>
@@ -89,11 +89,13 @@ as it's easier to carry around. In the future I could include iPads.
     * [x] Plan what the project is
     * [x] Analysis the systems
     * [x] Deign UI design, logo, flowcharts etc
-* [ ] Development
-    * [ ] Setup GIT repository
-    * [ ] Begin development in Xcode 14
-    * [ ] Perform unit-testing
+* [x] Development
+    * [x] Setup GIT repository
+    * [x] Begin development in Xcode 14
     * [ ] Work on user-interface
+    * [ ] Working and functional 
+    * [ ] Perform unit-testing
+    * [ ] Localisation 
 * [ ] Private Beta
 * [ ] Public Beta
 * [ ] End Beta
