@@ -7,6 +7,7 @@ target 'Spontaneous' do
 
 # GOOGLE MAP API #
 pod 'GoogleMaps', '7.2.0'
+pod 'GooglePlaces', '7.2.0'
 
 
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8DBAEEBEF108E0AC0AE4EC43 /* Pods_Spontaneous_SpontaneousUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA02B9FE82DB2FB17C26F77 /* Pods_Spontaneous_SpontaneousUITests.framework */; };
 		AF1F642053EC129F2A7636AB /* Pods_SpontaneousTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DDC3D2A4EB5DD65A58C390A /* Pods_SpontaneousTests.framework */; };
+		B93B50B4294A37A50035F9AC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93B50B3294A37A50035F9AC /* LocationManager.swift */; };
 		B95127692947889E00689799 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95127682947889E00689799 /* AppDelegate.swift */; };
 		B951276B2947889E00689799 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B951276A2947889E00689799 /* SceneDelegate.swift */; };
 		B951276D2947889E00689799 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B951276C2947889E00689799 /* ViewController.swift */; };
@@ -18,6 +19,7 @@
 		B9512780294788A100689799 /* SpontaneousTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B951277F294788A100689799 /* SpontaneousTests.swift */; };
 		B951278A294788A100689799 /* SpontaneousUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9512789294788A100689799 /* SpontaneousUITests.swift */; };
 		B951278C294788A100689799 /* SpontaneousUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B951278B294788A100689799 /* SpontaneousUITestsLaunchTests.swift */; };
+		B969A1C62948F3D2002134A9 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B969A1C52948F3D2002134A9 /* API.swift */; };
 		DE4D4061A8FCCE9CFA2B2A65 /* Pods_Spontaneous.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 659DBDD5E40D8EA907D856CE /* Pods_Spontaneous.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +47,7 @@
 		659DBDD5E40D8EA907D856CE /* Pods_Spontaneous.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spontaneous.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CCDFE4C8B5A76CE24EEE40E /* Pods-Spontaneous.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spontaneous.debug.xcconfig"; path = "Target Support Files/Pods-Spontaneous/Pods-Spontaneous.debug.xcconfig"; sourceTree = "<group>"; };
 		B57B8F09483B8063B67AE40F /* Pods-SpontaneousTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpontaneousTests.release.xcconfig"; path = "Target Support Files/Pods-SpontaneousTests/Pods-SpontaneousTests.release.xcconfig"; sourceTree = "<group>"; };
+		B93B50B3294A37A50035F9AC /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B95127652947889E00689799 /* Spontaneous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spontaneous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B95127682947889E00689799 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B951276A2947889E00689799 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +61,7 @@
 		B9512785294788A100689799 /* SpontaneousUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpontaneousUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9512789294788A100689799 /* SpontaneousUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpontaneousUITests.swift; sourceTree = "<group>"; };
 		B951278B294788A100689799 /* SpontaneousUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpontaneousUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B969A1C52948F3D2002134A9 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		C78F76867B5EB3E34FC37F3F /* Pods-Spontaneous-SpontaneousUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spontaneous-SpontaneousUITests.release.xcconfig"; path = "Target Support Files/Pods-Spontaneous-SpontaneousUITests/Pods-Spontaneous-SpontaneousUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EEA02B9FE82DB2FB17C26F77 /* Pods_Spontaneous_SpontaneousUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spontaneous_SpontaneousUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F29B18FCC46C0AA771F11864 /* Pods-Spontaneous-SpontaneousUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spontaneous-SpontaneousUITests.debug.xcconfig"; path = "Target Support Files/Pods-Spontaneous-SpontaneousUITests/Pods-Spontaneous-SpontaneousUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -144,6 +148,15 @@
 			path = SpontaneousUITests;
 			sourceTree = "<group>";
 		};
+		B969A1C42948F2AB002134A9 /* GoogleAPI */ = {
+			isa = PBXGroup;
+			children = (
+				B969A1C52948F3D2002134A9 /* API.swift */,
+				B93B50B3294A37A50035F9AC /* LocationManager.swift */,
+			);
+			path = GoogleAPI;
+			sourceTree = "<group>";
+		};
 		B9B95EA329479662003F1BD2 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +169,7 @@
 		B9B95EA4294796CE003F1BD2 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B969A1C42948F2AB002134A9 /* GoogleAPI */,
 				B9512776294788A100689799 /* Info.plist */,
 			);
 			path = ViewModel;
@@ -440,6 +454,8 @@
 			files = (
 				B951276D2947889E00689799 /* ViewController.swift in Sources */,
 				B95127692947889E00689799 /* AppDelegate.swift in Sources */,
+				B93B50B4294A37A50035F9AC /* LocationManager.swift in Sources */,
+				B969A1C62948F3D2002134A9 /* API.swift in Sources */,
 				B951276B2947889E00689799 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -546,6 +562,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Spontaneous/ViewModel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -600,6 +617,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Spontaneous/ViewModel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -620,21 +638,27 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UBFNYP7C5B;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Spontaneous/Info.plist;
+				INFOPLIST_FILE = ViewModel/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Spontaneous;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 0.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = JohnCrawley.Spontaneous;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -648,21 +672,27 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UBFNYP7C5B;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Spontaneous/Info.plist;
+				INFOPLIST_FILE = ViewModel/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Spontaneous;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 0.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = JohnCrawley.Spontaneous;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -676,6 +706,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UBFNYP7C5B;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Spontaneous/ViewModel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = JohnCrawley.SpontaneousTests;
@@ -697,6 +728,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UBFNYP7C5B;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Spontaneous/ViewModel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = JohnCrawley.SpontaneousTests;
@@ -717,6 +749,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UBFNYP7C5B;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Spontaneous/ViewModel/Info.plist;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = JohnCrawley.SpontaneousUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -736,6 +769,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UBFNYP7C5B;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Spontaneous/ViewModel/Info.plist;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = JohnCrawley.SpontaneousUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
