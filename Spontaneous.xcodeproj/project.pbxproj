@@ -29,6 +29,7 @@
 		B951278A294788A100689799 /* SpontaneousUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9512789294788A100689799 /* SpontaneousUITests.swift */; };
 		B951278C294788A100689799 /* SpontaneousUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B951278B294788A100689799 /* SpontaneousUITestsLaunchTests.swift */; };
 		B969A1C62948F3D2002134A9 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B969A1C52948F3D2002134A9 /* API.swift */; };
+		B981C52A295FB98900EDDA2F /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = B981C529295FB98900EDDA2F /* Business.swift */; };
 		DE4D4061A8FCCE9CFA2B2A65 /* Pods_Spontaneous.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 659DBDD5E40D8EA907D856CE /* Pods_Spontaneous.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,7 @@
 		B9512789294788A100689799 /* SpontaneousUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpontaneousUITests.swift; sourceTree = "<group>"; };
 		B951278B294788A100689799 /* SpontaneousUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpontaneousUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B969A1C52948F3D2002134A9 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		B981C529295FB98900EDDA2F /* Business.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		C78F76867B5EB3E34FC37F3F /* Pods-Spontaneous-SpontaneousUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spontaneous-SpontaneousUITests.release.xcconfig"; path = "Target Support Files/Pods-Spontaneous-SpontaneousUITests/Pods-Spontaneous-SpontaneousUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EEA02B9FE82DB2FB17C26F77 /* Pods_Spontaneous_SpontaneousUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spontaneous_SpontaneousUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F29B18FCC46C0AA771F11864 /* Pods-Spontaneous-SpontaneousUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spontaneous-SpontaneousUITests.debug.xcconfig"; path = "Target Support Files/Pods-Spontaneous-SpontaneousUITests/Pods-Spontaneous-SpontaneousUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 		B9B95EA6294796F1003F1BD2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B981C529295FB98900EDDA2F /* Business.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B907416D2950F5A000CE841D /* CreditsViewController.swift in Sources */,
+				B981C52A295FB98900EDDA2F /* Business.swift in Sources */,
 				B92ED6A12950B2D8009DAF8B /* FilterViewController.swift in Sources */,
 				B90741672950F54500CE841D /* LocationsViewController.swift in Sources */,
 				B90741652950EA2F00CE841D /* WebViewViewController.swift in Sources */,

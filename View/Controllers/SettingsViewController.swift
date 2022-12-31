@@ -96,7 +96,7 @@ extension SetttingsViewController: UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        print("you tapped me at \(indexPath.row)")
+        //print("you tapped me at \(indexPath.row)")
         
         if selectedIndexPath == indexPath
         {
@@ -112,32 +112,32 @@ extension SetttingsViewController: UITableViewDelegate
             {
             // Filter
             case 0:
-                print("wow here")
+               // print("wow here")
                 let vc = storyboard?.instantiateViewController(withIdentifier: "filterVC") as! FilterViewController
                 present(vc, animated: true)
                 tableView.deselectRow(at: indexPath, animated: true)
             // Locations
             case 1:
-                print("wow here")
+              //  print("wow here")
                 let vc = storyboard?.instantiateViewController(withIdentifier: "locationsVC") as! LocationsViewController
                 present(vc, animated: true)
                 tableView.deselectRow(at: indexPath, animated: true)
                 
             // Languages
             case 2:
-                print("wow here")
+              //  print("wow here")
                 let vc = storyboard?.instantiateViewController(withIdentifier: "LanguagesVC") as! LanguagesViewController
                 present(vc, animated: true)
                 tableView.deselectRow(at: indexPath, animated: true)
             // Theme
             case 3:
-                print("wow here")
+               // print("wow here")
                 let vc = storyboard?.instantiateViewController(withIdentifier: "ThemeVC") as! ThemeViewController
                 present(vc, animated: true)
                 tableView.deselectRow(at: indexPath, animated: true)
             // Credits
             case 4:
-                print("wow here")
+               // print("wow here")
                 let vc = storyboard?.instantiateViewController(withIdentifier: "CreditsVC") as! CreditsViewController
                 present(vc, animated: true)
                 tableView.deselectRow(at: indexPath, animated: true)

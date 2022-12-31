@@ -33,8 +33,19 @@ extension ThemeViewController: UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        print("you tapped me at \(indexPath.row)")
+      //  print("you tapped me at \(indexPath.row)")
+        /*
+         Adds checkmark next to cell
+         */
+        
+        tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+        
      
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath)
+    {
+        tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
     }
  
 }

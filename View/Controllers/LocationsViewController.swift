@@ -11,8 +11,11 @@ class LocationsViewController: UIViewController {
 
     // USER DEFAULTS//
     let USERDEFAULTS = UserDefaults.standard
-    
     // USER INTERFACE SWITCHES //
+    /*
+     These user interface references help set or adjust values
+     throughout the program
+     */
     @IBOutlet weak var cafeSwitchReference: UISwitch!
     @IBOutlet weak var cinemaSwitchReference: UISwitch!
     @IBOutlet weak var restaurantsSwitchReference: UISwitch!
@@ -23,17 +26,21 @@ class LocationsViewController: UIViewController {
     @IBOutlet weak var amusementParkSwitchReference: UISwitch!
     @IBOutlet weak var museumSwitchReference: UISwitch!
     @IBOutlet weak var zooSwitchReference: UISwitch!
-    
-    
-    
-    
+    @IBOutlet weak var artGallerySwitchReference: UISwitch!
+    @IBOutlet weak var bakerySwitchReference: UISwitch!
+    @IBOutlet weak var bowlingSwitchReference: UISwitch!
+    @IBOutlet weak var parkSwitchReference: UISwitch!
+    @IBOutlet weak var spaSwitchReference: UISwitch!
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        
+        /*
+         Check each Switch for on/off
+         */
         checkCafeSwitch()
         checkCinemaSwitch()
         checkRestaurantSwitch()
@@ -44,9 +51,19 @@ class LocationsViewController: UIViewController {
         checkAmusementParkSwitch()
         checkMuseumSwitch()
         checkZooSwitch()
-    
+        checkArtGallerySwitch()
+        checkBakerySwitch()
+        checkBowlingSwitch()
+        checkParkSwitch()
+        checkSpaSwitch()
         
     }
+    
+    /*
+     Functions to check for user default
+     values and set the values
+     */
+
     
     func checkCafeSwitch()
     {
@@ -170,9 +187,67 @@ class LocationsViewController: UIViewController {
         }
     }
     
+    func checkArtGallerySwitch()
+    {
+        if (USERDEFAULTS.bool(forKey: "artGallerySwitch"))
+        {
+            artGallerySwitchReference.setOn(true, animated: false)
+        }
+        else
+        {
+            artGallerySwitchReference.setOn(false, animated: false)
+        }
+    }
+    func checkBakerySwitch()
+    {
+        if (USERDEFAULTS.bool(forKey: "bakerySwitch"))
+        {
+            bakerySwitchReference.setOn(true, animated: false)
+        }
+        else
+        {
+            bakerySwitchReference.setOn(false, animated: false)
+        }
+    }
+    func checkBowlingSwitch()
+    {
+        if (USERDEFAULTS.bool(forKey: "bowlingSwitch"))
+        {
+            bowlingSwitchReference.setOn(true, animated: false)
+        }
+        else
+        {
+            bowlingSwitchReference.setOn(false, animated: false)
+        }
+    }
+    func checkParkSwitch()
+    {
+        if (USERDEFAULTS.bool(forKey: "parkSwitch"))
+        {
+            parkSwitchReference.setOn(true, animated: false)
+        }
+        else
+        {
+            parkSwitchReference.setOn(false, animated: false)
+        }
+    }
+    func checkSpaSwitch()
+    {
+        if (USERDEFAULTS.bool(forKey: "spaSwitch"))
+        {
+            spaSwitchReference.setOn(true, animated: false)
+        }
+        else
+        {
+            spaSwitchReference.setOn(false, animated: false)
+        }
+    }
     
-    
-    
+
+    /*
+     SWITCH UI:
+     set the switch UI for the switches
+     */
     @IBAction func cafeSwitch(_ sender: UISwitch)
     {
         if (sender.isOn)
@@ -293,6 +368,68 @@ class LocationsViewController: UIViewController {
         }
     }
     
+    @IBAction func artGallerySwitch(_ sender: UISwitch)
+    {
+        if (sender.isOn)
+        {
+            USERDEFAULTS.set(true, forKey: "artGallerySwitch")
+        }
+        else
+        {
+            USERDEFAULTS.set(false, forKey: "artGallerySwitch")
+        }
+    }
+    
+    
+    @IBAction func bakerySwitch(_ sender: UISwitch)
+    {
+        if (sender.isOn)
+        {
+            USERDEFAULTS.set(true, forKey: "bakerySwitch")
+        }
+        else
+        {
+            USERDEFAULTS.set(false, forKey: "bakerySwitch")
+        }
+    }
+    
+    @IBAction func bowlingSwitch(_ sender: UISwitch)
+    {
+        if (sender.isOn)
+        {
+            USERDEFAULTS.set(true, forKey: "bowlingSwitch")
+        }
+        else
+        {
+            USERDEFAULTS.set(false, forKey: "bowlingSwitch")
+        }
+    }
+    
+    
+    @IBAction func parkSwitch(_ sender: UISwitch)
+    {
+        if (sender.isOn)
+        {
+            USERDEFAULTS.set(true, forKey: "parkSwitch")
+        }
+        else
+        {
+            USERDEFAULTS.set(false, forKey: "parkSwitch")
+        }
+    }
+    
+    
+    @IBAction func spaSwitch(_ sender: UISwitch)
+    {
+        if (sender.isOn)
+        {
+            USERDEFAULTS.set(true, forKey: "spaSwitch")
+        }
+        else
+        {
+            USERDEFAULTS.set(false, forKey: "spaSwitch")
+        }
+    }
     
     
 }
