@@ -1,5 +1,14 @@
 # Spontaneous
 
+
+<a href="https://twitter.com/https://twitter.com/SpontaneousiOS" ><img src="https://img.shields.io/twitter/follow/SpontaneousiOS.svg?style=social" /> </a>
+<br>
+
+
+<a href="https://github.com/JohnMichaelCrawley/Spontaneous/stargazers"><img src="https://img.shields.io/github/stars/JohnMichaelCrawley/Spontaneous?style=social" alt="Star Badge"/></a>
+<a href="https://github.com/JohnMichaelCrawley/Spontaneous/discussions"><img src="https://img.shields.io/github/discussions/JohnMichaelCrawley/Spontaneous" alt="Discussions Badge"/></a>
+<a href="https://github.com/JohnMichaelCrawley/Spontaneous/pulls"><img src="https://img.shields.io/github/issues-pr/JohnMichaelCrawley/Spontaneous" alt="Pull Requests Badge"/></a>
+<a href="https://github.com/JohnMichaelCrawley/Spontaneous/issues"><img src="https://img.shields.io/github/issues/JohnMichaelCrawley/Spontaneous" alt="Issues Badge"/></a>
 ## Overview
 
 Spontaneous is a six month long univeristy project I'm working on. Spontaneous application is about allowing an application to find something spontaneous to do in your local proxmity such as a cafe, restaurant or cinema and then give directions.
@@ -11,11 +20,12 @@ Spontaneous is a six month long univeristy project I'm working on. Spontaneous a
 | Description | Target |
 | :---------: | :----: |
 | Device | iPhone |
-| Operating System | iOS15-iOS16 |
+| Operating System | iOS16 |
 
 ## APIs Used
 
-* GoogleMap API
+* Google Map API
+* Google Places API
 
 ## FAQs
 <br>
@@ -44,7 +54,7 @@ area to find something.
 <br>
 Yes, I am open to including more features or suggestions, however, 
 due to time and schedule of the development I can't include it in the current
-development cycle but can add suggestions to the next cycle of development.
+development cycle but can add suggestions to the next cycle of development. You can add your suggestions <a href="https://github.com/JohnMichaelCrawley/Spontaneous/discussions/categories/ideas">here</a>
 </details>
 <!--Qustion 4 -->
 <details closed>
@@ -92,10 +102,10 @@ as it's easier to carry around. In the future I could include iPads.
 * [x] Development
     * [x] Setup GIT repository
     * [x] Begin development in Xcode 14
-    * [ ] Work on user-interface
-    * [ ] Working and functional 
-    * [ ] Perform unit-testing
+    * [x] Working on functionality 
     * [ ] Localisation 
+    * [ ] Work on user-interface
+    * [ ] Perform unit-testing
 * [ ] Private Beta
 * [ ] Public Beta
 * [ ] End Beta
@@ -114,15 +124,14 @@ N/A
 N/A
 
 ## LICENSE
-
 Copyright © 2022 - 2023 John Crawley
-Licensed under the GNU license.
-[READ MORE](LICENSE.md) on the license
+I retain all rights to my source code and no one may reproduce, distribute, or create derivative works from your work.
 
 ## Credits
 
 * John Crawley - project developer
-* [Name] - Japanese localisation
+* Anu Sahni - Project supervisor 
+* Chise Negishi - Japanese localisation
 * [Name] - Cantonese localisation
 * [Name] - Mandarin localisation
 * [Name] - Italian localisation
