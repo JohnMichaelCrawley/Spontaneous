@@ -1,7 +1,7 @@
 # Spontaneous
 
 
-<a href="https://twitter.com/https://twitter.com/SpontaneousiOS" ><img src="https://img.shields.io/twitter/follow/SpontaneousiOS.svg?style=social" /> </a>
+<a href="https://twitter.com/SpontaneousiOS" ><img src="https://img.shields.io/twitter/follow/SpontaneousiOS.svg?style=social" /> </a>
 <br>
 
 
