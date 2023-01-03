@@ -189,7 +189,7 @@ range you want. The price range is €-€€€</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5.5" minValue="1" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="qf5-Dc-pKQ">
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.34100000000000003" minValue="0.059999999999999998" maxValue="0.62" translatesAutoresizingMaskIntoConstraints="NO" id="qf5-Dc-pKQ">
                                 <rect key="frame" x="14" y="464" width="360" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>

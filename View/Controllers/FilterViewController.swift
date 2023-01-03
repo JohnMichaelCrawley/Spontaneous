@@ -83,18 +83,20 @@ class FilterViewController: UIViewController
     
     func checkSearchRadiusFilter()
     {
-        let radius = USERDEFAULTS.float(forKey: "searchRadiusFilter")
-
+        var radius = USERDEFAULTS.float(forKey: "searchRadiusFilter")
+ 
+        let searchRadius = (radius / 1609)
+        
         // SET VALUE OF SLIDER
-        searchRadiusFilterSlider.setValue(USERDEFAULTS.float(forKey: "searchRadiusFilter"), animated: false)
+        searchRadiusFilterSlider.setValue(searchRadius, animated: false)
         
         if radius > 1
         {
-            searchRadiusValueLabel.text = "\(radius) miles"
+            searchRadiusValueLabel.text = "\(searchRadius) miles"
         }
         else
         {
-            searchRadiusValueLabel.text = "\(radius) mile"
+            searchRadiusValueLabel.text = "\(searchRadius) mile"
         }
     
     }
@@ -180,7 +182,7 @@ class FilterViewController: UIViewController
          
          
          */
-        let currentValue = Int(sender.value)
+        let currentValue = sender.value
        // print(currentValue)
         
         if currentValue > 1
@@ -194,9 +196,12 @@ class FilterViewController: UIViewController
         
        // print(searchRadiusValueLabel.text!)
         
+        let SearchRadius = currentValue * 1609
+        
+  
         
         // SET THE USER DEFAULTS
-        USERDEFAULTS.set(searchRadiusFilterSlider.value, forKey: "searchRadiusFilter")
+        USERDEFAULTS.set(SearchRadius, forKey: "searchRadiusFilter")
        // USERDEFAULTS.set("(\(ratingValueLabel.text!)", forKey: "ratingFilterLabel")
     }
     

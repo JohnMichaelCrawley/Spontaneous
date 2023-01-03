@@ -37,6 +37,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         // API
         
         locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+        locationManager.desiredAccuracy = .greatestFiniteMagnitude
         
         DispatchQueue.global().async
         {
@@ -51,7 +53,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         }
         
         
-        locationManager.desiredAccuracy = .greatestFiniteMagnitude
+        
         
         // MAP VIEW SETTINGS
         // mapView.settings.myLocationButton = true
@@ -64,7 +66,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
-        mapView.camera = GMSCameraPosition(target: CLLocationCoordinate2D(latitude:  locationManager.location?.coordinate.latitude ?? 0.0, longitude:  locationManager.location?.coordinate.longitude ?? 0.0), zoom: 10, bearing: 0, viewingAngle: 0)
+       // mapView.camera = GMSCameraPosition(target: CLLocationCoordinate2D(latitude:  locationManager.location?.coordinate.latitude ?? 0.0, longitude:  locationManager.location?.coordinate.longitude ?? 0.0), zoom: 10, bearing: 0, viewingAngle: 0)
         
        // let marker = GMSMarker()
       //  marker.position = CLLocationCoordinate2D(latitude: locationManager.location?.coordinate.latitude ?? 0.0, longitude: locationManager.location?.coordinate.longitude ?? 0.0)
@@ -139,12 +141,35 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         locationManager.requestWhenInUseAuthorization()
         // VAIRABLES FOR SEARCH
         // USER DEF
+        /*
         var lat = 53.347568
         var long = -6.259353
-        var radius = 620
+        */
+        
+
+        
+        guard let locationValue: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
+        
+        
+       // let userLatitude = locationValue.latitude
+       // let userLongitude = locationValue.longitude
+        
+        let userLatitude = 53.347568
+        let userLongitude = -6.259353
+        
+        print("""
+              USER LAT=\(userLatitude)\n
+              USER LONG=\(userLongitude)\n
+              """)
+        
+        
+        //let radius = 620
+        
+       let radius = USERDEFAULTS.float(forKey: "searchRadiusFilter")
+        print(radius)
         // SEARCH DEF
         let KEYWORD = "cafe"
-        let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(lat),\(long)&radius=\(radius)&type=\(KEYWORD)&key=\(API().returnAPIKey())";
+        let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(userLatitude),\(userLongitude)&radius=\(radius)&type=\(KEYWORD)&key=\(API().returnAPIKey())";
         // Google Maps Marker
         let marker = GMSMarker()
         // JSON DECODER
@@ -167,10 +192,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate
                 // Get random i
                 // Get random number from a range of amount of results in JSON
                 let range = root.results.count
+                
+                print("RANGE = ", range)
+                
                 var index = 0
-                index = Int.random(in: 1..<range)
-                if index > 1
+                if range == 0
                 {
+                    print("no range")
+                }
+                else if range > 1
+                {
+                    index = Int.random(in: 1..<range)
+                }
+                else if range == 1
+                {
+                    print("not enough ranges")
+                }
+                
+                if index > 0
+                {
+                    index = Int.random(in: 1..<range)
+                    print("index value: ",index)
                     // Set data to the business model
                     self.b.setBusinessID(ID: root.results[index].placeId)
                     self.b.setBusinessName(name: root.results[index].name)
@@ -195,12 +237,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         
         // SET MARKER UP
         //  Is Opened?:\(b.getBusinessOpeningHours()) \n
+        /*
+         Type/s: \(b.getBusinessType()) \n
+         */
         marker.title = b.getBusinessName()
         marker.snippet = """
-         Type/s: \(b.getBusinessType()) \n
+        Radius: \(radius / 1609)\n
         Rating:\(b.getBusinessRating()) \n
         """
     
+        
+        print("radius = ", radius)
         //marker.snippet = "\(description) was found with a rating of \(review), the radius it was found in is a radius of \(r) miles"
         marker.map = mapView
         mapView.selectedMarker = marker
@@ -216,10 +263,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         let blat =  b.getBusinessLat()
         let blong =  b.getBusinessLong()
         
-        let center = CLLocationCoordinate2D(
-            latitude: blat,
-            longitude: blong
-        )
+        let center = CLLocationCoordinate2D( latitude: blat,longitude: blong)
         marker.position = center
         
         
