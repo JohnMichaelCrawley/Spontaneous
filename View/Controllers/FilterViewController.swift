@@ -4,7 +4,12 @@
 //
 //  Created by John Michael Crawley on 19/12/2022.
 //
+/*
+ INFORMATION ON THIS CLASS / FILE:
 
+ 
+ */
+// IMPORT LIST
 import Foundation
 import UIKit
 
@@ -13,24 +18,23 @@ class FilterViewController: UIViewController
 {
     // USER DEFAULTS//
     let USERDEFAULTS = UserDefaults.standard
-    
-    
     //USER INTERFACE//
     @IBOutlet weak var ratingFilterSliderReference: UISlider!
     @IBOutlet weak var pricingFilterSliderReference: UISlider!
     @IBOutlet weak var searchRadiusFilterSlider: UISlider!
-    
     // Labels
     @IBOutlet weak var ratingValueLabel: UILabel!
     @IBOutlet weak var pricingValueLabel: UILabel!
     @IBOutlet weak var searchRadiusValueLabel: UILabel!
-    
-    
-
+    /*
+     View Did Load:
+     This func is called when loading a view controller
+     hierarchy into memory. Then, check the filters
+     values and set them in the sliders.
+     */
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // Check the rating filters from User Defaults
         checkRatingFilter()
         checkPricingFilter()
         checkSearchRadiusFilter()
@@ -44,7 +48,6 @@ class FilterViewController: UIViewController
      slider to that value so when the view controller
      re-opens, it will set the values.
      */
-    
     /*
      Check Rating Filter:
      set the search for the ratings of a business to find
@@ -55,6 +58,7 @@ class FilterViewController: UIViewController
      then it will print out "1 mile" or if it's over 1 mile,
      "2 miles" etc.
      */
+    // Check Rating Filter
     func checkRatingFilter()
     {
         ratingFilterSliderReference.setValue(USERDEFAULTS.float(forKey: "ratingFilter"), animated: false)
@@ -66,42 +70,32 @@ class FilterViewController: UIViewController
         {
             ratingValueLabel.text = "\(USERDEFAULTS.float(forKey: "ratingFilter")) star"
         }
-        
     }
-    
+    // Check Pricing Filter
     func checkPricingFilter()
     {
         let pricing = USERDEFAULTS.float(forKey: "pricingFilter")
-
         // SET VALUE OF SLIDER
         pricingFilterSliderReference.setValue(USERDEFAULTS.float(forKey: "pricingFilter"), animated: false)
-        
         // Set value on a range
         pricingSwitchCase(pricing: Int(pricing))
         
     }
-    
+    // Check Search Radius Filter
     func checkSearchRadiusFilter()
     {
-        var radius = USERDEFAULTS.float(forKey: "searchRadiusFilter")
- 
-        let searchRadius = (radius / 1609)
-        
+        let radius = USERDEFAULTS.float(forKey: "searchRadiusFilter")
         // SET VALUE OF SLIDER
-        searchRadiusFilterSlider.setValue(searchRadius, animated: false)
-        
+        searchRadiusFilterSlider.setValue(USERDEFAULTS.float(forKey: "searchRadiusFilter"), animated: false)
         if radius > 1
         {
-            searchRadiusValueLabel.text = "\(searchRadius) miles"
+            searchRadiusValueLabel.text = "\(radius) miles"
         }
         else
         {
-            searchRadiusValueLabel.text = "\(searchRadius) mile"
+            searchRadiusValueLabel.text = "\(radius) mile"
         }
-    
     }
-
-    
     /*
      UI SLIDERS:
      the following UI functions gets the values
@@ -110,24 +104,13 @@ class FilterViewController: UIViewController
      user adjusts the pricing filter, it will
      automatically update the pricing label
      */
-    
-    
-
+    // Rating Filter Slider
     @IBAction func ratingFilterSlider(_ sender: UISlider)
     {
         let currentValue = Int(sender.value)
-       // print(currentValue)
         ratingValueLabel.text = "\(currentValue) star"
-        
-       // print(ratingValueLabel.text!)
-        
-        
         // SET THE USER DEFAULTS
         USERDEFAULTS.set(ratingFilterSliderReference.value, forKey: "ratingFilter")
-        
-        
-        
-        
         if USERDEFAULTS.float(forKey: "ratingFilter") > 1
         {
             ratingValueLabel.text = "\(USERDEFAULTS.float(forKey: "ratingFilter")) stars"
@@ -138,53 +121,33 @@ class FilterViewController: UIViewController
         }
         else
         {
-            // print(currentValue)
              ratingValueLabel.text = "\(currentValue) star"
         }
-        
-       // USERDEFAULTS.set("(\(ratingValueLabel.text!)", forKey: "ratingFilterLabel")
     }
     
-    
+    // Pricing Filter Slider
     @IBAction func pricingFilterSlider(_ sender: UISlider)
     {
         let currentValue = Int(sender.value)
-        //print(currentValue)
-        
-   
-        
         // Set value on a range
         pricingSwitchCase(pricing: currentValue)
-    
-        // pricingValueLabel.text = "\(currentValue) €"
-        
-     //   print(pricingValueLabel.text!)
-        
-        
         // SET THE USER DEFAULTS
         USERDEFAULTS.set(pricingFilterSliderReference.value, forKey: "pricingFilter")
-       // USERDEFAULTS.set("(\(ratingValueLabel.text!)", forKey: "ratingFilterLabel")
     }
     
-    
+    // Search Radius Filter Slider
     @IBAction func searchRadiusFilterSlider(_ sender: UISlider)
     {
-        
         /*
         MAX SEARCH RADIUS = 50K METERS (31.06856 MILES)...
         IDEAL RADIUS IS 500M - 1KM
-         
-         
+         ------
          TO SET MILES TO METERS, MULTIPLY BY 1609
-         
+         ------
          FOR EXAMPLE:
          10 MILES X 1,609.344 = 16093.44 METERS
-         
-         
          */
-        let currentValue = sender.value
-       // print(currentValue)
-        
+        let currentValue = Int(sender.value)
         if currentValue > 1
         {
             searchRadiusValueLabel.text = "\(currentValue) miles"
@@ -193,27 +156,13 @@ class FilterViewController: UIViewController
         {
             searchRadiusValueLabel.text = "\(currentValue) mile"
         }
-        
-       // print(searchRadiusValueLabel.text!)
-        
-        let SearchRadius = currentValue * 1609
-        
-  
-        
         // SET THE USER DEFAULTS
-        USERDEFAULTS.set(SearchRadius, forKey: "searchRadiusFilter")
-       // USERDEFAULTS.set("(\(ratingValueLabel.text!)", forKey: "ratingFilterLabel")
+        USERDEFAULTS.set(searchRadiusFilterSlider.value, forKey: "searchRadiusFilter")
     }
-    
-    
-    
-    
-    
     /*
      DRY: DON'T REPEAT YOURSSELF
      Switch case to check fo the pricing
      */
-    
     private func pricingSwitchCase(pricing: Int)
     {
         // Set value on a range
@@ -230,9 +179,4 @@ class FilterViewController: UIViewController
             pricingValueLabel.text = "€"
         }
     }
-    
-    
-    
-    
 }
-

@@ -4,6 +4,12 @@
 //
 //  Created by John Michael Crawley on 31/12/2022.
 //
+/*
+ INFORMATION ON THIS STRUCT / FILE:
+ This file uses structs to create value
+ types for storing the data from Google's API
+ that can be used to make
+ */
 
 import Foundation
 import GoogleMaps
@@ -12,9 +18,6 @@ import GoogleMapsCore
 
 // USER DEFAULTS
 let USERDEFAULTS = UserDefaults.standard
-
-
-
 //Required parameters
 /*
  Required parameters:
@@ -22,17 +25,6 @@ let USERDEFAULTS = UserDefaults.standard
  * Radius = Radius defines the distance in meters which returns place results. The mazimum allowed radius is 5000 meters
  * Keyword = Search term or keyword which should match against all content that google has indexed for this place.
  */
-
-let KEY = API().returnAPIKey()
-var latitude = USERDEFAULTS.double(forKey: "userLatitude")
-var longitude = USERDEFAULTS.double(forKey: "userLongitude")
-var radius = 620
-
-var keyword = "cafe"
-
-let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(latitude),\(longitude)&radius=\(radius)&type=\(keyword)&key=\(KEY)";
-
-
 /*
  BUSINESS:
  this struct sets, gets
@@ -156,14 +148,7 @@ struct Business
     {
         return long
     }
-    
 }
-
-
-
-
-
-
 /*
 These structs are used to help
  with decoding and enabling access
@@ -197,63 +182,4 @@ struct Photo: Codable {
     var height: Double
     var width: Double
     var photoReference: String
-}
-
-
-private func getData(from url: String)
-{
-    URLSession.shared.dataTask(with: URL(string: url)! ,completionHandler:
-        { data, task, error in
-        guard let data = data, error == nil else
-        {
-            print("Something went wrong wih getting the data!...")
-            return
-        }
-        // now we have the data we need to do json decoding
-       // var result: SearchResult?
-        let jsonDEcoder = JSONDecoder()
-        /*
-         Try get the random business
-         and store it
-         */
-        do
-        {
-            // Variables decoder to decode JSON
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            let root = try decoder.decode(Root.self, from: data)
-            // Get random number from a range of amount of results in JSON
-            let range = root.results.count
-            var index = 0
-            index = Int.random(in: 1..<range)
-            // Assign values to global vars
-            
-            //let business = Business(id: root.results[index].placeId, name: root.results[index].name, type: root.results[index].types, rating: root.results[index].rating, photos: root.results[index].photos, address: root.results[index].vicinity, lat: root.results[index].geometry.location.lat, long: root.results[index].geometry.location.lng)
-            
-            
-            
-            /*
-            businesssName = root.results[index].name
-            businessType = root.results[index].types
-            openingHours = root.results[index].openingHours
-            placeID = root.results[index].placeId
-            vicinity = root.results[index].vicinity
-            rating = root.results[index].rating
-            businessLatitude = root.results[index].geometry.location.lat
-            businessLongitude = root.results[index].geometry.location.lng
-           
-             */
-             // Print values
-           // print("business name: \(businesssName) \nTypes: \(businessType) \nOpening Hours: \(String(describing: openingHours)) \nplace ID: \(placeID) \nAddress: \(vicinity) \nRating: \(rating)")
-           // print("Lat: \(businessLatitude) \nLong: \(businessLongitude)")
-            
-            
-            
-            
-        }
-        catch
-        {
-            print(error)
-        }
-    }).resume()
 }
