@@ -4,7 +4,16 @@
 
 Spontaneous is a six month long univeristy project I'm working on. Spontaneous application is about allowing an application to find something spontaneous to do in your local proxmity such as a cafe, restaurant or cinema and then give directions.
 
-[Visit project website](https://spontaneous.johncrawley.ie).
+<a href="https://twitter.com/SpontaneousiOS" ><img src="https://img.shields.io/twitter/follow/SpontaneousiOS.svg?style=social" /> </a>
+
+<a href="https://github.com/JohnMichaelCrawley/Spontaneous/stargazers"><img src="https://img.shields.io/github/stars/JohnMichaelCrawley/Spontaneous?style=social" alt="Star Badge"/></a>
+ <a href="https://github.com/JohnMichaelCrawley/Spontaneous/discussions"><img src="https://img.shields.io/github/discussions/JohnMichaelCrawley/Spontaneous" alt="Discussions Badge"/></a>
+ <a href="https://github.com/JohnMichaelCrawley/Spontaneous/pulls"><img src="https://img.shields.io/github/issues-pr/JohnMichaelCrawley/Spontaneous" alt="Pull Requests Badge"/></a>
+ <a href="https://github.com/JohnMichaelCrawley/Spontaneous/issues"><img src="https://img.shields.io/github/issues/JohnMichaelCrawley/Spontaneous" alt="Issues Badge"/></a>
+
+
+
+[Visit project website](https://spontaneous.johncrawley.ie)
 
 ## Target
 
@@ -15,7 +24,9 @@ Spontaneous is a six month long univeristy project I'm working on. Spontaneous a
 
 ## APIs Used
 
-* GoogleMap API
+ * GoogleMap API
+ * Google Map API
+ * Google Places API
 
 ## FAQs
 <br>
@@ -90,20 +101,17 @@ as it's easier to carry around. In the future I could include iPads.
     * [x] Analysis the systems
     * [x] Deign UI design, logo, flowcharts etc
 * [x] Development
-    * [x] Setup GIT repository
-    * [x] Begin development in Xcode 14
-    * [ ] Work on user-interface
-    * [ ] Working and functional 
-    * [ ] Perform unit-testing
-    * [ ] Localisation 
-* [ ] Private Beta
-* [ ] Public Beta
-* [ ] End Beta
-* [ ] Implement Feedback
-    * [ ] Collect and look through feedback
-    * [ ] Performance improvements
-    * [ ] Bug fixes
-* [ ] Deployment
+     * [x] Setup GIT repository
+     * [x] Begin development in Xcode 14
+     * [x] Working on functionality 
+     * [ ] Localisation 
+     * [ ] Work on user-interface
+     * [ ] Working functionality
+     * [ ] Perform unit-testing
+     * [ ] Localisation 
+ * [ ] Private Beta
+ * [ ] Public Beta
+ * [ ] End Beta
 
 ## Known Bugs
 
@@ -116,13 +124,12 @@ N/A
 ## LICENSE
 
 Copyright © 2022 - 2023 John Crawley
-Licensed under the GNU license.
-[READ MORE](LICENSE.md) on the license
+I retain all rights to my source code and no one may reproduce, distribute, or create derivative works from your work.
 
 ## Credits
-
 * John Crawley - project developer
-* [Name] - Japanese localisation
-* [Name] - Cantonese localisation
-* [Name] - Mandarin localisation
-* [Name] - Italian localisation
+ * Anu Sahni - Project supervisor 
+ * Chise Negishi - Japanese localisation
+ * [Name] - Cantonese localisation
+ * [Name] - Mandarin localisation
+ * [Name] - Italian localisation
