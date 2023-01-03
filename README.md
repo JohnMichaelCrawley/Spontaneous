@@ -24,7 +24,6 @@ Spontaneous is a six month long univeristy project I'm working on. Spontaneous a
 
 ## APIs Used
 
- * GoogleMap API
  * Google Map API
  * Google Places API
 
