@@ -24,7 +24,7 @@ class CreditsViewController: UIViewController
     @IBOutlet weak var teamTableView: UITableView!
     // ARRAY VARIABLES
     let DEVTEAM = ["John Crawley - Project developer", "Anu Sahni - Project supervisor"]    // DEVELOPMENT TEAM
-    let LOCTEAM = ["Chise Negishi - Japanese", ""]                                          // LOCALISATION TEAM
+    let LOCTEAM = ["Chise Negishi - Japanese", "", "", ""]                                  // LOCALISATION TEAM
 
     /*
      View Did Load:

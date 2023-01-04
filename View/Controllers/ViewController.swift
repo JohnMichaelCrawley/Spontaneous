@@ -196,25 +196,35 @@ class ViewController: UIViewController, CLLocationManagerDelegate
                 // Get random number from a range of amount of results in JSON
                 let range = root.results.count
                 var index = 0
-                index = Int.random(in: 1..<range)
-                if index > 1
+                if range >= 1
                 {
-                    // Set data to the business model
-                    self.business.setBusinessID(ID: root.results[index].placeId)
-                    self.business.setBusinessName(name: root.results[index].name)
-                    self.business.setBusinessType(type: root.results[index].types)
-                    self.business.setBusinessOpeningHours(openingHours: root.results[index].openingHours ?? [:])
-                    self.business.setBusinessAddress(vicinity: root.results[index].vicinity)
-                    self.business.setBusinessRating(rating: root.results[index].rating)
-                    self.business.setBusinessLatitude(lat: root.results[index].geometry.location.lat)
-                    self.business.setBusinessLongitude(lng: root.results[index].geometry.location.lng)
+                    index = Int.random(in: 1..<range)
+                    if index > 1
+                    {
+                        // Set data to the business model
+                        self.business.setBusinessID(ID: root.results[index].placeId)
+                        self.business.setBusinessName(name: root.results[index].name)
+                        self.business.setBusinessType(type: root.results[index].types)
+                        self.business.setBusinessOpeningHours(openingHours: root.results[index].openingHours ?? [:])
+                        self.business.setBusinessAddress(vicinity: root.results[index].vicinity)
+                        self.business.setBusinessRating(rating: root.results[index].rating)
+                        self.business.setBusinessLatitude(lat: root.results[index].geometry.location.lat)
+                        self.business.setBusinessLongitude(lng: root.results[index].geometry.location.lng)
+                    }
+                    else
+                    {
+                        #if DEBUG
+                        print("index is equal to 0")
+                        #endif
+                    }
                 }
                 else
                 {
                     #if DEBUG
-                    print("index is equal to 0")
+                    print("Error on range")
                     #endif
                 }
+
             }
             catch
             {

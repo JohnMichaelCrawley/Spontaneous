@@ -55,7 +55,7 @@ class SetttingsViewController: UIViewController
             return
         }
         
-     let vc = WebViewViewController(url: url, title: "Feedback")
+     let vc = WebViewViewController(url: url, title: "Send Feedback")
         
     let navVC = UINavigationController(rootViewController: vc)
         present(navVC, animated: true)
@@ -73,7 +73,7 @@ class SetttingsViewController: UIViewController
             return
         }
         
-     let vc = WebViewViewController(url: url, title: "Bug Report")
+     let vc = WebViewViewController(url: url, title: "Report Bug")
     let navVC = UINavigationController(rootViewController: vc)
         present(navVC, animated: true)
     }

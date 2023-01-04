@@ -85,15 +85,16 @@ class FilterViewController: UIViewController
     func checkSearchRadiusFilter()
     {
         let radius = USERDEFAULTS.float(forKey: "searchRadiusFilter")
+        let radiusInMiles = (radius / 16093.44)
         // SET VALUE OF SLIDER
-        searchRadiusFilterSlider.setValue(USERDEFAULTS.float(forKey: "searchRadiusFilter"), animated: false)
+        searchRadiusFilterSlider.setValue(radiusInMiles, animated: false)
         if radius > 1
         {
-            searchRadiusValueLabel.text = "\(radius) miles"
+            searchRadiusValueLabel.text = "\(radiusInMiles) miles"
         }
         else
         {
-            searchRadiusValueLabel.text = "\(radius) mile"
+            searchRadiusValueLabel.text = "\(radiusInMiles) mile"
         }
     }
     /*
@@ -147,7 +148,8 @@ class FilterViewController: UIViewController
          FOR EXAMPLE:
          10 MILES X 1,609.344 = 16093.44 METERS
          */
-        let currentValue = Int(sender.value)
+        let currentValue = Float(sender.value)      // Get value from slider
+        let radiusValue = (currentValue * 16093.44) // Store the radius value in meters
         if currentValue > 1
         {
             searchRadiusValueLabel.text = "\(currentValue) miles"
@@ -157,7 +159,7 @@ class FilterViewController: UIViewController
             searchRadiusValueLabel.text = "\(currentValue) mile"
         }
         // SET THE USER DEFAULTS
-        USERDEFAULTS.set(searchRadiusFilterSlider.value, forKey: "searchRadiusFilter")
+        USERDEFAULTS.set(radiusValue, forKey: "searchRadiusFilter")
     }
     /*
      DRY: DON'T REPEAT YOURSSELF

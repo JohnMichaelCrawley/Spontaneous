@@ -55,7 +55,7 @@ area to find something.
 <br>
 Yes, I am open to including more features or suggestions, however, 
 due to time and schedule of the development I can't include it in the current
-development cycle but can add suggestions to the next cycle of development.
+development cycle but can add suggestions to the next cycle of development. If you'd like, you can submit ideas <a href="https://github.com/JohnMichaelCrawley/Spontaneous/discussions/categories/ideas">here</a>
 </details>
 <!--Qustion 4 -->
 <details closed>
