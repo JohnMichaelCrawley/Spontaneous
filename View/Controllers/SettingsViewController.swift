@@ -155,6 +155,7 @@ extension SetttingsViewController: UITableViewDataSource
     }
 }
 // CELL DELEGATE
+
 extension SetttingsViewController: SettingsTableViewCellDelegate
 {
     #if DEBUG

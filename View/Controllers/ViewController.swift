@@ -33,7 +33,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate
     // GOOGLE MAPS
     let marker = GMSMarker()                            // Google Maps Marker (Pop up)
     // JSON
-    let JSONDECODER = JSONDecoder()                     // JSON DECODER    
+    let JSONDECODER = JSONDecoder()                     // JSON DECODER
+    /*
+     User and Business location:
+     Store the business lat' and long' to be used
+     to center the camera to
+     */
+    var businessLocation = CLLocationCoordinate2D(latitude: 0.0,longitude: 0.0)
+    var userLocation = CLLocationCoordinate2D(latitude: 0.0,longitude: 0.0)
+    var businessLatitude: Double =  0.0
+    var businessLongitude: Double = 0.0
+    var userLatitude: Double = 0.0
+    var userLongitude: Double = 0.0
+    
     /*
      View Did Load:
      This func is called when loading a view controller
@@ -80,6 +92,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
+        
+        
+        setBusinessLocation(businessLocation: businessLocation, userLocation: userLocation)
        // mapView.camera = GMSCameraPosition(target: CLLocationCoordinate2D(latitude:  locationManager.location?.coordinate.latitude ?? 0.0, longitude:  locationManager.location?.coordinate.longitude ?? 0.0), zoom: 10, bearing: 0, viewingAngle: 0)
         
        // let marker = GMSMarker()
@@ -162,6 +177,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         // USER COORDINATES
         let userLatitude = locationManager.location?.coordinate.latitude ?? 0.0
         let userLongitude = locationManager.location?.coordinate.longitude ?? 0.0
+        #if DEBUG
+        print("User's LAT:", userLatitude)
+        print("User's LNG:", userLongitude)
+        #endif
+        
         // RADIUS
         let RADIUS = USERDEFAULTS.float(forKey: "searchRadiusFilter")
         /*
@@ -189,6 +209,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate
              */
             do
             {
+                print("here")
                 // Get access to the JSON data
                 self.JSONDECODER.keyDecodingStrategy = .convertFromSnakeCase
                 let root = try self.JSONDECODER.decode(Root.self, from: data)
@@ -199,7 +220,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate
                 if range >= 1
                 {
                     index = Int.random(in: 1..<range)
-                    if index > 1
+                    if index >= 1
                     {
                         // Set data to the business model
                         self.business.setBusinessID(ID: root.results[index].placeId)
@@ -218,13 +239,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate
                         #endif
                     }
                 }
-                else
+                else if index == 0 || range == 0
                 {
                     #if DEBUG
                     print("Error on range")
                     #endif
                 }
-
             }
             catch
             {
@@ -259,21 +279,75 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         \(BusinessOpenOrClosed)\n
         Rating:\(business.getBusinessRating())\n
         """
-    
-        //marker.snippet = "\(description) was found with a rating of \(review), the radius it was found in is a radius of \(r) miles"
-        marker.map = mapView
-        mapView.selectedMarker = marker
-
-        
         /*
          Store the business lat' and long' to be used
          to center the camera to
          */
-        let businessLatitude =  business.getBusinessLat()
-        let businessLongitude =  business.getBusinessLong()
-        let center = CLLocationCoordinate2D(latitude: businessLatitude,longitude: businessLongitude)
-        marker.position = center
-        let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude:businessLatitude, longitude: businessLongitude, zoom: 14)
+       // let businessLatitude =  business.getBusinessLat()
+       // let businessLongitude =  business.getBusinessLong()
+        businessLatitude = business.getBusinessLat()
+        businessLongitude =  business.getBusinessLong()
+        
+         businessLocation = CLLocationCoordinate2D(latitude: businessLatitude,longitude: businessLongitude)
+         userLocation = CLLocationCoordinate2D(latitude: userLatitude,longitude: userLongitude)
+        
+        if businessLatitude != 0 && businessLongitude != 0
+        {
+            marker.position = businessLocation
+            //marker.snippet = "\(description) was found with a rating of \(review), the radius it was found in is a radius of \(r) miles"
+            marker.map = mapView
+            mapView.selectedMarker = marker
+            marker.position = businessLocation
+        }
+        
+        
+      // let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude:businessLatitude, longitude: businessLongitude, zoom: 14)
+      //  self.mapView.animate(to: camera)
+        
+        setBusinessLocation(businessLocation: businessLocation, userLocation: userLocation)
+        
+    }
+    /*
+     Set Business Location:
+     This function is used to set the location of the
+     camera. It stores the business and user's lat and lng
+     values and has a latitude and longitude for use to set the
+     camera position.It then checks the business lat and lng, if
+     doesn't have values, it will set the latitude and longitude
+     to the user's location, if it has values then it goes to the
+     business location.
+     */
+    func setBusinessLocation(businessLocation: CLLocationCoordinate2D, userLocation: CLLocationCoordinate2D )
+    {
+        // Business
+        let businessLatitude = businessLocation.latitude
+        let businessLongitude = businessLocation.longitude
+        // User
+        let userLatitude = userLocation.latitude
+        let userLongitude = userLocation.longitude
+        // Camera settings
+        let zoom:Float = 14.0
+        var latitude = 0.0
+        var longitude = 0.0
+        if businessLocation.longitude == 0.0 && businessLocation.latitude == 0.0
+        {
+            latitude = userLatitude
+            longitude = userLongitude
+        }
+        else
+        {
+            latitude = businessLatitude
+            longitude = businessLongitude
+        }
+        let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude:latitude,
+                                                                 longitude: longitude,
+                                                                 zoom: zoom)
+        
+
+        let center = CLLocationCoordinate2D(latitude: latitude,longitude: longitude)
         self.mapView.animate(to: camera)
     }
+    
+    
 }
+
