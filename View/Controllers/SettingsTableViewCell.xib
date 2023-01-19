@@ -16,14 +16,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhn-nS-hwF">
-                        <rect key="frame" x="5" y="10" width="210" height="24"/>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhn-nS-hwF">
+                        <rect key="frame" x="5" y="10" width="80" height="24"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="Button"/>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8N-NK-aru">
-                        <rect key="frame" x="303" y="11" width="11" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="&gt;" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8N-NK-aru">
+                        <rect key="frame" x="79" y="11" width="235" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -31,12 +31,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="dhn-nS-hwF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="68E-yw-0bN"/>
-                    <constraint firstItem="b8N-NK-aru" firstAttribute="centerY" secondItem="dhn-nS-hwF" secondAttribute="centerY" id="Y5X-d2-26q"/>
+                    <constraint firstItem="b8N-NK-aru" firstAttribute="centerY" secondItem="dhn-nS-hwF" secondAttribute="centerY" id="FeZ-Kv-ag8"/>
+                    <constraint firstItem="b8N-NK-aru" firstAttribute="baseline" secondItem="dhn-nS-hwF" secondAttribute="baseline" id="XZg-JU-G9L"/>
                     <constraint firstAttribute="trailing" secondItem="dhn-nS-hwF" secondAttribute="trailing" constant="105" id="YIf-qI-O2K"/>
                     <constraint firstItem="dhn-nS-hwF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="brM-za-eQG"/>
-                    <constraint firstItem="b8N-NK-aru" firstAttribute="baseline" secondItem="dhn-nS-hwF" secondAttribute="baseline" id="gwm-9n-VrC"/>
-                    <constraint firstItem="b8N-NK-aru" firstAttribute="leading" secondItem="dhn-nS-hwF" secondAttribute="trailing" constant="88" id="iMY-zg-XkG"/>
+                    <constraint firstItem="b8N-NK-aru" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="63" id="ksh-5n-bb9"/>
                     <constraint firstAttribute="bottom" secondItem="dhn-nS-hwF" secondAttribute="bottom" constant="10" id="nik-lW-MyQ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="b8N-NK-aru" secondAttribute="trailing" constant="-10" id="xy1-cm-wdf"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

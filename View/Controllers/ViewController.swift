@@ -88,23 +88,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate
          */
         mapView.isMyLocationEnabled = true  // SHOWS BLUE DOT FOR USER'S LOCATION
     }
-    
-
+    /*
+     Did Update Locations:
+     This function checks for updates in the
+     update of the location. It contains a
+     function that checks both business and
+     user's locations. It checks if the business
+     has values for lat' and long' but if it doesn't
+     it'll load the camera on the user's location.
+     */
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
-        
-        
         setBusinessLocation(businessLocation: businessLocation, userLocation: userLocation)
-       // mapView.camera = GMSCameraPosition(target: CLLocationCoordinate2D(latitude:  locationManager.location?.coordinate.latitude ?? 0.0, longitude:  locationManager.location?.coordinate.longitude ?? 0.0), zoom: 10, bearing: 0, viewingAngle: 0)
-        
-       // let marker = GMSMarker()
-      //  marker.position = CLLocationCoordinate2D(latitude: locationManager.location?.coordinate.latitude ?? 0.0, longitude: locationManager.location?.coordinate.longitude ?? 0.0)
-        
-        /*marker.title = "Title"
-         marker.snippet = "Here"
-         marker.icon = UIImage(named: "house")
-         marker.map = mapView*/
-        
     }
     /*
      Check Authorisation:
@@ -172,18 +167,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate
          - selected keywords (business type)
          */
         // TEST COORDINATES - USED FOR TESTING PURPOSES
-       // let userLatitude = 53.347568
-       // let userLongitude = -6.259353
+        let userLatitude = 53.347568
+        let userLongitude = -6.259353
         // USER COORDINATES
-        let userLatitude = locationManager.location?.coordinate.latitude ?? 0.0
-        let userLongitude = locationManager.location?.coordinate.longitude ?? 0.0
+        //let userLatitude = locationManager.location?.coordinate.latitude ?? 0.0
+       //let userLongitude = locationManager.location?.coordinate.longitude ?? 0.0
         #if DEBUG
-        print("User's LAT:", userLatitude)
-        print("User's LNG:", userLongitude)
+       // print("User's LAT:", userLatitude)
+       // print("User's LNG:", userLongitude)
         #endif
         
         // RADIUS
         let RADIUS = USERDEFAULTS.float(forKey: "searchRadiusFilter")
+       // let RADIUS = 0.0
         /*
          SEARCH DEFINED VARIABLES:
          Includes variables for:
@@ -191,7 +187,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate
          - URL (URL to search for business in Google's API)
          - marker (used to add an information window
          */
-        let KEYWORD = "cafe"
+        
+        let KEYWORD = business.getRandomLocation().lowercased()
+        //let KEYWORD = "cafe"
+        #if DEBUG
+        print("The keyword selected for the search is:", KEYWORD)
+        #endif
+        
+        
+        // let KEYWORD = "cafe"
+       // print("VC Keyword:", KEYWORD.uppercased())
         let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(userLatitude),\(userLongitude)&radius=\(RADIUS)&type=\(KEYWORD)&key=\(API().returnAPIKey())";
         URLSession.shared.dataTask(with: URL(string: url)! ,completionHandler:
         { data, task, error in
@@ -209,7 +214,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate
              */
             do
             {
-                print("here")
                 // Get access to the JSON data
                 self.JSONDECODER.keyDecodingStrategy = .convertFromSnakeCase
                 let root = try self.JSONDECODER.decode(Root.self, from: data)
@@ -235,14 +239,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate
                     else
                     {
                         #if DEBUG
-                        print("index is equal to 0")
+                     //   print("index is equal to 0")
                         #endif
                     }
                 }
                 else if index == 0 || range == 0
                 {
                     #if DEBUG
-                    print("Error on range")
+                   // print("Error on range")
                     #endif
                 }
             }
@@ -252,6 +256,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate
                 print(error)
                 #endif
             }
+            
+            
+    
             
         }).resume()
        
@@ -276,37 +283,77 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         marker.title = business.getBusinessName()
         marker.snippet =
         """
-        \(BusinessOpenOrClosed)\n
-        Rating:\(business.getBusinessRating())\n
+        \(BusinessOpenOrClosed)
+        Type/s: \(business.getBusinessType())
+        Rating:\(business.getBusinessRating())
         """
         /*
          Store the business lat' and long' to be used
          to center the camera to
          */
-       // let businessLatitude =  business.getBusinessLat()
-       // let businessLongitude =  business.getBusinessLong()
+        // let businessLatitude =  business.getBusinessLat()
+        // let businessLongitude =  business.getBusinessLong()
         businessLatitude = business.getBusinessLat()
         businessLongitude =  business.getBusinessLong()
+        businessLocation = CLLocationCoordinate2D(latitude: businessLatitude,longitude: businessLongitude)
+        userLocation = CLLocationCoordinate2D(latitude: userLatitude,longitude: userLongitude)
+    
         
-         businessLocation = CLLocationCoordinate2D(latitude: businessLatitude,longitude: businessLongitude)
-         userLocation = CLLocationCoordinate2D(latitude: userLatitude,longitude: userLongitude)
+
+        
+        /*
+         TESTING PURPOSES:
+         This creates a circle around the user's location
+         and this allows me to make sure places found is
+         within the search radius.
+         */
+        
+        /*
+        let circle = GMSCircle()
+        circle.map = nil
+        circle.radius = 0
+        circle.radius = CLLocationDistance(RADIUS) // Meters
+        circle.fillColor = UIColor.red
+        circle.position = userLocation // Your CLLocationCoordinate2D  position
+        circle.strokeWidth = 2.5;
+        circle.strokeColor = UIColor.black
+        circle.map = mapView; // Add it to the map
+        */
+        
+        
+        
+        // Check buisness and user location and set camera
+        setBusinessLocation(businessLocation: businessLocation, userLocation: userLocation)
+        
+        #if DEBUG
+        if business.getBusinessLat() == 0 && business.getBusinessLong() == 0
+        {
+            print("business coordinates are 0")
+        }
+        else
+        {
+            print("business has coordinates")
+        }
+        #endif
+        
         
         if businessLatitude != 0 && businessLongitude != 0
         {
             marker.position = businessLocation
-            //marker.snippet = "\(description) was found with a rating of \(review), the radius it was found in is a radius of \(r) miles"
             marker.map = mapView
             mapView.selectedMarker = marker
             marker.position = businessLocation
         }
-        
-        
-      // let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude:businessLatitude, longitude: businessLongitude, zoom: 14)
-      //  self.mapView.animate(to: camera)
-        
-        setBusinessLocation(businessLocation: businessLocation, userLocation: userLocation)
+        else
+        {
+            displayDialogAlert(title: "No Locations Found:", message: "Nothing was found in the search. Please adjust search filters / location and try again.")
+        }
         
     }
+    
+
+    
+    
     /*
      Set Business Location:
      This function is used to set the location of the
@@ -339,15 +386,28 @@ class ViewController: UIViewController, CLLocationManagerDelegate
             latitude = businessLatitude
             longitude = businessLongitude
         }
-        let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude:latitude,
-                                                                 longitude: longitude,
-                                                                 zoom: zoom)
-        
 
+        let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude:latitude, longitude: longitude, zoom: zoom)
         let center = CLLocationCoordinate2D(latitude: latitude,longitude: longitude)
         self.mapView.animate(to: camera)
     }
-    
-    
 }
+/*
+ This extension has a function that
+ displays a dialog alert to display
+ to the user. This is D.R.Y code
+ (Don't Repeat Yourself) meaning
+ it's reusable rather than write
+ the same code over and over.
+ */
+extension UIViewController
+{
+    func displayDialogAlert(title: String, message: String)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+}
+
 

@@ -98,7 +98,7 @@ class LocationsViewController: UIViewController {
     // Check Restaurant Switch
     func checkRestaurantSwitch()
     {
-        if (USERDEFAULTS.bool(forKey: "restaurantsSwitch"))
+        if (USERDEFAULTS.bool(forKey: "restaurantSwitch"))
         {
             restaurantsSwitchReference.setOn(true, animated: false)
         }
@@ -286,11 +286,11 @@ class LocationsViewController: UIViewController {
     {
         if (sender.isOn)
         {
-            USERDEFAULTS.set(true, forKey: "restaurantsSwitch")
+            USERDEFAULTS.set(true, forKey: "restaurantSwitch")
         }
         else
         {
-            USERDEFAULTS.set(false, forKey: "restaurantsSwitch")
+            USERDEFAULTS.set(false, forKey: "restaurantSwitch")
         }
     }
     // Check Night Life Switch

@@ -58,6 +58,23 @@ struct Business
         self.long = 0.0
     }
     
+    
+    
+    /*
+     "id": id,
+     "name": name,
+     "type": type,
+     "openingHours": openingHours!,
+     "rating": rating,
+     "address": address,
+     "lat": lat,
+     "lng": long
+             
+     */
+        
+    
+  
+
     // INIT
     /*init(id: String, name: String, type: [String], openingHours: [String : Bool]? = nil, rating: Double, photos: [Photo], address: String, lat: Double, long: Double) {
         self.id = id
@@ -148,7 +165,57 @@ struct Business
     {
         return long
     }
+    
+    /*
+     This function iterates through the USERDEFAULS
+     for keys containing switches and if the switch
+     is turned on. If these conditions are true,
+     it stores it in the kewords array and remove
+     the prefix of, "Switch" then after the iteration
+     it will randomly pick a random key to be used
+     as the type of business/place to use for the
+     search
+     */
+    func getRandomLocation() -> String
+    {
+        var keyword = ""
+        var keywords = [String]()
+        for (key, value) in USERDEFAULTS.dictionaryRepresentation()
+        {
+            if key.contains("Switch") && value as! Int == 1
+            {
+                #if DEBUG
+               // print("KEYWORDS = \(key)")
+                #endif
+                let element = key.replacingOccurrences(of: "Switch", with: "")
+                #if DEBUG
+                print("element = \(element)")
+                #endif
+                keywords.append(element)
+            }
+        }
+        keyword = keywords.randomElement()!
+        return keyword
+    }
+
 }
+
+
+
+
+
+/*
+ Function to shuffle and completely
+ randomise the elements
+ */
+func fisherYatesShuffle()
+{
+    
+}
+
+
+
+
 /*
 These structs are used to help
  with decoding and enabling access
@@ -182,4 +249,13 @@ struct Photo: Codable {
     var height: Double
     var width: Double
     var photoReference: String
+}
+
+
+
+extension String {
+    func deletingPrefix(_ prefix: String) -> String {
+        guard self.hasPrefix(prefix) else { return self }
+        return String(self.dropFirst(prefix.count))
+    }
 }

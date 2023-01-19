@@ -11,8 +11,6 @@ Spontaneous is a six month long univeristy project I'm working on. Spontaneous a
  <a href="https://github.com/JohnMichaelCrawley/Spontaneous/pulls"><img src="https://img.shields.io/github/issues-pr/JohnMichaelCrawley/Spontaneous" alt="Pull Requests Badge"/></a>
  <a href="https://github.com/JohnMichaelCrawley/Spontaneous/issues"><img src="https://img.shields.io/github/issues/JohnMichaelCrawley/Spontaneous" alt="Issues Badge"/></a>
 
-
-
 [Visit project website](https://spontaneous.johncrawley.ie)
 
 ## Target
@@ -75,8 +73,7 @@ Android version, then there will be a development for Android.
 <br>
 Yes, you can report an issue by:
 Email (bug-reporting@spontaneous.johncrawley.ie)
-or by
-GitHub
+or by GitHub <a href="https://github.com/JohnMichaelCrawley/Spontaneous/issues">here</a>
 </details>
 <!--Qustion 7 -->
 <details closed>
@@ -84,12 +81,8 @@ GitHub
 <br>
 I have thought about including iPad in the list of devices but 
 through a lot of considerations, I felt it would be better on iPhone 
-as it's easier to carry around. In the future I could include iPads. 
+as it's easier to carry around for this kind of application. In the future I could include iPads. 
 </details>
-
-
-
-
 
 
 
@@ -103,9 +96,8 @@ as it's easier to carry around. In the future I could include iPads.
      * [x] Setup GIT repository
      * [x] Begin development in Xcode 14
      * [x] Working on functionality 
-     * [ ] Localisation 
      * [ ] Work on user-interface
-     * [ ] Working functionality
+     * [ ] Localisation 
      * [ ] Perform unit-testing
      * [ ] Localisation 
  * [ ] Private Beta
@@ -123,12 +115,9 @@ N/A
 ## LICENSE
 
 Copyright © 2022 - 2023 John Crawley
-I retain all rights to my source code and no one may reproduce, distribute, or create derivative works from your work.
+I retain all rights to my source code and no one may reproduce, distribute, or create derivative works from my work.
 
 ## Credits
 * John Crawley - project developer
  * Anu Sahni - Project supervisor 
  * Chise Negishi - Japanese localisation
- * [Name] - Cantonese localisation
- * [Name] - Mandarin localisation
- * [Name] - Italian localisation
