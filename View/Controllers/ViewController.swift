@@ -25,6 +25,8 @@ import GooglePlaces
 import CoreLocation
 class ViewController: UIViewController, CLLocationManagerDelegate
 {
+    /* TEST VARIABLES */
+    var isToggleActive = false
     /* VARIABLES */
     @IBOutlet weak var mapView: GMSMapView!             // U.I: Display Google Map's //
     var locationManager = CLLocationManager()           // LocationManager: Get information on coordinates from the user etc //
@@ -54,6 +56,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
         /*
          Location Manager set up:
          Location manager delegate is set to self
@@ -81,6 +84,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate
                 self.locationManager.requestWhenInUseAuthorization()
             }
         }
+     
+        updateMapStyle()
         
         /*
          MAP VIEW SETTINGS:
@@ -88,6 +93,52 @@ class ViewController: UIViewController, CLLocationManagerDelegate
          */
         mapView.isMyLocationEnabled = true  // SHOWS BLUE DOT FOR USER'S LOCATION
     }
+    
+    
+    /*
+     Update Map Style:
+     This function sets the map in either dark mode
+     or keep it in the default style of light mode.
+     PROBLEM:
+     When the user goes to change the theme, the map
+     style doesn't refresh, this may because of the
+     view controller not reloading.
+     */
+    func updateMapStyle()
+    {
+        do
+        {
+            let styleURL = Bundle.main.url(forResource: "style", withExtension: "json")
+            let theme = USERDEFAULTS.string(forKey: "applicationTheme") ?? "light"
+             
+            if theme == "dark"
+            {
+                mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL!)
+                #if DEBUG
+                print("Map View is in dark mode")
+                #endif
+            }
+            if theme == "light"
+            {
+                mapView.mapStyle = .none
+                #if DEBUG
+                print("Map View is in light mode")
+                #endif
+            }
+        }
+        catch
+        {
+            displayDialogAlert(title: "Map Style Error:", message: "One or more of the map styles failed to load. \(error)")
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     /*
      Did Update Locations:
      This function checks for updates in the
@@ -170,8 +221,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         let userLatitude = 53.347568
         let userLongitude = -6.259353
         // USER COORDINATES
-        //let userLatitude = locationManager.location?.coordinate.latitude ?? 0.0
-       //let userLongitude = locationManager.location?.coordinate.longitude ?? 0.0
+       // let userLatitude = locationManager.location?.coordinate.latitude ?? 0.0
+       // let userLongitude = locationManager.location?.coordinate.longitude ?? 0.0
         #if DEBUG
        // print("User's LAT:", userLatitude)
        // print("User's LNG:", userLongitude)
@@ -256,10 +307,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate
                 print(error)
                 #endif
             }
-            
-            
-    
-            
         }).resume()
        
         // Set up display of information
@@ -320,7 +367,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         circle.map = mapView; // Add it to the map
         */
         
-        
+    
         
         // Check buisness and user location and set camera
         setBusinessLocation(businessLocation: businessLocation, userLocation: userLocation)
@@ -350,7 +397,40 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         }
         
     }
+    /*
+     TESTING PURPOSES BUTTON:
+     This button will show or remove the circle
+     radius on the map.THIS MUST BE DELETED IN
+     PRODUCTION
+     */
+    @IBAction func toggleRadiusButton(_ sender: UIButton)
+    {
+        let RADIUS = USERDEFAULTS.float(forKey: "searchRadiusFilter")
+        var circle = GMSCircle()
+        
+        isToggleActive = !isToggleActive
+        // TRUE = TOGGLE ON
+        if isToggleActive
+        {
+            circle.map = nil
+            circle.radius = 0
+            circle.radius = CLLocationDistance(RADIUS) // Meters
+            circle.fillColor = UIColor.red
+            circle.position = userLocation // Your CLLocationCoordinate2D  position
+            circle.strokeWidth = 2.5;
+            circle.strokeColor = UIColor.black
+            circle.map = mapView; // Add it to the map
+        }
+        // FALSE
+        else
+        {
+            circle.map = nil
+            mapView.clear()
+            marker.map = mapView
+        }
+    }
     
+  
 
     
     

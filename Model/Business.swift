@@ -166,6 +166,12 @@ struct Business
         return long
     }
     
+    
+
+    
+    
+    
+    
     /*
      This function iterates through the USERDEFAULS
      for keys containing switches and if the switch

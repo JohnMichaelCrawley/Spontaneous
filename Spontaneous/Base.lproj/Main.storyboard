@@ -301,55 +301,55 @@ in the search for something spontaneous to do.  </string>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3mm-qc-Nv9">
-                                <rect key="frame" x="310" y="155" width="49" height="31"/>
+                                <rect key="frame" x="310" y="155" width="51" height="31"/>
                                 <connections>
                                     <action selector="cafeSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="cgE-gD-Xk2"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FVI-WN-n9N">
-                                <rect key="frame" x="310" y="194" width="49" height="31"/>
+                                <rect key="frame" x="310" y="194" width="51" height="31"/>
                                 <connections>
                                     <action selector="cinemaSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="ska-nJ-2gt"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ivF-x3-dbN">
-                                <rect key="frame" x="309" y="233" width="49" height="31"/>
+                                <rect key="frame" x="309" y="233" width="51" height="31"/>
                                 <connections>
                                     <action selector="restaurantsSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="ySg-Cs-zBT"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eQl-MD-Zoj">
-                                <rect key="frame" x="309" y="272" width="49" height="31"/>
+                                <rect key="frame" x="309" y="272" width="51" height="31"/>
                                 <connections>
                                     <action selector="nightLifeSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="6Pk-Wj-Uwk"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iy8-gE-KvY">
-                                <rect key="frame" x="310" y="311" width="49" height="31"/>
+                                <rect key="frame" x="310" y="311" width="51" height="31"/>
                                 <connections>
                                     <action selector="brewerySwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="zFy-iz-6qG"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6tq-iv-Aa3">
-                                <rect key="frame" x="310" y="350" width="49" height="31"/>
+                                <rect key="frame" x="310" y="350" width="51" height="31"/>
                                 <connections>
                                     <action selector="foodMarketSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="JFY-Wn-3nE"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jbq-Fx-wRh">
-                                <rect key="frame" x="309" y="389" width="49" height="31"/>
+                                <rect key="frame" x="309" y="389" width="51" height="31"/>
                                 <connections>
                                     <action selector="aquariumSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="sRb-Wz-PLY"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="avd-kb-PuX">
-                                <rect key="frame" x="309" y="428" width="49" height="31"/>
+                                <rect key="frame" x="309" y="428" width="51" height="31"/>
                                 <connections>
                                     <action selector="amusementParkSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="x2n-cU-P7K"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u9Z-BC-bri">
-                                <rect key="frame" x="309" y="467" width="49" height="31"/>
+                                <rect key="frame" x="309" y="467" width="51" height="31"/>
                                 <connections>
                                     <action selector="museumSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="REV-k9-IHB"/>
                                 </connections>
@@ -409,7 +409,7 @@ in the search for something spontaneous to do.  </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rms-kj-6oX">
-                                <rect key="frame" x="309" y="506" width="49" height="31"/>
+                                <rect key="frame" x="309" y="506" width="51" height="31"/>
                                 <connections>
                                     <action selector="zooSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="q3x-rf-pCM"/>
                                 </connections>
@@ -421,7 +421,7 @@ in the search for something spontaneous to do.  </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W7t-Av-MjW">
-                                <rect key="frame" x="309" y="545" width="49" height="31"/>
+                                <rect key="frame" x="309" y="545" width="51" height="31"/>
                                 <connections>
                                     <action selector="artGallerySwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="EYN-f4-92h"/>
                                 </connections>
@@ -433,7 +433,7 @@ in the search for something spontaneous to do.  </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pgw-jK-N7Y">
-                                <rect key="frame" x="309" y="584" width="49" height="31"/>
+                                <rect key="frame" x="309" y="584" width="51" height="31"/>
                                 <connections>
                                     <action selector="bakerySwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="wBg-jk-g0w"/>
                                 </connections>
@@ -445,7 +445,7 @@ in the search for something spontaneous to do.  </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wNz-Uv-5VU">
-                                <rect key="frame" x="309" y="623" width="49" height="31"/>
+                                <rect key="frame" x="309" y="623" width="51" height="31"/>
                                 <connections>
                                     <action selector="bowlingSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="6s5-xe-Jdi"/>
                                 </connections>
@@ -457,7 +457,7 @@ in the search for something spontaneous to do.  </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ux-q4-Nba">
-                                <rect key="frame" x="309" y="662" width="49" height="31"/>
+                                <rect key="frame" x="309" y="662" width="51" height="31"/>
                                 <connections>
                                     <action selector="parkSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="XeF-b8-iRy"/>
                                 </connections>
@@ -469,7 +469,7 @@ in the search for something spontaneous to do.  </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="twg-cu-lBU">
-                                <rect key="frame" x="309" y="701" width="49" height="31"/>
+                                <rect key="frame" x="309" y="701" width="51" height="31"/>
                                 <connections>
                                     <action selector="spaSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="AcW-FK-BPR"/>
                                 </connections>
@@ -583,9 +583,13 @@ in the search for something spontaneous to do.  </string>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0Ax-cJ-YzJ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
+                        <color key="tintColor" systemColor="systemBackgroundColor"/>
+                        <color key="barTintColor" systemColor="labelColor"/>
+                        <color key="selectedImageTintColor" systemColor="secondarySystemFillColor"/>
+                        <tabBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" systemColor="labelColor"/>
+                        </tabBarAppearance>
                     </tabBar>
                     <connections>
                         <segue destination="yQK-6M-uBk" kind="relationship" relationship="viewControllers" id="zdU-6n-HMa"/>
@@ -630,6 +634,7 @@ in the search for something spontaneous to do.  </string>
                             </view>
                             <button opaque="NO" contentMode="center" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYx-Bz-0R0">
                                 <rect key="frame" x="120.66666666666669" y="706" width="149" height="34.333333333333371"/>
+                                <color key="backgroundColor" systemColor="secondaryLabelColor"/>
                                 <size key="titleShadowOffset" width="0.0" height="100"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Be Spontaneous">
@@ -643,6 +648,17 @@ in the search for something spontaneous to do.  </string>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="beSpontaneousPressed:" destination="TXZ-eN-gZh" eventType="touchDown" id="G56-1A-nOO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y68-gN-K2e">
+                                <rect key="frame" x="190" y="100" width="200" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="linkColor"/>
+                                <color key="tintColor" red="0.96164228880000002" green="0.95073450459999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Toggle Circle Radius"/>
+                                <connections>
+                                    <action selector="toggleRadiusButton:" destination="TXZ-eN-gZh" eventType="touchUpInside" id="axs-sb-3OZ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -819,6 +835,15 @@ in the search for something spontaneous to do.  </string>
         <image name="map.circle" catalog="system" width="128" height="123"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondarySystemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
