@@ -12,7 +12,7 @@
         <!--Map-->
         <scene sceneID="FA4-JA-HzO">
             <objects>
-                <navigationController id="yQK-6M-uBk" sceneMemberID="viewController">
+                <navigationController hidesBottomBarWhenPushed="YES" id="yQK-6M-uBk" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Map" id="kZi-8x-5sr">
                         <imageReference key="image" image="map.circle" catalog="system"/>
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -184,7 +184,7 @@ range you want. The price range is €-€€€</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.34175404999999998" minValue="0.062137100000000001" maxValue="0.62137100000000001" translatesAutoresizingMaskIntoConstraints="NO" id="qf5-Dc-pKQ">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.043464580000000003" minValue="0.02479205" maxValue="0.062137110000000002" translatesAutoresizingMaskIntoConstraints="NO" id="qf5-Dc-pKQ">
                                 <rect key="frame" x="6" y="438" width="360" height="30"/>
                                 <connections>
                                     <action selector="searchRadiusFilterSlider:" destination="bC5-YL-Gpe" eventType="valueChanged" id="spA-1f-UCx"/>
@@ -557,7 +557,7 @@ in the search for something spontaneous to do.  </string>
                     <connections>
                         <outlet property="amusementParkSwitchReference" destination="avd-kb-PuX" id="ptY-xL-MSo"/>
                         <outlet property="aquariumSwitchReference" destination="Jbq-Fx-wRh" id="LAV-Mn-le7"/>
-                        <outlet property="artGallerySwitchReference" destination="Pgw-jK-N7Y" id="p7H-TS-gR9"/>
+                        <outlet property="artGallerySwitchReference" destination="W7t-Av-MjW" id="j2k-N6-Uud"/>
                         <outlet property="bakerySwitchReference" destination="Pgw-jK-N7Y" id="bKi-3X-aOG"/>
                         <outlet property="bowlingSwitchReference" destination="wNz-Uv-5VU" id="HDo-MP-xuQ"/>
                         <outlet property="brewerySwitchReference" destination="Iy8-gE-KvY" id="jJV-ET-Bl5"/>
@@ -579,7 +579,7 @@ in the search for something spontaneous to do.  </string>
         <!--Tab Bar Controller-->
         <scene sceneID="0z6-wu-e9g">
             <objects>
-                <tabBarController id="oPy-Nt-CzG" sceneMemberID="viewController">
+                <tabBarController hidesBottomBarWhenPushed="YES" id="oPy-Nt-CzG" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0Ax-cJ-YzJ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -603,7 +603,7 @@ in the search for something spontaneous to do.  </string>
         <!--Settings-->
         <scene sceneID="lqp-GO-F77">
             <objects>
-                <navigationController id="Smu-2P-S4M" sceneMemberID="viewController">
+                <navigationController hidesBottomBarWhenPushed="YES" id="Smu-2P-S4M" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" id="XDf-qA-q2f">
                         <imageReference key="image" image="gear.circle" catalog="system"/>
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -619,6 +619,45 @@ in the search for something spontaneous to do.  </string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e5H-lu-1lG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2194" y="176"/>
+        </scene>
+        <!--Get Directions View Controller-->
+        <scene sceneID="QEb-6w-gJe">
+            <objects>
+                <viewController storyboardIdentifier="getDirectionsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cYP-f2-7Lu" customClass="GetDirectionsViewController" customModule="Spontaneous" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LI6-SU-bcJ">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Kn-yi-o93">
+                                <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                                <items>
+                                    <navigationItem title="Directions" id="MLt-c8-gGQ"/>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qem-dM-ieG" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="91" width="390" height="843"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="GHL-sA-Ejq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Qem-dM-ieG" firstAttribute="trailing" secondItem="4Kn-yi-o93" secondAttribute="trailing" id="DVv-kI-IGH"/>
+                            <constraint firstItem="Qem-dM-ieG" firstAttribute="leading" secondItem="4Kn-yi-o93" secondAttribute="leading" id="I9L-wD-RSi"/>
+                            <constraint firstItem="4Kn-yi-o93" firstAttribute="top" secondItem="GHL-sA-Ejq" secondAttribute="top" id="O9M-r3-F3N"/>
+                            <constraint firstAttribute="bottom" secondItem="Qem-dM-ieG" secondAttribute="bottom" constant="-90" id="aHa-Bn-UTb"/>
+                            <constraint firstItem="4Kn-yi-o93" firstAttribute="leading" secondItem="GHL-sA-Ejq" secondAttribute="leading" id="igp-ov-fU5"/>
+                            <constraint firstItem="4Kn-yi-o93" firstAttribute="centerX" secondItem="LI6-SU-bcJ" secondAttribute="centerX" id="yUK-hP-NAb"/>
+                            <constraint firstItem="Qem-dM-ieG" firstAttribute="top" secondItem="4Kn-yi-o93" secondAttribute="bottom" id="ymZ-7V-j0Q"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="Qem-dM-ieG" id="NDJ-oI-ciU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CUI-YD-cJx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="586.15384615384619" y="1350.7109004739336"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="4OB-Lg-Ls2">
@@ -650,7 +689,7 @@ in the search for something spontaneous to do.  </string>
                                     <action selector="beSpontaneousPressed:" destination="TXZ-eN-gZh" eventType="touchDown" id="G56-1A-nOO"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y68-gN-K2e">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y68-gN-K2e">
                                 <rect key="frame" x="190" y="100" width="200" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="linkColor"/>
@@ -672,6 +711,11 @@ in the search for something spontaneous to do.  </string>
                             <constraint firstItem="WYx-Bz-0R0" firstAttribute="centerX" secondItem="F8v-ih-Ddy" secondAttribute="centerX" id="hac-mS-AkN"/>
                             <constraint firstItem="6cH-6P-dSs" firstAttribute="leading" secondItem="CkT-qN-qKI" secondAttribute="leading" id="qre-5G-Zso"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="y68-gN-K2e"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="gvB-DK-D6a"/>
                     <connections>

@@ -39,7 +39,6 @@ class LocationsViewController: UIViewController {
     @IBOutlet weak var bowlingSwitchReference: UISwitch!
     @IBOutlet weak var parkSwitchReference: UISwitch!
     @IBOutlet weak var spaSwitchReference: UISwitch!
-
     /*
      View Did Load:
      This func is called when loading a view controller

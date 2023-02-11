@@ -23,23 +23,34 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import CoreLocation
+
 class ViewController: UIViewController, CLLocationManagerDelegate
 {
     /* TEST VARIABLES */
     var isToggleActive = false
     /* VARIABLES */
     @IBOutlet weak var mapView: GMSMapView!             // U.I: Display Google Map's //
+   
+
+  //  var CustomInfoWindow = CustomInfoWindow()
+ //   private var infoWindow = CustomInfoWindow()
+    
+    
+     
+    
+    
+    
+    
+    
     var locationManager = CLLocationManager()           // LocationManager: Get information on coordinates from the user etc //
     let USERDEFAULTS = UserDefaults.standard            // USERDEFAULTS: used to access stored data i.e settings //
-    var business = Business()                           // Get the business data structs etc from Business file //
+    // Get the business data structs etc from Business file //
+    var places: [Place] = []                         // Array to store all the businesses and places in an array to shuffle//
     // GOOGLE MAPS
-    let marker = GMSMarker()                            // Google Maps Marker (Pop up)
-    // JSON
-    let JSONDECODER = JSONDecoder()                     // JSON DECODER
+    var marker = GMSMarker()                            // Google Maps Marker (Pop up)
     /*
      User and Business location:
-     Store the business lat' and long' to be used
-     to center the camera to
+     Store the business lat' and long' to be used to center the camera to
      */
     var businessLocation = CLLocationCoordinate2D(latitude: 0.0,longitude: 0.0)
     var userLocation = CLLocationCoordinate2D(latitude: 0.0,longitude: 0.0)
@@ -47,16 +58,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate
     var businessLongitude: Double = 0.0
     var userLatitude: Double = 0.0
     var userLongitude: Double = 0.0
+   
     
+    
+
     /*
      View Did Load:
-     This func is called when loading a view controller
-     hierarchy into memory.
+     This func is called when loading a view controller hierarchy into memory.
      */
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
         /*
          Location Manager set up:
          Location manager delegate is set to self
@@ -84,15 +96,28 @@ class ViewController: UIViewController, CLLocationManagerDelegate
                 self.locationManager.requestWhenInUseAuthorization()
             }
         }
-     
+        // Update the map style based on user selection //
         updateMapStyle()
-        
         /*
          MAP VIEW SETTINGS:
          Include or adjust the mapView properties
          */
         mapView.isMyLocationEnabled = true  // SHOWS BLUE DOT FOR USER'S LOCATION
+
+        mapView.delegate = self
+ 
+      //
+
+        
     }
+    
+
+  
+
+    
+    
+    
+    
     
     
     /*
@@ -128,17 +153,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         }
         catch
         {
-            displayDialogAlert(title: "Map Style Error:", message: "One or more of the map styles failed to load. \(error)")
+          //  displayDialogAlert(title: "Map Style Error:", message: "One or more of the map styles failed to load. \(error)")
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
     /*
      Did Update Locations:
      This function checks for updates in the
@@ -194,7 +211,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate
             locationManager.requestWhenInUseAuthorization()
         }
     }
-    
     // DID FAIL WITH ERROR? THEN PRINT ERROR TO LOG //
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
     {
@@ -210,193 +226,204 @@ class ViewController: UIViewController, CLLocationManagerDelegate
      */
     @IBAction func beSpontaneousPressed(_ sender: Any)
     {
-        /*
-         USER DEFINED VARIABLES:
-         Include variables for:
-         - user's lat' + long'
-         - radius set by the user
-         - selected keywords (business type)
-         */
+        // BUTTON VARIABLES//
         // TEST COORDINATES - USED FOR TESTING PURPOSES
         let userLatitude = 53.347568
         let userLongitude = -6.259353
-        // USER COORDINATES
-       // let userLatitude = locationManager.location?.coordinate.latitude ?? 0.0
-       // let userLongitude = locationManager.location?.coordinate.longitude ?? 0.0
-        #if DEBUG
-       // print("User's LAT:", userLatitude)
-       // print("User's LNG:", userLongitude)
-        #endif
-        
-        // RADIUS
-        let RADIUS = USERDEFAULTS.float(forKey: "searchRadiusFilter")
-       // let RADIUS = 0.0
+        //let userLatitude = locationManager.location?.coordinate.latitude ?? 0.0
+        //let userLongitude = locationManager.location?.coordinate.longitude ?? 0.0
+        // TESTING VARIABLE FOR BIG O
+        let startTime = CFAbsoluteTimeGetCurrent() // START TIME
         /*
-         SEARCH DEFINED VARIABLES:
-         Includes variables for:
-         - keyword (business type)
-         - URL (URL to search for business in Google's API)
-         - marker (used to add an information window
+         START THE ALGORITHM:
+         Start the loop to generate multiple types of places/businesses
+         and allocate them into the business array.
          */
+        fetchPlaces()
+
         
-        let KEYWORD = business.getRandomLocation().lowercased()
-        //let KEYWORD = "cafe"
+        /*
+         END THE ALGORITHM:
+         
+         */
+        // TESTING VARIABLE FOR BIG O
+        let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime // END TIME
+        let dots = "****************************************"
         #if DEBUG
-        print("The keyword selected for the search is:", KEYWORD)
+        print("\n\n\(dots)\nTime it took to execute this button is:\n \(timeElapsed)\n\(dots)\n\n")
         #endif
+        // Time it took to execute this button is 0.0015050172805786133
         
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    func fetchPlaces()
+    {
+        // SEARCH FILTERS
+        let RADIUS = USERDEFAULTS.float(forKey: "searchRadiusFilter")
+    
+        let KEYWORD = "cafe"
+        let location = "53.347568,-6.259353"
+
         
-        // let KEYWORD = "cafe"
-       // print("VC Keyword:", KEYWORD.uppercased())
-        let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(userLatitude),\(userLongitude)&radius=\(RADIUS)&type=\(KEYWORD)&key=\(API().returnAPIKey())";
-        URLSession.shared.dataTask(with: URL(string: url)! ,completionHandler:
-        { data, task, error in
-            guard let data = data, error == nil else
-            {
-                #if DEBUG
-                print("Something went wrong wih getting the data!...")
-                #endif
-                return
-            }
-            /*
-             Try to decode the JSON for the business
-             data and store it as an object as part of
-             the business class
-             */
+        let url = URL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(location)&radius=\(RADIUS)&type=\(KEYWORD)&key=\(API().returnAPIKey())")
+        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            guard let data = data else { return }
+           // print("--> data: \(String(data: data, encoding: .utf8))")
+          //  print(String(data: data, encoding: .utf8) ?? "*")
+        
             do
             {
-                // Get access to the JSON data
-                self.JSONDECODER.keyDecodingStrategy = .convertFromSnakeCase
-                let root = try self.JSONDECODER.decode(Root.self, from: data)
-                // Get random i
-                // Get random number from a range of amount of results in JSON
-                let range = root.results.count
-                var index = 0
-                if range >= 1
+               // let result = try JSONDecoder().decode(Root.self, from: data).results
+                let result = try JSONDecoder().decode(Root.self, from: data).results
+                let resultCount = result.count
+                let i = Int.random(in: 0..<resultCount)
+                
+                for _ in result
                 {
-                    index = Int.random(in: 1..<range)
-                    if index >= 1
+                    let placeID = result[i].place_id ?? ""
+                    let placeName = result[i].name ?? ""
+                    let placeAddress = result[i].formatted_address ?? ""
+                    let phoneNumber = result[i].formatted_phone_number ?? ""
+                    let openingHours = result[i].openingHours?.openNow ?? false
+                    let website = result[i].website ?? ""
+                    let placeTypes = result[i].types ?? [""]
+                    let placeRating = result[i].rating ?? 0.0
+                    let placePhotoReference = result[i].photos![0].photoReference
+                    let placeLat = result[i].geometry?.location.lat ?? 0.0
+                    let placeLong = result[i].geometry?.location.lng ?? 0.0
+                    
+                    let string = placeID
+                    if self.places.filter({ $0.placeID == string }).count > 0
                     {
-                        // Set data to the business model
-                        self.business.setBusinessID(ID: root.results[index].placeId)
-                        self.business.setBusinessName(name: root.results[index].name)
-                        self.business.setBusinessType(type: root.results[index].types)
-                        self.business.setBusinessOpeningHours(openingHours: root.results[index].openingHours ?? [:])
-                        self.business.setBusinessAddress(vicinity: root.results[index].vicinity)
-                        self.business.setBusinessRating(rating: root.results[index].rating)
-                        self.business.setBusinessLatitude(lat: root.results[index].geometry.location.lat)
-                        self.business.setBusinessLongitude(lng: root.results[index].geometry.location.lng)
+                        // PlaceID is already in array
                     }
                     else
                     {
-                        #if DEBUG
-                     //   print("index is equal to 0")
-                        #endif
+                        // PlaceID is NOT in arrayphoneNumber', 'openingHours', 'website'
+                        let place = Place(placeID: placeID,
+                                          name: placeName,
+                                          address: placeAddress,
+                            
+                                          openingHours: openingHours,
+                                          types: placeTypes,
+                                          rating: placeRating,
+                                          photoReference: placePhotoReference,
+                                  
+                                          latitude: placeLat,
+                                          longitude: placeLong
+                        )
+                        self.places.append(place)
+                      //  print(place)
                     }
                 }
-                else if index == 0 || range == 0
+                
+                DispatchQueue.main.async
                 {
-                    #if DEBUG
-                   // print("Error on range")
-                    #endif
+                    self.displayRandomPlace()
                 }
+            
             }
             catch
             {
                 #if DEBUG
-                print(error)
+                print("""
+                      \n
+                     ************************************************\n\(error)
+                     \n************************************************\n
+                     """)
                 #endif
             }
-        }).resume()
-       
-        // Set up display of information
-        // Is Open
-        // Check whether the business is open and if it is
-        // return a string of, "Open Now" other wise, "Closed"
-          let isOpen = business.getBusinessOpeningHours()
-          var BusinessOpenOrClosed = ""
-          switch isOpen
-          {
-          case ["open_now": true]:
-              BusinessOpenOrClosed = "Open Now"
-          case ["open_now": false]:
-              BusinessOpenOrClosed = "Closed"
-          default:
-              BusinessOpenOrClosed = "Closed"
-          }
+        }.resume()
 
-        // SET MARKER UP
-        //  Is Opened?:\(b.getBusinessOpeningHours()) \n
-        marker.title = business.getBusinessName()
-        marker.snippet =
-        """
-        \(BusinessOpenOrClosed)
-        Type/s: \(business.getBusinessType())
-        Rating:\(business.getBusinessRating())
-        """
-        /*
-         Store the business lat' and long' to be used
-         to center the camera to
-         */
-        // let businessLatitude =  business.getBusinessLat()
-        // let businessLongitude =  business.getBusinessLong()
-        businessLatitude = business.getBusinessLat()
-        businessLongitude =  business.getBusinessLong()
-        businessLocation = CLLocationCoordinate2D(latitude: businessLatitude,longitude: businessLongitude)
-        userLocation = CLLocationCoordinate2D(latitude: userLatitude,longitude: userLongitude)
-    
-        
 
-        
-        /*
-         TESTING PURPOSES:
-         This creates a circle around the user's location
-         and this allows me to make sure places found is
-         within the search radius.
-         */
-        
-        /*
-        let circle = GMSCircle()
-        circle.map = nil
-        circle.radius = 0
-        circle.radius = CLLocationDistance(RADIUS) // Meters
-        circle.fillColor = UIColor.red
-        circle.position = userLocation // Your CLLocationCoordinate2D  position
-        circle.strokeWidth = 2.5;
-        circle.strokeColor = UIColor.black
-        circle.map = mapView; // Add it to the map
-        */
-        
+    }
+
     
-        
-        // Check buisness and user location and set camera
-        setBusinessLocation(businessLocation: businessLocation, userLocation: userLocation)
-        
-        #if DEBUG
-        if business.getBusinessLat() == 0 && business.getBusinessLong() == 0
+    
+    
+    
+    
+    func displayRandomPlace()
+    {
+        if places.count != 0
         {
-            print("business coordinates are 0")
-        }
-        else
-        {
-            print("business has coordinates")
-        }
-        #endif
-        
-        
-        if businessLatitude != 0 && businessLongitude != 0
-        {
-            marker.position = businessLocation
+            let randomIndex = Int.random(in: 0..<places.count)
+            let place = places[randomIndex]
+            
+         
+            
+            marker.position = CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude)
+            
+      
+            marker.title = "\(place.name)"
+            
+            marker.snippet = """
+                             Rating : \(place.rating)
+                             Address : \(place.address)
+                             Types : '\(place.types)
+                             """
+         
             marker.map = mapView
+    
+    
+       
+             
+            
+            let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: place.latitude, longitude: place.longitude, zoom: 15)
+            let center = CLLocationCoordinate2D(latitude: place.latitude,longitude: place.longitude)
             mapView.selectedMarker = marker
-            marker.position = businessLocation
+            self.mapView.animate(to: camera)
+  
+            // textbox.text = "Name: \(place.name)\nAddress: \(place.address)\nRating: \(place.rating)\nTypes:\(place.types)\nLat: \(place.latitude)\nLong: \(place.longitude)"
+            
+            let imageURL = "https://maps.googleapis.com/maps/api/place/photo?photoreference=\(place.photoReference)&sensor=false&maxheight=400&maxwidth=400&key=\(API().returnAPIKey())"
+            
+            
+            let task = URLSession.shared.dataTask(with: URL(string: imageURL)!) { (data, response, error) in
+                if let data = data
+                {
+                    let name = place.name
+                    let rating = place.rating
+                    let image = UIImage(data: data)!
+                    
+                    DispatchQueue.main.async
+                    {
+                        //   self.image.image = UIImage(data: data)
+                      
+                    }
+                }
+                
+            }
+            task.resume()
         }
         else
         {
-            displayDialogAlert(title: "No Locations Found:", message: "Nothing was found in the search. Please adjust search filters / location and try again.")
+            // textbox.text = "No data."
         }
+        
+        
+        
         
     }
+    
+    
     /*
      TESTING PURPOSES BUTTON:
      This button will show or remove the circle
@@ -406,7 +433,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate
     @IBAction func toggleRadiusButton(_ sender: UIButton)
     {
         let RADIUS = USERDEFAULTS.float(forKey: "searchRadiusFilter")
-        var circle = GMSCircle()
+        let circle = GMSCircle()
+        
+      
+
+        
+        let loc = CLLocationCoordinate2D(latitude: 53.347568, longitude: -6.259353)
         
         isToggleActive = !isToggleActive
         // TRUE = TOGGLE ON
@@ -416,7 +448,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate
             circle.radius = 0
             circle.radius = CLLocationDistance(RADIUS) // Meters
             circle.fillColor = UIColor.red
-            circle.position = userLocation // Your CLLocationCoordinate2D  position
+            circle.position = loc // Your CLLocationCoordinate2D  position
             circle.strokeWidth = 2.5;
             circle.strokeColor = UIColor.black
             circle.map = mapView; // Add it to the map
@@ -429,10 +461,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate
             marker.map = mapView
         }
     }
-    
-  
 
-    
     
     /*
      Set Business Location:
@@ -491,3 +520,120 @@ extension UIViewController
 }
 
 
+
+
+
+
+
+extension [String]
+{
+    /// Return a copy of `self` with its elements shuffled
+    func shuffle() -> [Iterator.Element] {
+        var list = Array(self)
+        list.shufflePlaces()
+        return list
+    }
+}
+
+
+extension [String] where Index == Int
+{
+    /// Shuffle the elements of `self` in-place.
+    mutating func shufflePlaces() {
+        // empty and single-element collections don't shuffle
+        if count < 2 { return }
+        for i in 0..<count - 1
+        {
+            let j = Int(arc4random_uniform(UInt32(count - i))) + i
+            guard i != j else { continue }
+            self.swapAt(i, j)
+        }
+    }
+}
+
+
+
+extension Array
+{
+    mutating func removeRandom() -> Element? {
+        if let index = indices.randomElement() {
+            return remove(at: index)
+        }
+        return nil
+    }
+}
+
+
+
+
+/*
+ Resource to try use:
+ http://kevinxh.github.io/swift/custom-and-interactive-googlemaps-ios-sdk-infowindow.html
+ */
+
+extension ViewController: GMSMapViewDelegate
+{
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView?
+    {
+        let infoWindow = Bundle.main.loadNibNamed("InfoWindow", owner: self, options: nil)?.first as! InfoWindow
+        
+        
+        let randomIndex = Int.random(in: 0..<places.count)
+        // Place info
+        let place = places[randomIndex]
+        var openHours: String
+        let placeTypes = place.types
+        
+        if place.openingHours == true
+        {openHours = "Open Now"} else {openHours = "Closed"}
+    
+        //   self.image.image = UIImage(data: data)
+        infoWindow.PlaceNameLabel.text = "\(place.name)"
+        infoWindow.placeRatingLabel.text = "Rating: \(place.rating)"
+        infoWindow.placeTypesLabel.text = "Type: \(place.types)"
+        infoWindow.placeOpenHoursLabel.text = "\(openHours)"
+       
+        // Corner Radius
+        infoWindow.layer.cornerRadius = 10
+        // Border
+        infoWindow.layer.borderWidth = 0.5
+        infoWindow.layer.borderColor = UIColor.lightGray.cgColor
+        // Shadow
+       // infoWindow.getDirectionsButton.addTarget(self, action: #selector(getDirections(_:)), for: .touchUpInside)
+    
+
+        
+        
+        // Return Info Window
+        return infoWindow
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+        getDirections()
+        
+    }
+    func getDirections()
+    {
+        #if DEBUG
+        print("print print tap tap")
+        #endif
+
+        
+        let getDirectionsVC = self.storyboard!.instantiateViewController(withIdentifier: "getDirectionsVC")
+
+        // performSegue(withIdentifier: "mySegueID", sender: nil)
+
+       // performSegue(withIdentifier: "getDirectionsVC", sender: nil)
+        
+
+        
+        
+        self.navigationController?.pushViewController(getDirectionsVC, animated: true)
+        // your code
+       // getDirectionsVC.modalPresentationStyle = .fullScreen
+
+      // self.present(getDirectionsVC, animated: true, completion: nil)
+      
+        
+    }
+}
