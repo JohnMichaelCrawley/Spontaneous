@@ -17,7 +17,7 @@ import GoogleMaps
 import GooglePlaces
 import CoreLocation
 
-class GetDirectionsViewController: UIViewController
+class GetDirectionsViewController: UIViewController, CLLocationManagerDelegate
 {
     // U.I variables
     @IBOutlet weak var mapView: GMSMapView!             // U.I: Display Google Map's //
@@ -25,7 +25,8 @@ class GetDirectionsViewController: UIViewController
     
     // USER DEFAULTS 
     let USERDEFAULTS = UserDefaults.standard            // USERDEFAULTS: used to access stored data i.e settings //
-    
+    // Location
+    var locationManager = CLLocationManager()           // LocationManager: Get information on coordinates from the user etc //
     
     
     
@@ -34,8 +35,32 @@ class GetDirectionsViewController: UIViewController
         super.viewDidLoad()
      //   self.GetDirectionsViewController?.tabBar.hidden = true
         
+        
+        let TITLE = USERDEFAULTS.string(forKey: "placeName") ?? "ERROR"
+        
+        print(TITLE)
+        
+        self.title = "\(TITLE)"
+        
         // Update the map style based on user selection //
         updateMapStyle()
+        
+        // Location
+        
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+        locationManager.desiredAccuracy = .greatestFiniteMagnitude
+        mapView.isMyLocationEnabled = true  // SHOWS BLUE DOT FOR USER'S LOCATION
+
+        
+        
+        
+        let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude:locationManager.location?.coordinate.latitude ?? 0.0, longitude: locationManager.location?.coordinate.longitude ?? 0.0, zoom: 15)
+        
+        let center = CLLocationCoordinate2D(latitude: locationManager.location?.coordinate.latitude ?? 0.0,longitude: locationManager.location?.coordinate.longitude ?? 0.0)
+    
+        self.mapView.animate(to: camera)
+        
     }
     
     /*
@@ -74,7 +99,9 @@ class GetDirectionsViewController: UIViewController
           //  displayDialogAlert(title: "Map Style Error:", message: "One or more of the map styles failed to load. \(error)")
         }
     }
-  
+    
+    
+
     
     
     

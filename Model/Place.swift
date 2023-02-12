@@ -36,6 +36,7 @@ let USERDEFAULTS = UserDefaults.standard
  This STRUCT is for creating a place object 
  */
 
+// MARK: - PLACE
 struct Place
 {
     let placeID: String
@@ -44,7 +45,7 @@ struct Place
     let openingHours: Bool
     let types: [String]
     let rating: Double
-    let photoReference: String
+  //  let photoReference: String
     let latitude: Double
     let longitude: Double
 }
@@ -106,43 +107,3 @@ struct Photo: Codable
         case photoReference = "photo_reference"
     }
 }
-// MARK: - Functions
-/*
- This function iterates through the USERDEFAULS
- for keys containing switches and if the switch
- is turned on. If these conditions are true,
- it stores it in the kewords array and remove
- the prefix of, "Switch" then after the iteration
- it will randomly pick a random key to be used
- as the type of business/place to use for the
- search
- */
-func getRandomLocation() -> String
-{
-    var keyword = ""
-    var keywords = [String]()
-    for (key, value) in USERDEFAULTS.dictionaryRepresentation()
-    {
-        if key.contains("Switch") && value as! Int == 1
-        {
-            #if DEBUG
-           // print("KEYWORDS = \(key)")
-            #endif
-            let element = key.replacingOccurrences(of: "Switch", with: "")
-            #if DEBUG
-           //  print("element = \(element)")
-            #endif
-            keywords.append(element)
-        }
-    }
-    if keywords.count > 1
-    {
-        keyword = keywords.randomElement()!
-    }
-
-    
-    return keyword
-}
-
-
-
