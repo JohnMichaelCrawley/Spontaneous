@@ -34,6 +34,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate
     let USERDEFAULTS = UserDefaults.standard            // USERDEFAULTS: used to access stored data i.e settings //
     // Get the business data structs etc from Business file //
     var places: [Place] = []                            // Array to store all the businesses and places in an array to shuffle//
+    var place: Place = Place(placeID: "", name: "", address: "", openingHours: false, types: [""], rating: 0.0, latitude: 0.0, longitude: 0.0)
     // GOOGLE MAPS
     var marker = GMSMarker()                            // Google Maps Marker (Pop up)
     /*
@@ -89,8 +90,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         mapView.isMyLocationEnabled = true  // SHOWS BLUE DOT FOR USER'S LOCATION
         // Set the map view delgate to self
         mapView.delegate = self
+        
     }
- 
+    /*
+     viewWillAppear:
+     This override function brings back the tab view
+     controller to the main view controllers
+     */
+    override func viewWillAppear(_ animated: Bool)
+    {
+        // Enable TabBar
+        self.tabBarController?.tabBar.isHidden = false
+    }
+
     /*
      Update Map Style:
      This function sets the map in either dark mode
@@ -111,14 +123,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate
             {
                 mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL!)
                 #if DEBUG
-                print("Map View is in dark mode")
+              // print("Map View is in dark mode")
                 #endif
             }
             if theme == "light"
             {
                 mapView.mapStyle = .none
                 #if DEBUG
-                print("Map View is in light mode")
+              //  print("Map View is in light mode")
                 #endif
             }
         }
@@ -254,10 +266,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         {
             let KEYWORD = getRandomLocation()
             //let location = "53.347568,-6.259353"
+            
+            print("""
+                  Keyword Selected
+                \n********************\n
+                Keyword : \(KEYWORD)
+                \n********************\n
+                """)
+        
             let userLatitude = locationManager.location?.coordinate.latitude ?? 0.0
             let userLongitude = locationManager.location?.coordinate.longitude ?? 0.0
             let location = "\(userLatitude),\(userLongitude)"
-            let requestURL = URL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(location)&radius=\(RADIUS)&type=\(KEYWORD)&key=\(API().returnAPIKey())")!
+   
+            let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(location)&radius=\(RADIUS)&types=cafe&key=\(API().returnAPIKey())"
+            
+            let requestURL = URL(string: url)!
             let request = URLRequest(url: requestURL)
                let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                    if let data = data
@@ -265,6 +288,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate
                        do
                        {
                            let root = try JSONDecoder().decode(Root.self, from: data)
+                           /*
+                            NOTE:
+                            > for result in root.results
+                            this is causing the problem of non-items in the list.
+                            Meaning, things other than my place selections are getting
+                            found such as law stuff etc
+                            */
                            for result in root.results
                            {
                                let placeID = result.place_id ?? ""
@@ -280,7 +310,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate
                                {
                                    // PlaceID is already in array
                                    #if DEBUG
-                                   print("Place ID is already found in the array")
+                                //  print("Place ID is already found in the array")
                                    #endif
                                }
                                else
@@ -299,23 +329,38 @@ class ViewController: UIViewController, CLLocationManagerDelegate
                            #if DEBUG
                            print(error)
                            #endif
+                           DispatchQueue.main.async
+                           {
+                               self.displayDialogAlert(title: "No Locations Found:", message: "There was no locations found in the search, please adjust the filters/locations and try again.")
+                           }
                        }
                    }
                }
                task.resume()
         }
     }
+    // Return random place to the place variable at the top of the file
+    func returnRandomPlace() -> Place
+    {
+        let place = places.getRandomPlace()!
+        return place
+    }
     /*
      Display Random Place:
+     If the array of places is not empty then
+     get a random place, place it's position on
+     the map and send the name, lat and long over
+     to User Defaults to be used on
+     GetDirectionsViewController
      */
     
     func displayRandomPlace()
     {
         if places.count != 0
         {
-            let randomIndex = Int.random(in: 0..<places.count)
-            let place = places[randomIndex]
-            let placeName = place.name
+            // Get a random element from the places array
+             place = returnRandomPlace()
+            // Set up the marker information
             marker.position = CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude)
             marker.map = mapView
             let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: place.latitude, longitude: place.longitude, zoom: 15)
@@ -323,7 +368,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate
             mapView.selectedMarker = marker
             self.mapView.animate(to: camera)
             // Send data over USER DEFAULTS
-            USERDEFAULTS.set(placeName, forKey: "placeName")
+            USERDEFAULTS.set(place.name, forKey: "placeName")
             USERDEFAULTS.set(place.latitude, forKey: "placeLatitude")
             USERDEFAULTS.set(place.longitude, forKey: "placeLongitude")
         }
@@ -403,38 +448,28 @@ class ViewController: UIViewController, CLLocationManagerDelegate
     {
         var onCount = 0
         var switches = [String]()
-        
-        
         for (key, value) in USERDEFAULTS.dictionaryRepresentation()
         {
             var count = 0
-            
             if key.contains("Switch") && value as! Int == 1
             {
                 let switchValue = "\(value)"
                 switches.append(switchValue)
-                
-                
                 if switches[count] == switchValue
                 {
                     // Contains previous value
-                    
                 }
                 else
                 {
                     onCount += 1
-                    
                 }
                 count += 1
             }
             #if DEBUG
-            print("Count : \(onCount)")
+           // print("Count : \(onCount)")
             #endif
             return onCount
-            
         }
-        
-        
         return onCount
     }
 }
@@ -457,9 +492,11 @@ extension UIViewController
 }
 /*
  EXTENSIONS:
- 
+ These extensions implement the Fisher-Yates
+ algorithm into search for random place
+ then returning a random place from the array
  */
-extension [String]
+extension [Place]
 {
     /// Return a copy of `self` with its elements shuffled
     func shuffle() -> [Iterator.Element] {
@@ -468,7 +505,7 @@ extension [String]
         return list
     }
 }
-extension [String] where Index == Int
+extension [Place] where Index == Int
 {
     /// Shuffle the elements of `self` in-place.
     mutating func shufflePlaces() {
@@ -482,7 +519,16 @@ extension [String] where Index == Int
         }
     }
 }
-
+extension [Place]
+{
+    mutating func getRandomPlace() -> Element?
+    {
+        shufflePlaces()
+        if isEmpty {return nil}
+        let indexOfRandomItemInArray = Int(arc4random_uniform(UInt32(self.count)))
+        return self[indexOfRandomItemInArray]
+    }
+}
 extension Array
 {
     mutating func removeRandom() -> Element? {
@@ -492,7 +538,6 @@ extension Array
         return nil
     }
 }
-
 /*
  GMS Map View Delegate:
  What this part of the code is create a view
@@ -511,18 +556,20 @@ extension ViewController: GMSMapViewDelegate
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView?
     {
         let infoWindow = Bundle.main.loadNibNamed("InfoWindow", owner: self, options: nil)?.first as! InfoWindow
-        let randomIndex = Int.random(in: 0..<places.count)
-        // Place info
-        let place = places[randomIndex]
+        // SET UP VARIABLES
+        let name = place.name
+        let rating = place.rating
+        let lat = place.latitude
+        let lng = place.longitude
+        let types = place.types
+        let isOpen = place.openingHours
         var openHours: String
-        let placeTypes = place.types
-        
-        if place.openingHours == true
+        if isOpen == true
         {openHours = "Open Now"} else {openHours = "Closed"}
         // Set data to info window
-        infoWindow.PlaceNameLabel.text = "\(place.name)"
-        infoWindow.placeRatingLabel.text = "Rating: \(place.rating)"
-        infoWindow.placeTypesLabel.text = "Type: \(place.types)"
+        infoWindow.PlaceNameLabel.text = "\(name)"
+        infoWindow.placeRatingLabel.text = "Rating: \(rating)"
+        infoWindow.placeTypesLabel.text = "Type: \(types)"
         infoWindow.placeOpenHoursLabel.text = "\(openHours)"
         // Corner Radius
         infoWindow.layer.cornerRadius = 10
@@ -541,7 +588,7 @@ extension ViewController: GMSMapViewDelegate
     func getDirections()
     {
         #if DEBUG
-        print("print print tap tap")
+      //  print("print print tap tap")
         #endif
         let getDirectionsVC = self.storyboard!.instantiateViewController(withIdentifier: "getDirectionsVC")
         self.navigationController?.pushViewController(getDirectionsVC, animated: true)

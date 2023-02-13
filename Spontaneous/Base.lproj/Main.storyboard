@@ -635,20 +635,20 @@ in the search for something spontaneous to do.  </string>
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qem-dM-ieG" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="91" width="390" height="843"/>
+                                <rect key="frame" x="0.0" y="91" width="390" height="753"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GHL-sA-Ejq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Qem-dM-ieG" firstAttribute="trailing" secondItem="4Kn-yi-o93" secondAttribute="trailing" id="DVv-kI-IGH"/>
-                            <constraint firstItem="Qem-dM-ieG" firstAttribute="leading" secondItem="4Kn-yi-o93" secondAttribute="leading" id="I9L-wD-RSi"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Qem-dM-ieG" secondAttribute="bottom" constant="-34" id="J9l-BG-9P4"/>
                             <constraint firstItem="4Kn-yi-o93" firstAttribute="top" secondItem="GHL-sA-Ejq" secondAttribute="top" id="O9M-r3-F3N"/>
-                            <constraint firstAttribute="bottom" secondItem="Qem-dM-ieG" secondAttribute="bottom" constant="-90" id="aHa-Bn-UTb"/>
+                            <constraint firstItem="Qem-dM-ieG" firstAttribute="top" secondItem="4Kn-yi-o93" secondAttribute="bottom" id="T3H-3w-kq6"/>
                             <constraint firstItem="4Kn-yi-o93" firstAttribute="leading" secondItem="GHL-sA-Ejq" secondAttribute="leading" id="igp-ov-fU5"/>
+                            <constraint firstItem="Qem-dM-ieG" firstAttribute="leading" secondItem="4Kn-yi-o93" secondAttribute="leading" id="v5S-wK-2tO"/>
+                            <constraint firstItem="Qem-dM-ieG" firstAttribute="trailing" secondItem="4Kn-yi-o93" secondAttribute="trailing" id="yKl-C0-0qC"/>
                             <constraint firstItem="4Kn-yi-o93" firstAttribute="centerX" secondItem="LI6-SU-bcJ" secondAttribute="centerX" id="yUK-hP-NAb"/>
-                            <constraint firstItem="Qem-dM-ieG" firstAttribute="top" secondItem="4Kn-yi-o93" secondAttribute="bottom" id="ymZ-7V-j0Q"/>
                         </constraints>
                     </view>
                     <connections>

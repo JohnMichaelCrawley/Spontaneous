@@ -33,6 +33,7 @@
 		B964789029945BF20033BD48 /* InfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B964788F29945BF20033BD48 /* InfoWindow.swift */; };
 		B969A1C62948F3D2002134A9 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B969A1C52948F3D2002134A9 /* API.swift */; };
 		B981C52A295FB98900EDDA2F /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = B981C529295FB98900EDDA2F /* Place.swift */; };
+		B9BE8A76299A7AB60047DEF4 /* GoogleMapDirections.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BE8A75299A7AB60047DEF4 /* GoogleMapDirections.swift */; };
 		B9CCEC49297AEB8F00F5BDFA /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = B9CCEC48297AEB8E00F5BDFA /* style.json */; };
 		DE4D4061A8FCCE9CFA2B2A65 /* Pods_Spontaneous.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 659DBDD5E40D8EA907D856CE /* Pods_Spontaneous.framework */; };
 /* End PBXBuildFile section */
@@ -89,6 +90,7 @@
 		B964788F29945BF20033BD48 /* InfoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoWindow.swift; sourceTree = "<group>"; };
 		B969A1C52948F3D2002134A9 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		B981C529295FB98900EDDA2F /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		B9BE8A75299A7AB60047DEF4 /* GoogleMapDirections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapDirections.swift; sourceTree = "<group>"; };
 		B9CCEC48297AEB8E00F5BDFA /* style.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
 		C78F76867B5EB3E34FC37F3F /* Pods-Spontaneous-SpontaneousUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spontaneous-SpontaneousUITests.release.xcconfig"; path = "Target Support Files/Pods-Spontaneous-SpontaneousUITests/Pods-Spontaneous-SpontaneousUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EEA02B9FE82DB2FB17C26F77 /* Pods_Spontaneous_SpontaneousUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spontaneous_SpontaneousUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				B981C529295FB98900EDDA2F /* Place.swift */,
+				B9BE8A75299A7AB60047DEF4 /* GoogleMapDirections.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 				B90741692950F57200CE841D /* LanguagesViewController.swift in Sources */,
 				B9448DF82996A51C00590397 /* GetDirectionsViewController.swift in Sources */,
 				B9187221294CF3D300314DF9 /* SettingsViewController.swift in Sources */,
+				B9BE8A76299A7AB60047DEF4 /* GoogleMapDirections.swift in Sources */,
 				B964789029945BF20033BD48 /* InfoWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
