@@ -26,6 +26,8 @@ import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate
 {
+
+    
     /* TEST VARIABLES */
     var isToggleActive = false
     /* VARIABLES */
@@ -82,7 +84,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate
             }
         }
         // Update the map style based on user selection //
-        updateMapStyle()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateMapTheme), name: .mapThemeDidChange, object: nil)
+       
         /*
          MAP VIEW SETTINGS:
          Include or adjust the mapView properties
@@ -112,31 +115,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate
      style doesn't refresh, this may because of the
      view controller not reloading.
      */
-    func updateMapStyle()
+    @objc func updateMapTheme()
     {
-        do
+        let mapStyle = UserDefaults.standard.string(forKey: "applicationTheme")
+        let styleURL = Bundle.main.url(forResource: "style", withExtension: "json")
+        
+        switch mapStyle
         {
-            let styleURL = Bundle.main.url(forResource: "style", withExtension: "json")
-            let theme = USERDEFAULTS.string(forKey: "applicationTheme") ?? "light"
-             
-            if theme == "dark"
-            {
-                mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL!)
-                #if DEBUG
-              // print("Map View is in dark mode")
-                #endif
-            }
-            if theme == "light"
-            {
-                mapView.mapStyle = .none
-                #if DEBUG
-              //  print("Map View is in light mode")
-                #endif
-            }
-        }
-        catch
-        {
-          //  displayDialogAlert(title: "Map Style Error:", message: "One or more of the map styles failed to load. \(error)")
+        case "dark":
+            mapView.mapStyle = try! GMSMapStyle(contentsOfFileURL: styleURL!)
+            print("\n\nWOW dark mode enabled")
+        case "light":
+            mapView.mapStyle = .none
+            print("\n\nWOW light mode enabled")
+        default:
+            mapView.mapStyle = .none
         }
     }
     /*

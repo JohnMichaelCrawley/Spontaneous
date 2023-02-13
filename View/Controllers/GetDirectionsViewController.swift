@@ -30,13 +30,13 @@ class GetDirectionsViewController: UIViewController, CLLocationManagerDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        // Update the map style based on user selection //
+        NotificationCenter.default.addObserver(self, selector: #selector(updateMapTheme), name: .mapThemeDidChange, object: nil)
         // Hide the tab view controller in this view controller
         self.tabBarController?.tabBar.isHidden = true
         //   self.GetDirectionsViewController?.tabBar.hidden = true
         let TITLE = USERDEFAULTS.string(forKey: "placeName") ?? "ERROR"
         self.title = "\(TITLE)"
-        // Update the map style based on user selection //
-        updateMapStyle()
         // Location
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
@@ -45,11 +45,8 @@ class GetDirectionsViewController: UIViewController, CLLocationManagerDelegate
         // Set up camera to the map
         let userLocation: CLLocationCoordinate2D = (CLLocationCoordinate2D(latitude: locationManager.location?.coordinate.latitude ?? 0.0, longitude: locationManager.location?.coordinate.longitude ?? 0.0))
         let destinationLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: USERDEFAULTS.double(forKey: "placeLatitude"), longitude: USERDEFAULTS.double(forKey: "placeLongitude"))
-        // GoogleMapDirectionsLocation(latitude: USERDEFAULTS.double(forKey: "placeLatitude") ?? 0.0 , longitude: USERDEFAULTS.double(forKey: "placeLongitude") ?? 0.0)
-        
+        // Set map route
         setMapRoute(originLocation: userLocation, destinationLocation: destinationLocation)
-
-        
     }
     /*
      Update Map Style:
@@ -60,31 +57,21 @@ class GetDirectionsViewController: UIViewController, CLLocationManagerDelegate
      style doesn't refresh, this may because of the
      view controller not reloading.
      */
-    func updateMapStyle()
+    @objc func updateMapTheme()
     {
-        do
+        let mapStyle = UserDefaults.standard.string(forKey: "applicationTheme")
+        let styleURL = Bundle.main.url(forResource: "style", withExtension: "json")
+        
+        switch mapStyle
         {
-            let styleURL = Bundle.main.url(forResource: "style", withExtension: "json")
-            let theme = USERDEFAULTS.string(forKey: "applicationTheme") ?? "light"
-            
-            if theme == "dark"
-            {
-                mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL!)
-                #if DEBUG
-                print("Map View is in dark mode")
-                #endif
-            }
-            if theme == "light"
-            {
-                mapView.mapStyle = .none
-                #if DEBUG
-                print("Map View is in light mode")
-                #endif
-            }
-        }
-        catch
-        {
-            //  displayDialogAlert(title: "Map Style Error:", message: "One or more of the map styles failed to load. \(error)")
+        case "dark":
+            mapView.mapStyle = try! GMSMapStyle(contentsOfFileURL: styleURL!)
+            print("\n\nWOW dark mode enabled in directions")
+        case "light":
+            mapView.mapStyle = .none
+            print("\n\nWOW light mode enabled in directions")
+        default:
+            mapView.mapStyle = .none
         }
     }
     /*
