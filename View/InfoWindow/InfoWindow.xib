@@ -78,8 +78,8 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="PlaceNameLabel" destination="X0F-B8-OCy" id="VFm-Xb-0G2"/>
                 <outlet property="getDirectionsButton" destination="LQa-By-0PE" id="hvr-9X-05n"/>
+                <outlet property="placeNameLabel" destination="X0F-B8-OCy" id="wYr-sf-56s"/>
                 <outlet property="placeOpenHoursLabel" destination="xiw-cV-gYx" id="2QE-Cb-U9K"/>
                 <outlet property="placeRatingLabel" destination="x9B-Vr-lth" id="IOd-0n-kvU"/>
                 <outlet property="placeTypesLabel" destination="xyT-lb-GTQ" id="053-wZ-0bm"/>
