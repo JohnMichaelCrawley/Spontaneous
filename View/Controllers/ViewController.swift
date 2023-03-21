@@ -26,25 +26,26 @@ import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate
 {
-
-    
     /* TEST VARIABLES */
     var isToggleActive = false
     /* VARIABLES */
-    @IBOutlet weak var mapView: GMSMapView!             // U.I: Display Google Map's //
-    var locationManager = CLLocationManager()           // LocationManager: Get information on coordinates from the user etc //
-    let USERDEFAULTS = UserDefaults.standard            // USERDEFAULTS: used to access stored data i.e settings //
     // Previous Switch count - store the previous switches that are on/off in this counter
     var previousSwitchCount = 0
-    // Get the business data structs etc from Business file //
-    var places: [Place] = []                            // Array to store all the businesses and places in an array to shuffle//
+    // Google Map / Map View / Marker Variables
+    @IBOutlet weak var mapView: GMSMapView!
+    var marker = GMSMarker()
+    
+    // Theme Manager
+    let themeManager = ThemeManager()
+    
+    // Location Manager
+    var locationManager = CLLocationManager()
+    // User Defaults
+    let USERDEFAULTS = UserDefaults.standard
+    // Place variable (store single datum of a place found) and places array to store all data found in Google API search
     var place: Place = Place(placeID: "", name: "", address: "", openingHours: false, types: [""], rating: 0.0, latitude: 0.0, longitude: 0.0)
-    // GOOGLE MAPS
-    var marker = GMSMarker()                            // Google Maps Marker (Pop up)
-    /*
-     User and Business location:
-     Store the business lat' and long' to be used to center the camera to
-     */
+    var places: [Place] = []
+    // Store location data
     var businessLocation = CLLocationCoordinate2D(latitude: 0.0,longitude: 0.0)
     var userLocation = CLLocationCoordinate2D(latitude: 0.0,longitude: 0.0)
     var businessLatitude: Double =  0.0
@@ -58,14 +59,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        /*
-         Location Manager set up:
-         Location manager delegate is set to self
-         and enable the start updating location and desired accuracy
-         to enable the use of the location manager and get the user's
-         location (lat' and long') to be used in Google's API
-         to get a business near the user
-         */
+        // Check Notification Center for changes in theme
+        NotificationCenter.default.addObserver(self, selector: #selector(updateMapStyle(_:)), name: NSNotification.Name(rawValue: "mapThemeDidChange"), object: nil)
+        // Theme Manager - Theme Selection
+        checkForApplicationThemeOnBoot()
+        // Set up Location Manager
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
         locationManager.desiredAccuracy = .greatestFiniteMagnitude
@@ -77,22 +75,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         DispatchQueue.global().async
         {
             if CLLocationManager.locationServicesEnabled()
-            {
-                self.locationManager.requestLocation()
-            }
+            {self.locationManager.requestLocation()}
             else
-            {
-                self.locationManager.requestWhenInUseAuthorization()
-            }
+            {self.locationManager.requestWhenInUseAuthorization()}
         }
-        // Update the map style based on user selection //
-        NotificationCenter.default.addObserver(self, selector: #selector(updateMapTheme), name: .mapThemeDidChange, object: nil)
-        /*
-         MAP VIEW SETTINGS:
-         Include or adjust the mapView properties
-         */
+        // Set up MapView
         mapView.isMyLocationEnabled = true  // SHOWS BLUE DOT FOR USER'S LOCATION
-        // Set the map view delgate to self
         mapView.delegate = self
     }
     /*
@@ -102,33 +90,41 @@ class ViewController: UIViewController, CLLocationManagerDelegate
      */
     override func viewWillAppear(_ animated: Bool)
     {
+        super.viewWillAppear(animated)
         // Enable TabBar
         self.tabBarController?.tabBar.isHidden = false
+        // Force the map view to redraw itself
+        mapView.setNeedsDisplay()
+        // Force the map view to re-layout its subviews
+        mapView.setNeedsLayout()
     }
     /*
      Update Map Style:
      This function sets the map in either dark mode
      or keep it in the default style of light mode.
-     PROBLEM:
-     When the user goes to change the theme, the map
-     style doesn't refresh, this may because of the
-     view controller not reloading.
      */
-    @objc func updateMapTheme()
+    @objc func updateMapStyle(_ notification: NSNotification)
     {
-        let mapStyle = UserDefaults.standard.string(forKey: "applicationTheme")
-        let styleURL = Bundle.main.url(forResource: "style", withExtension: "json")
-        switch mapStyle
-        {
-        case "dark":
-            mapView.mapStyle = try! GMSMapStyle(contentsOfFileURL: styleURL!)
-            print("\n\nWOW dark mode enabled")
-        case "light":
-            mapView.mapStyle = .none
-            print("\n\nWOW light mode enabled")
-        default:
-            mapView.mapStyle = .none
-        }
+        let themeValue = USERDEFAULTS.string(forKey: "applicationTheme") ?? ""
+        print("Notification Center: Function: Theme Value = \(themeValue) ")
+        themeManager.setEntireApplicatonTheme(theme: themeValue, mapView: mapView)
+    }
+    /*
+     Function - Check For Application Theme On Boot:
+     This function checks what theme the application should
+     be in when the app is launched. I tried adding this to the
+     Theme Manager but it wouldn't register the function
+     on boot load
+     */
+    func checkForApplicationThemeOnBoot()
+    {
+        let theme = USERDEFAULTS.string(forKey: "applicationTheme") ?? ""
+        themeManager.setEntireApplicatonTheme(theme: theme, mapView: mapView)
+        let window = UIApplication.shared.connectedScenes.compactMap { ($0 as? UIWindowScene)?.keyWindow }.first
+        if theme == "dark"
+        { window?.overrideUserInterfaceStyle = .dark }
+        else if theme == "light"
+        { window?.overrideUserInterfaceStyle = .light }
     }
     /*
      Did Update Locations:
@@ -209,23 +205,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         // TESTING VARIABLE FOR BIG O
         let startTime = CFAbsoluteTimeGetCurrent() // START TIME
         let dots = "****************************************"
-        /*
-         START THE ALGORITHM:
-         Start the loop to generate multiple types of places/businesses
-         and allocate them into the business array.
-         */
-        print("\n\n")
-        print("\(dots)")
-        print("\(dots)")
-        print("Start of button press")
-        print("\(dots)")
-        print("\(dots)")
-        print("\n\n")
-        
+
         previousSwitchCount = getLoctionSwitchOnCount()
         
-        print("prev' switch c: \(previousSwitchCount)")
-        print("GET LOCATION SWITCH COUNT : : : \(getLoctionSwitchOnCount())")
+      //  print("prev' switch c: \(previousSwitchCount)")
+       // print("GET LOCATION SWITCH COUNT : : : \(getLoctionSwitchOnCount())")
         
         
         
@@ -279,6 +263,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         print("\n\n")
         
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /*
      Fetch Places:
   
@@ -288,6 +286,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate
      3. If new switches are turned on, add only them ones
      
      */
+    
+    
+    
     func fetchPlaces()
     {
         // SEARCH FILTERS
@@ -309,9 +310,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate
                 \n********************\n
                 """)
         */
+            
+            
+            // TUL = TRUE USER LOCATION
            // let userLatitude = locationManager.location?.coordinate.latitude ?? 0.0
-           // let userLongitude = locationManager.location?.coordinate.longitude ?? 0.0
-           // let location = "\(userLatitude),\(userLongitude)"
+          //  let userLongitude = locationManager.location?.coordinate.longitude ?? 0.0
+          //  let location = "\(userLatitude),\(userLongitude)"
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(location)&radius=\(RADIUS)&types=\(KEYWORD)&key=\(API().returnAPIKey())"
             let requestURL = URL(string: url)!
             let request = URLRequest(url: requestURL)
@@ -435,7 +449,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate
             marker.icon = GMSMarker.markerImage(with: .cyan)
             marker.map = mapView
             let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: place.latitude, longitude: place.longitude, zoom: 15)
-            let center = CLLocationCoordinate2D(latitude: place.latitude,longitude: place.longitude)
+          //  let center = CLLocationCoordinate2D(latitude: place.latitude,longitude: place.longitude)
             mapView.selectedMarker = marker
             self.mapView.animate(to: camera)
             // Send data over USER DEFAULTS
@@ -575,7 +589,8 @@ extension [Place]
 extension [Place] where Index == Int
 {
     /// Shuffle the elements of `self` in-place.
-    mutating func shufflePlaces() {
+    mutating func shufflePlaces()
+    {
         // empty and single-element collections don't shuffle
         if count < 2 { return }
         for i in 0..<count - 1
@@ -652,3 +667,5 @@ extension ViewController: GMSMapViewDelegate
         self.navigationController?.pushViewController(getDirectionsVC, animated: true)
     }
 }
+
+

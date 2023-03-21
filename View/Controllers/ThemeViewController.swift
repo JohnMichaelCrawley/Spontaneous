@@ -23,17 +23,16 @@ class ThemeViewController: UIViewController
     let THEME = ["Dark Mode", "Light Mode"]
     // USER DEFAULTS //
     let USERDEFAULTS = UserDefaults.standard
+    // Theme Manager
+    let themeManager = ThemeManager()
+    
+    
+    
+    
+    
 
-    var selectedTheme: String = ""
-    {
-           didSet
-        {
-            //USERDEFAULTS.set(selectedTheme, forKey: "applicationTheme") ?? ""
-            USERDEFAULTS.set(selectedTheme, forKey: "applicationTheme")
-            NotificationCenter.default.post(name: .mapThemeDidChange, object: nil)
-            print("selected theme has changed and NF shot a notification out")
-           }
-       }
+    
+
 
     
     /*
@@ -48,22 +47,25 @@ class ThemeViewController: UIViewController
         super.viewDidLoad()
         themeTableView.delegate = self
         themeTableView.dataSource = self
+   
+        // Set the value for the theme
+        themeManager.setThemeValue(value: USERDEFAULTS.string(forKey: "applicationTheme") ?? "")
+        themeManager.setApplicationTheme(theme: themeManager.getThemeValue())
        
-      //  setCheckmark()
-     
-        selectedTheme = USERDEFAULTS.string(forKey: "applicationTheme") ?? ""
-        setApplicationTheme(theme: selectedTheme)
+        
+        
+        
+        
+        // Set the cell checkmark
         var indexPath = IndexPath(row: 0, section: 0)
-        if selectedTheme == "dark"
+        if themeManager.getThemeValue() == "dark"
         {
-            print("DARK MODE IS TRUE")
             indexPath = IndexPath(row: 0, section: 0)
             themeTableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
             themeTableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
         }
-        else if selectedTheme == "light"
+        else if themeManager.getThemeValue() == "light"
         {
-            print("LIGHT MODE IS TRUE")
             indexPath = IndexPath(row: 1, section: 0)
             themeTableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
             themeTableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
@@ -71,68 +73,7 @@ class ThemeViewController: UIViewController
         
     }
     
-    /*
-     Set the applications theme
-     */
-   public func setApplicationTheme(theme: String)
-    {
-        // Theme Selection //
-        let appDelegate = UIApplication.shared.windows.first
-        
-        switch selectedTheme
-        {
-        case "dark":
-            selectedTheme = USERDEFAULTS.string(forKey: "applicationTheme") ?? ""
-            appDelegate?.overrideUserInterfaceStyle = .dark
-        case "light":
-            selectedTheme = USERDEFAULTS.string(forKey: "applicationTheme") ?? ""
-            appDelegate?.overrideUserInterfaceStyle = .light
-        default:
-            selectedTheme = USERDEFAULTS.string(forKey: "applicationTheme") ?? ""
-            appDelegate?.overrideUserInterfaceStyle = .unspecified
-        }
-    }
 
-    
-   /*
-    func setCheckmark()
-    {
-        let currentTheme:String = USERDEFAULTS.string(forKey: "applicationTheme")!
-        
-        if currentTheme == "dark"
-        {
-            print("DARK MODE IS TRUE")
-            let cell = themeTableView.cellForRow(at: IndexPath(row: 0, section: 0))
-            cell?.accessoryType = .checkmark
-        }
-        else if currentTheme == "light"
-        {
-            print("LIGHT MODE IS TRUE")
-            let cell = themeTableView.cellForRow(at: IndexPath(row: 1, section: 0))
-            cell?.accessoryType = .checkmark
-        }
-    }
-    
-    */
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
- 
-    
-    
-    
-    
-    
-    
-    
-    
     
     
 }
@@ -145,26 +86,22 @@ class ThemeViewController: UIViewController
  */
 extension ThemeViewController: UITableViewDelegate
 {
-    
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        
-        
+        // Set theme to DARK
         if indexPath.item == 0
         {
-           // overrideUserInterfaceStyle = .dark
             USERDEFAULTS.set("dark", forKey: "applicationTheme")
-            selectedTheme = USERDEFAULTS.string(forKey: "applicationTheme") ?? ""
-            setApplicationTheme(theme: "dark")
+            themeManager.setThemeValue(value:  USERDEFAULTS.string(forKey: "applicationTheme") ?? "")
+            themeManager.setApplicationTheme(theme: themeManager.getThemeValue())
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
-            
         }
+        // Set theme to LIGHT
         else if indexPath.item == 1
         {
-           // overrideUserInterfaceStyle = .light
             USERDEFAULTS.set("light", forKey: "applicationTheme")
-            selectedTheme = USERDEFAULTS.string(forKey: "applicationTheme") ?? ""
-            setApplicationTheme(theme: "light")
+            themeManager.setThemeValue(value:  USERDEFAULTS.string(forKey: "applicationTheme") ?? "")
+            themeManager.setApplicationTheme(theme: themeManager.getThemeValue())
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
         }
         else
@@ -203,3 +140,5 @@ extension Notification.Name
 {
     static let mapThemeDidChange = Notification.Name("mapThemeDidChange")
 }
+
+ 

@@ -810,55 +810,6 @@ in the search for something spontaneous to do.  </string>
             </objects>
             <point key="canvasLocation" x="4613.8461538461534" y="1350.7109004739336"/>
         </scene>
-        <!--Theme View Controller-->
-        <scene sceneID="VN4-V8-t0T">
-            <objects>
-                <viewController storyboardIdentifier="ThemeVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rva-h0-Fdb" customClass="ThemeViewController" customModule="Spontaneous" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="nl6-GZ-nix">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Theme" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvA-4H-KY2">
-                                <rect key="frame" x="0.0" y="58" width="390" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="H3n-Y7-9ca">
-                                <rect key="frame" x="16" y="87" width="358" height="216"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="themeCell" id="zQ6-Gi-0a3">
-                                        <rect key="frame" x="0.0" y="50" width="358" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zQ6-Gi-0a3" id="pSv-fE-Vp3">
-                                            <rect key="frame" x="0.0" y="0.0" width="358" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Qox-Li-DuX"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="fvA-4H-KY2" firstAttribute="centerX" secondItem="H3n-Y7-9ca" secondAttribute="centerX" id="A7s-Bd-zJo"/>
-                            <constraint firstItem="fvA-4H-KY2" firstAttribute="top" secondItem="nl6-GZ-nix" secondAttribute="topMargin" constant="11" id="PCc-jQ-qnT"/>
-                            <constraint firstItem="Qox-Li-DuX" firstAttribute="bottom" secondItem="H3n-Y7-9ca" secondAttribute="bottom" constant="507" id="PaL-JX-Zv8"/>
-                            <constraint firstItem="H3n-Y7-9ca" firstAttribute="top" secondItem="fvA-4H-KY2" secondAttribute="bottom" constant="8" id="XXe-3M-tDG"/>
-                            <constraint firstItem="fvA-4H-KY2" firstAttribute="leading" secondItem="Qox-Li-DuX" secondAttribute="leading" id="ewI-zT-eJc"/>
-                            <constraint firstItem="H3n-Y7-9ca" firstAttribute="trailing" secondItem="nl6-GZ-nix" secondAttribute="trailingMargin" id="sMX-ol-3qj"/>
-                            <constraint firstItem="H3n-Y7-9ca" firstAttribute="leading" secondItem="nl6-GZ-nix" secondAttribute="leadingMargin" id="wbd-WE-oQ3"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="themeTableView" destination="H3n-Y7-9ca" id="t2u-4o-PAS"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8JH-rU-eDz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5290.7692307692305" y="1350.7109004739336"/>
-        </scene>
         <!--Credits View Controller-->
         <scene sceneID="1kr-8f-eqp">
             <objects>
@@ -907,6 +858,55 @@ in the search for something spontaneous to do.  </string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEo-ib-MHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5947.6923076923076" y="1350.7109004739336"/>
+        </scene>
+        <!--Theme View Controller-->
+        <scene sceneID="VN4-V8-t0T">
+            <objects>
+                <viewController storyboardIdentifier="ThemeVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rva-h0-Fdb" customClass="ThemeViewController" customModule="Spontaneous" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nl6-GZ-nix">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Theme" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvA-4H-KY2">
+                                <rect key="frame" x="0.0" y="58" width="390" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="H3n-Y7-9ca">
+                                <rect key="frame" x="16" y="87" width="358" height="216"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="themeCell" id="zQ6-Gi-0a3">
+                                        <rect key="frame" x="0.0" y="50" width="358" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zQ6-Gi-0a3" id="pSv-fE-Vp3">
+                                            <rect key="frame" x="0.0" y="0.0" width="358" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Qox-Li-DuX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fvA-4H-KY2" firstAttribute="centerX" secondItem="H3n-Y7-9ca" secondAttribute="centerX" id="A7s-Bd-zJo"/>
+                            <constraint firstItem="fvA-4H-KY2" firstAttribute="top" secondItem="nl6-GZ-nix" secondAttribute="topMargin" constant="11" id="PCc-jQ-qnT"/>
+                            <constraint firstItem="Qox-Li-DuX" firstAttribute="bottom" secondItem="H3n-Y7-9ca" secondAttribute="bottom" constant="507" id="PaL-JX-Zv8"/>
+                            <constraint firstItem="H3n-Y7-9ca" firstAttribute="top" secondItem="fvA-4H-KY2" secondAttribute="bottom" constant="8" id="XXe-3M-tDG"/>
+                            <constraint firstItem="fvA-4H-KY2" firstAttribute="leading" secondItem="Qox-Li-DuX" secondAttribute="leading" id="ewI-zT-eJc"/>
+                            <constraint firstItem="H3n-Y7-9ca" firstAttribute="trailing" secondItem="nl6-GZ-nix" secondAttribute="trailingMargin" id="sMX-ol-3qj"/>
+                            <constraint firstItem="H3n-Y7-9ca" firstAttribute="leading" secondItem="nl6-GZ-nix" secondAttribute="leadingMargin" id="wbd-WE-oQ3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="themeTableView" destination="H3n-Y7-9ca" id="t2u-4o-PAS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8JH-rU-eDz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5290.7692307692305" y="1350.7109004739336"/>
         </scene>
     </scenes>
     <resources>

@@ -15,6 +15,7 @@
 		B907416B2950F58F00CE841D /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B907416A2950F58F00CE841D /* ThemeViewController.swift */; };
 		B907416D2950F5A000CE841D /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B907416C2950F5A000CE841D /* CreditsViewController.swift */; };
 		B9187221294CF3D300314DF9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9187220294CF3D300314DF9 /* SettingsViewController.swift */; };
+		B92DBFF629C8BEFB0051AE5C /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92DBFF529C8BEFB0051AE5C /* ThemeManager.swift */; };
 		B92ED6A12950B2D8009DAF8B /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92ED6A02950B2D8009DAF8B /* FilterViewController.swift */; };
 		B92ED6A42950CEBD009DAF8B /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92ED6A22950CEBD009DAF8B /* SettingsTableViewCell.swift */; };
 		B92ED6A52950CEBD009DAF8B /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B92ED6A32950CEBD009DAF8B /* SettingsTableViewCell.xib */; };
@@ -68,6 +69,7 @@
 		B907416A2950F58F00CE841D /* ThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		B907416C2950F5A000CE841D /* CreditsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
 		B9187220294CF3D300314DF9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B92DBFF529C8BEFB0051AE5C /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		B92ED6A02950B2D8009DAF8B /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		B92ED6A22950CEBD009DAF8B /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		B92ED6A32950CEBD009DAF8B /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
@@ -125,6 +127,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B92DBFF429C8BEEA0051AE5C /* ThemeManager */ = {
+			isa = PBXGroup;
+			children = (
+				B92DBFF529C8BEFB0051AE5C /* ThemeManager.swift */,
+			);
+			path = ThemeManager;
+			sourceTree = "<group>";
+		};
 		B951275C2947889E00689799 = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +210,7 @@
 		B9B95EA329479662003F1BD2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B92DBFF429C8BEEA0051AE5C /* ThemeManager */,
 				B964788C29945BAA0033BD48 /* InfoWindow */,
 				B9B95EA7294799B1003F1BD2 /* Controllers */,
 				B9512771294788A100689799 /* Assets.xcassets */,
@@ -521,6 +532,7 @@
 				B92ED6A12950B2D8009DAF8B /* FilterViewController.swift in Sources */,
 				B90741672950F54500CE841D /* LocationsViewController.swift in Sources */,
 				B90741652950EA2F00CE841D /* WebViewViewController.swift in Sources */,
+				B92DBFF629C8BEFB0051AE5C /* ThemeManager.swift in Sources */,
 				B951276D2947889E00689799 /* ViewController.swift in Sources */,
 				B92ED6A42950CEBD009DAF8B /* SettingsTableViewCell.swift in Sources */,
 				B95127692947889E00689799 /* AppDelegate.swift in Sources */,
