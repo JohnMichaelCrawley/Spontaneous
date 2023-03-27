@@ -20,9 +20,9 @@ class LanguagesViewController: UIViewController
     // USER INTERFACE
     @IBOutlet var languageTableView: UITableView!
     // USER DEFAULTS//
-    let USERDEFAULTS = UserDefaults.standard
+    private let USERDEFAULTS = UserDefaults.standard
     // LANGUAGE ARRAY TO STORE THE VALUES OF ALL LANGUAGES SUPPORTED
-    let LANGUAGES = ["English", "Japanese", "Mandarin", "Cantonese", "Italian"]
+    private let LANGUAGES = ["English", "Japanese", "Mandarin", "Cantonese", "Italian"]
     /*
      View Did Load:
      This func is called when loading a view controller

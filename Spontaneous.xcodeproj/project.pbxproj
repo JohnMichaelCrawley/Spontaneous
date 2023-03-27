@@ -729,10 +729,13 @@
 				INFOPLIST_FILE = ViewModel/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Spontaneous;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This application uses your location to search for nearby things to do. Please enable location services for this application.  ";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This application uses your location to search for nearby things to do. Please enable location services for this application.  ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -764,10 +767,13 @@
 				INFOPLIST_FILE = ViewModel/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Spontaneous;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This application uses your location to search for nearby things to do. Please enable location services for this application.  ";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This application uses your location to search for nearby things to do. Please enable location services for this application.  ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (

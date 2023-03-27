@@ -17,7 +17,7 @@ import UIKit
 class FilterViewController: UIViewController
 {
     // USER DEFAULTS//
-    let USERDEFAULTS = UserDefaults.standard
+    private let USERDEFAULTS = UserDefaults.standard
     //USER INTERFACE//
     @IBOutlet weak var ratingFilterSliderReference: UISlider!
     @IBOutlet weak var pricingFilterSliderReference: UISlider!

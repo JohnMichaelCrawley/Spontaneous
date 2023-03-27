@@ -26,36 +26,31 @@ import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate
 {
-    /* TEST VARIABLES */
-    var isToggleActive = false
+    // MARK: - Variables
+    private var isToggleActive = false
     /* VARIABLES */
     // Previous Switch count - store the previous switches that are on/off in this counter
-    var previousSwitchCount = 0
+    private var previousSwitchCount = 0
     // Google Map / Map View / Marker Variables
     @IBOutlet weak var mapView: GMSMapView!
-    var marker = GMSMarker()
-    
+    private  var marker = GMSMarker()
     // Theme Manager
-    let themeManager = ThemeManager()
-    
+    private let themeManager = ThemeManager()
     // Location Manager
-    var locationManager = CLLocationManager()
+   private var locationManager = CLLocationManager()
     // User Defaults
-    let USERDEFAULTS = UserDefaults.standard
+   private let USERDEFAULTS = UserDefaults.standard
     // Place variable (store single datum of a place found) and places array to store all data found in Google API search
-    var place: Place = Place(placeID: "", name: "", address: "", openingHours: false, types: [""], rating: 0.0, latitude: 0.0, longitude: 0.0)
-    var places: [Place] = []
+    private var place: Place = Place(placeID: "", name: "", address: "", isOpenNow: false, types: [""], rating: 0.0, latitude: 0.0, longitude: 0.0)
+    private var places: [Place] = []
     // Store location data
-    var businessLocation = CLLocationCoordinate2D(latitude: 0.0,longitude: 0.0)
-    var userLocation = CLLocationCoordinate2D(latitude: 0.0,longitude: 0.0)
-    var businessLatitude: Double =  0.0
-    var businessLongitude: Double = 0.0
-    var userLatitude: Double = 0.0
-    var userLongitude: Double = 0.0
-    /*
-     View Did Load:
-     This func is called when loading a view controller hierarchy into memory.
-     */
+    private var businessLocation = CLLocationCoordinate2D(latitude: 0.0,longitude: 0.0)
+    private var userLocation = CLLocationCoordinate2D(latitude: 0.0,longitude: 0.0)
+    private var businessLatitude: Double =  0.0
+    private var businessLongitude: Double = 0.0
+    private var userLatitude: Double = 0.0
+    private var userLongitude: Double = 0.0
+    // MARK: - View Did Load
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -106,7 +101,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate
     @objc func updateMapStyle(_ notification: NSNotification)
     {
         let themeValue = USERDEFAULTS.string(forKey: "applicationTheme") ?? ""
+        #if DEBUG
         print("Notification Center: Function: Theme Value = \(themeValue) ")
+        #endif
         themeManager.setEntireApplicatonTheme(theme: themeValue, mapView: mapView)
     }
     /*
@@ -189,30 +186,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         #endif
     }
     /*
-     Be Spontaneous Pressed:
-     This function is called to get, pick and display
-     data on a random business in the user's local area
-     and display them in a marker
+     Function - Be Spontaneous Pressed:
+     This is an IBAction button, when pressed
+     it will check for the places array count
+     to see if the array is populated and if not
+     (which is what will happen first time loading
+     the app'). The app' will use Google's search request
+     from Google Places API. If no places are found then
+     it will execute the fetchPlaces() function, however,
+     if there are places found in the array it will
+     execute another function to output from the array
+     itself.
      */
     @IBAction func beSpontaneousPressed(_ sender: Any)
     {
         // BUTTON VARIABLES//
-        // TEST COORDINATES - USED FOR TESTING PURPOSES
-        //let userLatitude = 53.347568
-        //let userLongitude = -6.259353
-      //  let userLatitude = locationManager.location?.coordinate.latitude ?? 0.0
-      //  let userLongitude = locationManager.location?.coordinate.longitude ?? 0.0
         // TESTING VARIABLE FOR BIG O
         let startTime = CFAbsoluteTimeGetCurrent() // START TIME
         let dots = "****************************************"
-
         previousSwitchCount = getLoctionSwitchOnCount()
-        
-      //  print("prev' switch c: \(previousSwitchCount)")
-       // print("GET LOCATION SWITCH COUNT : : : \(getLoctionSwitchOnCount())")
-        
-        
-        
         if places.count == 0
         {
             #if DEBUG
@@ -228,20 +220,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate
             outputFromPlacesArray()
         }
         
-       // fetchPlaces()
-        /*
-        if places.count == 0
-        {
-            fetchPlaces()
-        }
-        else
-        {
-            displayRandomPlace()
-        }
-        */
-        /*
-         END THE ALGORITHM:
-         */
         // TESTING VARIABLE FOR BIG O
         let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime // END TIME
         
@@ -250,146 +228,93 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         #endif
         // Time it took to execute this button is 0.0015050172805786133
         
-        print("""
-              Place Array Count : \(places.count)
-              """)
-        
-        print("\n\n")
-        print("\(dots)")
-        print("\(dots)")
-        print("End of button press")
-        print("\(dots)")
-        print("\(dots)")
-        print("\n\n")
-        
+        print("* * * Place Array Count : \(places.count)")
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     /*
-     Fetch Places:
-  
-     NOTES TO HOW SEARCH SHOULD WORK:
-     1. Check if the location switch count changes
-     2. If changed, remove items in the array that were turned off
-     3. If new switches are turned on, add only them ones
-     
+     Function - Fetch Places:
+     This function finds the random thing to do.
+     It creates the filters for the search the top of
+     the function (kEYWORD, LOCATION, RADIUS etc)
+     then loops over the amount of switches currently
+     activated and uses that for the for loop search
+     quantity. Then check the Google Place JSON
+     and store it in a temp' variable, use the variable
+     to check against the array if there's duplicates,
+     check against the keyword to make sure it doesn't
+     give random keywords and if none of these are met
+     the append the place found to the array.
      */
-    
-    
-    
     func fetchPlaces()
     {
-        // SEARCH FILTERS
-        let RADIUS = USERDEFAULTS.float(forKey: "searchRadiusFilter")
-        var i = 0 // ITERATION COUNT
         for _ in 0...getLoctionSwitchOnCount()
         {
-            // ITERATION COUNT + 1
-            i += 1
+            // Search radius
+            let RADIUS = USERDEFAULTS.float(forKey: "searchRadiusFilter")
+            // Keyword for the search
             let KEYWORD = getRandomKeyword()
-            // USER LOC
-            let location = "53.347568,-6.259353"
-            
-            /*
-            print("""
-                  Keyword Selected
-                \n********************\n
-                Keyword : \(KEYWORD)
-                \n********************\n
-                """)
-        */
-            
-            
-            // TUL = TRUE USER LOCATION
-           // let userLatitude = locationManager.location?.coordinate.latitude ?? 0.0
-          //  let userLongitude = locationManager.location?.coordinate.longitude ?? 0.0
-          //  let location = "\(userLatitude),\(userLongitude)"
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(location)&radius=\(RADIUS)&types=\(KEYWORD)&key=\(API().returnAPIKey())"
+            // User location
+            let userLatitude = locationManager.location?.coordinate.latitude ?? 0.0
+            let userLongitude = locationManager.location?.coordinate.longitude ?? 0.0
+            let LOCATION = "\(userLatitude),\(userLongitude)"
+            let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(LOCATION)&radius=\(RADIUS)&keyword=\(KEYWORD)&key=\(API().returnAPIKey())"
             let requestURL = URL(string: url)!
             let request = URLRequest(url: requestURL)
-               let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                   if let data = data
-                   {
-                       do
-                       {
-                           let root = try JSONDecoder().decode(Root.self, from: data)
-                           /*
-                            NOTE:
-                            > for result in root.results
-                            this is causing the problem of non-items in the list.
-                            Meaning, things other than my place selections are getting
-                            found such as law stuff etc
-                            */
-                           for result in root.results
-                           {
-                               let placeID = result.place_id ?? ""
-                               let placeName = result.name ?? ""
-                               let placeAddress = result.formatted_address ?? ""
-                               let openingHours = result.openingHours?.openNow ?? false
-                               let placeTypes = result.types ?? [""]
-                               let placeRating = result.rating ?? 0.0
-                               let placeLat = result.geometry?.location.lat ?? 0.0
-                               let placeLong = result.geometry?.location.lng ?? 0.0
-                               // If placeID is found in array already
-                               if self.places.filter({ $0.placeID == placeID }).count > 0
-                               {
-                                   // PlaceID is already in array
-                                   #if DEBUG
-                                //  print("Place ID is already found in the array")
-                                   #endif
-                               }
-                               else
-                               {
-                                   let place = Place(placeID: placeID,name: placeName,address: placeAddress,openingHours: openingHours,types: placeTypes,rating: placeRating,latitude: placeLat,longitude: placeLong)
-                                   self.places.append(place)
-                               }
-                           }
-                           DispatchQueue.main.async
-                           {
-                               self.displayRandomPlace()
-                           }
-                       }
-                       catch
-                       {
-                           #if DEBUG
-                           print(error)
-                           #endif
-                           DispatchQueue.main.async
-                           {
-                               self.displayDialogAlert(title: "No Locations Found:", message: "There was no locations found in the search, please adjust the filters/locations and try again.")
-                           }
-                       }
-                   }
-               }
-               task.resume()
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let data = data
+                {
+                    do
+                    {
+                        let root = try JSONDecoder().decode(Root.self, from: data)
+                        for result in root.results
+                        {
+                            let placeID = result.place_id ?? ""
+                            let placeName = result.name ?? ""
+                            let placeAddress = result.formatted_address ?? ""
+                            let openingHours = result.openingHours?.openNow ?? false
+                            let placeTypes = result.types ?? [""]
+                            let placeRating = result.rating ?? 0.0
+                            let placeLat = result.geometry?.location.lat ?? 0.0
+                            let placeLong = result.geometry?.location.lng ?? 0.0
+                            // If placeID is found in the array, skip this iteration
+                            if self.places.filter({ $0.placeID == placeID }).count > 0
+                            {
+                                continue
+                            }
+                            // if place type is not found by keyword specific, skip this iteration
+                            else if !placeTypes.contains(KEYWORD)
+                            {
+                                continue
+                            }
+                            // Finally, add place to the places array
+                            else
+                            {
+                                let place = Place(placeID: placeID, name: placeName, address: placeAddress,
+                                                  isOpenNow: openingHours,
+                                                  types: placeTypes,
+                                                  rating: placeRating,
+                                                  latitude: placeLat,longitude: placeLong)
+                                self.places.append(place)
+                            }
+                        }
+                        DispatchQueue.main.async
+                        {
+                            self.displayRandomPlace()
+                        }
+                    }
+                    catch
+                    {
+                        #if DEBUG
+                        print(error)
+                        #endif
+                        DispatchQueue.main.async
+                        {
+                            self.displayDialogAlert(title: "No Locations Found:", message: "There was no locations found in the search, please adjust the filters/locations and try again.")
+                        }
+                    }
+                }
+            }
+            task.resume()
         }
-        
-        
-        print("Iteration count for fetching places : \(i)")
-        
-        
     }
     /*
      Output From Places Array:
@@ -417,10 +342,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         {
             displayRandomPlace()
         }
-        
-        
-       
-           
     }
     // Return random place to the place variable at the top of the file
     func returnRandomPlace() -> Place
@@ -580,7 +501,8 @@ extension UIViewController
 extension [Place]
 {
     /// Return a copy of `self` with its elements shuffled
-    func shuffle() -> [Iterator.Element] {
+    func shuffle() -> [Iterator.Element]
+    {
         var list = Array(self)
         list.shufflePlaces()
         return list
@@ -635,14 +557,24 @@ extension ViewController: GMSMapViewDelegate
         let lat = place.latitude
         let lng = place.longitude
         let types = place.types
-        let isOpen = place.openingHours
+        
+        
+        
+        // opn = open
+        let isOpen = place.isOpenNow
         var openHours: String
         if isOpen == true
         {openHours = "Open Now"} else {openHours = "Closed"}
+
+        
+        
+        
+        // Types output
+        let typesOutput = types.joined(separator: ", ")
         // Set data to info window
         infoWindow.placeNameLabel.text = "\(name)"
         infoWindow.placeRatingLabel.text = "Rating: \(rating)"
-        infoWindow.placeTypesLabel.text = "Type: \(types)"
+        infoWindow.placeTypesLabel.text = "Type: \n\(typesOutput)"
         infoWindow.placeOpenHoursLabel.text = "\(openHours)"
         // Corner Radius
         infoWindow.layer.cornerRadius = 10

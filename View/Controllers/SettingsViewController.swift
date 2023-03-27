@@ -22,11 +22,11 @@ class SetttingsViewController: UIViewController
     // USER INTERFACE
     @IBOutlet weak var settingsTableView: UITableView!
     // VARIABLES
-    let SETTINGS = ["Filters", "Locations", "Languages", "Theme", "Credits"]    // Array to display titles of each settings for the menu
-    var index = 0                                                               // Store the index position
-    var selectedIndexPath: IndexPath? = nil                                     // Store the selected index path
+    private let SETTINGS = ["Filters", "Locations", "Languages", "Theme", "Credits"]    // Array to display titles of each settings for the menu
+    private var index = 0                                                               // Store the index position
+    private var selectedIndexPath: IndexPath? = nil                                     // Store the selected index path
     // WEB KIT
-    let WEBKIT = WKWebView()                                                    // Store the web kit object
+    private let WEBKIT = WKWebView()                                                    // Store the web kit object
     /*
      View Did Load:
      This func is called when loading a view controller
@@ -155,7 +155,6 @@ extension SetttingsViewController: UITableViewDataSource
     }
 }
 // CELL DELEGATE
-
 extension SetttingsViewController: SettingsTableViewCellDelegate
 {
     #if DEBUG

@@ -20,21 +20,11 @@ class ThemeViewController: UIViewController
     // USER INTERFACE //
     @IBOutlet var themeTableView: UITableView!
     // THEME SELECTION //
-    let THEME = ["Dark Mode", "Light Mode"]
+    private let THEME = ["Dark Mode", "Light Mode"]
     // USER DEFAULTS //
-    let USERDEFAULTS = UserDefaults.standard
+    private let USERDEFAULTS = UserDefaults.standard
     // Theme Manager
-    let themeManager = ThemeManager()
-    
-    
-    
-    
-    
-
-    
-
-
-    
+    private let themeManager = ThemeManager()
     /*
      View Did Load:
      This func is called when loading a view controller
@@ -51,11 +41,6 @@ class ThemeViewController: UIViewController
         // Set the value for the theme
         themeManager.setThemeValue(value: USERDEFAULTS.string(forKey: "applicationTheme") ?? "")
         themeManager.setApplicationTheme(theme: themeManager.getThemeValue())
-       
-        
-        
-        
-        
         // Set the cell checkmark
         var indexPath = IndexPath(row: 0, section: 0)
         if themeManager.getThemeValue() == "dark"
@@ -72,10 +57,6 @@ class ThemeViewController: UIViewController
         }
         
     }
-    
-
-    
-    
 }
 /*
  Table View: Delegate:

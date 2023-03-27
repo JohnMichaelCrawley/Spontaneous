@@ -2,36 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This application uses your location to search for nearby things to do. Please enable location services for this application.  </string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This application uses your location to search for nearby things to do. Please enable location services for this application.  </string>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>googlechromes</string>
 		<string>comgooglemaps</string>
 	</array>
-	<key>BGTaskSchedulerPermittedIdentifiers</key>
-	<array/>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 		<key>UISceneConfigurations</key>
 		<dict>
-			<key>UIWindowSceneSessionRoleExternalDisplayNonInteractive</key>
-			<array>
-				<dict>
-					<key>UISceneClassName</key>
-					<string></string>
-					<key>UISceneDelegateClassName</key>
-					<string></string>
-					<key>UISceneConfigurationName</key>
-					<string></string>
-					<key>UISceneStoryboardFile</key>
-					<string></string>
-				</dict>
-			</array>
 			<key>UIWindowSceneSessionRoleApplication</key>
 			<array>
 				<dict>
@@ -41,6 +24,19 @@
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 					<key>UISceneStoryboardFile</key>
 					<string>Main</string>
+				</dict>
+			</array>
+			<key>UIWindowSceneSessionRoleExternalDisplayNonInteractive</key>
+			<array>
+				<dict>
+					<key>UISceneClassName</key>
+					<string></string>
+					<key>UISceneConfigurationName</key>
+					<string></string>
+					<key>UISceneDelegateClassName</key>
+					<string></string>
+					<key>UISceneStoryboardFile</key>
+					<string></string>
 				</dict>
 			</array>
 		</dict>

@@ -15,17 +15,6 @@ import Foundation
 import GoogleMaps
 import GoogleMapsBase
 import GoogleMapsCore
-
-// USER DEFAULTS
-let USERDEFAULTS = UserDefaults.standard
-//Required parameters
-/*
- Required parameters:
- * lat' and long to gather place information = This is used for getting the user's location and finding places around the user
- * Radius = Radius defines the distance in meters which returns place results. The mazimum allowed radius is 5000 meters
- * Keyword = Search term or keyword which should match against all content that google has indexed for this place.
- */
-
 /*
  Used https://app.quicktype.io to get structs from
  the Google Place API JSON demo here:
@@ -42,7 +31,7 @@ struct Place
     let placeID: String
     let name: String
     let address: String
-    let openingHours: Bool
+    let isOpenNow: Bool
     let types: [String]
     let rating: Double
   //  let photoReference: String
@@ -66,12 +55,15 @@ struct PlaceData: Codable
     let geometry: Geometry?
     let icon: String?
     let openingHours: OpeningHours?
+    let isOpen: Bool?
     let photos: [Photo]?
     let types: [String]?
     let user_rating_total: Int?
     let vicinity: String?
     let website: String?
+    let price_level: Int?
 }
+
 // MARK: - Geometry
 struct Geometry: Codable
 {
@@ -89,7 +81,8 @@ struct OpeningHours: Codable
     let openNow: Bool
     enum CodingKeys: String, CodingKey
     {
-        case openNow = "open_now"
+        // case = opening_hours.open_now
+        case openNow = "opening_hours.open_now"
     }
 }
 // MARK: - Photo
