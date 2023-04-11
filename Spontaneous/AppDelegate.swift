@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         let API = API() // Get API
         // / SET GOOGLE API KEY / TOKEN HERE//
         GMSServices.provideAPIKey(API.returnAPIKey())
+        // Set User Defaults
+        setUserDefaultsRegister()
         // Override point for customization after application launch.
         return true
     }

@@ -37,7 +37,6 @@ class ThemeViewController: UIViewController
         super.viewDidLoad()
         themeTableView.delegate = self
         themeTableView.dataSource = self
-   
         // Set the value for the theme
         themeManager.setThemeValue(value: USERDEFAULTS.string(forKey: "applicationTheme") ?? "")
         themeManager.setApplicationTheme(theme: themeManager.getThemeValue())
@@ -55,7 +54,6 @@ class ThemeViewController: UIViewController
             themeTableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
             themeTableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
         }
-        
     }
 }
 /*
@@ -121,5 +119,3 @@ extension Notification.Name
 {
     static let mapThemeDidChange = Notification.Name("mapThemeDidChange")
 }
-
- 

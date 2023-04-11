@@ -54,8 +54,7 @@ struct PlaceData: Codable
     let formatted_phone_number: String?
     let geometry: Geometry?
     let icon: String?
-    let openingHours: OpeningHours?
-    let isOpen: Bool?
+    let opening_hours: OpeningHours?
     let photos: [Photo]?
     let types: [String]?
     let user_rating_total: Int?
@@ -63,13 +62,11 @@ struct PlaceData: Codable
     let website: String?
     let price_level: Int?
 }
-
 // MARK: - Geometry
 struct Geometry: Codable
 {
     let location: Location
 }
-
 // MARK: - Location
 struct Location: Codable
 {
@@ -78,12 +75,7 @@ struct Location: Codable
 // MARK: - OpeningHours
 struct OpeningHours: Codable
 {
-    let openNow: Bool
-    enum CodingKeys: String, CodingKey
-    {
-        // case = opening_hours.open_now
-        case openNow = "opening_hours.open_now"
-    }
+    let open_now: Bool
 }
 // MARK: - Photo
 struct Photo: Codable

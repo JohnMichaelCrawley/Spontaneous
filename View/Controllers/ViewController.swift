@@ -37,9 +37,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate
     // Theme Manager
     private let themeManager = ThemeManager()
     // Location Manager
-   private var locationManager = CLLocationManager()
+    private var locationManager = CLLocationManager()
     // User Defaults
-   private let USERDEFAULTS = UserDefaults.standard
+    private let USERDEFAULTS = UserDefaults.standard
     // Place variable (store single datum of a place found) and places array to store all data found in Google API search
     private var place: Place = Place(placeID: "", name: "", address: "", isOpenNow: false, types: [""], rating: 0.0, latitude: 0.0, longitude: 0.0)
     private var places: [Place] = []
@@ -256,7 +256,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate
             let userLatitude = locationManager.location?.coordinate.latitude ?? 0.0
             let userLongitude = locationManager.location?.coordinate.longitude ?? 0.0
             let LOCATION = "\(userLatitude),\(userLongitude)"
-            let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(LOCATION)&radius=\(RADIUS)&keyword=\(KEYWORD)&key=\(API().returnAPIKey())"
+            let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(LOCATION)&radius=\(RADIUS)&keyword=\(KEYWORD)&fields=name,opening_hours&key=\(API().returnAPIKey())"
             let requestURL = URL(string: url)!
             let request = URLRequest(url: requestURL)
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -270,29 +270,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate
                             let placeID = result.place_id ?? ""
                             let placeName = result.name ?? ""
                             let placeAddress = result.formatted_address ?? ""
-                            let openingHours = result.openingHours?.openNow ?? false
+                            let openingHours = result.opening_hours?.open_now ?? false
                             let placeTypes = result.types ?? [""]
                             let placeRating = result.rating ?? 0.0
                             let placeLat = result.geometry?.location.lat ?? 0.0
                             let placeLong = result.geometry?.location.lng ?? 0.0
                             // If placeID is found in the array, skip this iteration
-                            if self.places.filter({ $0.placeID == placeID }).count > 0
-                            {
-                                continue
-                            }
-                            // if place type is not found by keyword specific, skip this iteration
-                            else if !placeTypes.contains(KEYWORD)
+                            // or if place type is not found by keyword specific, skip this iteration
+                            // or if a location / place is closed
+                            if self.places.filter({ $0.placeID == placeID }).count > 0 || !placeTypes.contains(KEYWORD) || openingHours == false
                             {
                                 continue
                             }
                             // Finally, add place to the places array
                             else
                             {
-                                let place = Place(placeID: placeID, name: placeName, address: placeAddress,
-                                                  isOpenNow: openingHours,
-                                                  types: placeTypes,
-                                                  rating: placeRating,
-                                                  latitude: placeLat,longitude: placeLong)
+                                let place = Place(placeID: placeID, name: placeName, address: placeAddress, isOpenNow: openingHours, types: placeTypes, rating: placeRating, latitude: placeLat,longitude: placeLong)
                                 self.places.append(place)
                             }
                         }
@@ -308,7 +301,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate
                         #endif
                         DispatchQueue.main.async
                         {
-                            self.displayDialogAlert(title: "No Locations Found:", message: "There was no locations found in the search, please adjust the filters/locations and try again.")
+                          //  self.displayDialogAlert(title: "No Locations Found:", message: "There was no locations found in the search, please adjust the filters/locations and try again.")
                         }
                     }
                 }
@@ -357,7 +350,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate
      to User Defaults to be used on
      GetDirectionsViewController
      */
-    
     func displayRandomPlace()
     {
         if places.count != 0
@@ -377,38 +369,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate
             USERDEFAULTS.set(place.name, forKey: "placeName")
             USERDEFAULTS.set(place.latitude, forKey: "placeLatitude")
             USERDEFAULTS.set(place.longitude, forKey: "placeLongitude")
-        }
-    }
-    /*
-     TESTING PURPOSES BUTTON:
-     This button will show or remove the circle
-     radius on the map.THIS MUST BE DELETED IN
-     PRODUCTION
-     */
-    @IBAction func toggleRadiusButton(_ sender: UIButton)
-    {
-        let RADIUS = USERDEFAULTS.float(forKey: "searchRadiusFilter")
-        let circle = GMSCircle()
-        let loc = CLLocationCoordinate2D(latitude: 53.347568, longitude: -6.259353)
-        isToggleActive = !isToggleActive
-        // TRUE = TOGGLE ON
-        if isToggleActive
-        {
-            circle.map = nil
-            circle.radius = 0
-            circle.radius = CLLocationDistance(RADIUS) // Meters
-            circle.fillColor = UIColor.red
-            circle.position = loc // Your CLLocationCoordinate2D  position
-            circle.strokeWidth = 2.5;
-            circle.strokeColor = UIColor.black
-            circle.map = mapView; // Add it to the map
-        }
-        // FALSE
-        else
-        {
-            circle.map = nil
-            mapView.clear()
-            marker.map = mapView
         }
     }
     /*
@@ -554,21 +514,13 @@ extension ViewController: GMSMapViewDelegate
         // SET UP VARIABLES
         let name = place.name
         let rating = place.rating
-        let lat = place.latitude
-        let lng = place.longitude
+      //  let lat = place.latitude
+      //  let lng = place.longitude
         let types = place.types
-        
-        
-        
-        // opn = open
         let isOpen = place.isOpenNow
         var openHours: String
         if isOpen == true
         {openHours = "Open Now"} else {openHours = "Closed"}
-
-        
-        
-        
         // Types output
         let typesOutput = types.joined(separator: ", ")
         // Set data to info window
@@ -599,5 +551,3 @@ extension ViewController: GMSMapViewDelegate
         self.navigationController?.pushViewController(getDirectionsVC, animated: true)
     }
 }
-
-

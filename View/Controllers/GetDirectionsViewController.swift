@@ -32,6 +32,7 @@ class GetDirectionsViewController: UIViewController, CLLocationManagerDelegate
     private let themeManager = ThemeManager()
     // Route Variables
     // Google Client
+    private var polyline: GMSPolyline?
     private let client = GoogleMapsClient(apiKey: API().returnAPIKey())
     // Marker
     // Destination marker Icon
@@ -193,14 +194,12 @@ class GetDirectionsViewController: UIViewController, CLLocationManagerDelegate
         var output = ""
         let distanceInMiles = getDistance()
         let walkingSpeedInMetersPerMinute = 1.2
-        let minutes = ( distanceInMiles / (walkingSpeedInMetersPerMinute * 0.000621371) ) / 60
-        let returnLastTwoDecimals = String(format: "%.2f", minutes)
-        
-        if minutes > 1.0
-        { output = "Walking Time: \(returnLastTwoDecimals) minutes" }
-        else
-        {output = "Walking Time: \(returnLastTwoDecimals) seconds" }
-        // Return output
+        let seconds = ( distanceInMiles / (walkingSpeedInMetersPerMinute * 0.000621371) )
+        let minutes = Int(seconds / 60)
+        let remaningSeconds = Int(seconds.truncatingRemainder(dividingBy: 60))
+        if minutes > 1
+        { output = "Walking Time: \(minutes) minutes, \(remaningSeconds) seconds"}
+        else {output = "Walking Time: \(remaningSeconds) seconds" }
         return output
     }
     /*
@@ -234,21 +233,20 @@ class GetDirectionsViewController: UIViewController, CLLocationManagerDelegate
         print("Start Route tapped")
         #endif
         // Move camera to the user
-       // let origin = GoogleMapDirectionsLocation(latitude: getOriginLocation().latitude, longitude: getOriginLocation().longitude)
+        
         let origin = GoogleMapDirectionsLocation(latitude: self.locationManager.location?.coordinate.latitude ?? 0.0, longitude: self.locationManager.location?.coordinate.longitude ?? 0.0)
         let destination = GoogleMapDirectionsLocation(latitude: getDestinationLocation().latitude, longitude:getDestinationLocation().longitude)
             client.getRoute(from: origin, to: destination)
             {
-                route in
-                guard let route = route else {return}
+                route in guard let route = route else {return}
+    
                 // Setting visuals up for polylines
                 route.polyline.strokeWidth = 7
                 route.polyline.strokeColor = UIColor.cyan
                 // show route
                 route.polyline.map = self.mapView
-                // Set up bearings
-              //  let path = route.polyline.path
-
+                // Add route polyline to polyline variable
+                self.polyline = route.polyline
                 // Assuming you have already created a GMSMapView and added a GMSPolyline to it
                 /*
                  In Swift 5 and Google Map API, how do I get the map view camera to face the current direction the polyline is facing?
@@ -262,9 +260,11 @@ class GetDirectionsViewController: UIViewController, CLLocationManagerDelegate
                     // Create a GMSPolyline object and add it to the map
                     let polylinePath = GMSMutablePath()
                     // As the user moves along the path, clear the previous polyline and draw a new one
-                    func updatePathWithNewLocation(location: CLLocation) {
+                    func updatePathWithNewLocation(location: CLLocation)
+                    {
                         polylinePath.add(location.coordinate)
                         route.polyline.path = path
+                        self.polyline?.path = path // assign path to polyline
                     }
                     // To clear the polyline
                     route.polyline.map = nil
@@ -333,8 +333,7 @@ class GetDirectionsViewController: UIViewController, CLLocationManagerDelegate
                 let destination = GoogleMapDirectionsLocation(latitude: getDestinationLocation().latitude, longitude:getDestinationLocation().longitude)
                 client.getRoute(from: origin, to: destination)
                 {
-                    route in
-                    guard let route = route else {return}
+                    route in guard let route = route else {return}
                     // Setting visuals up for polylines
                     if let path = route.polyline.path, path.count() > 1
                     {
