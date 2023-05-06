@@ -52,7 +52,8 @@ class FilterViewController: UIViewController
      Check Rating Filter:
      set the search for the ratings of a business to find
      the maximum star rating is 5.
-     The fuction firstly sets the value of the UI Slider,
+     The fuction firstly gets the USERDEFAULTS value, formats it
+     to the first 2 decimal digits and then sets the UI Slider
      then checks if the value of the rating is more than 1,
      if it's more than 1 it will plural the, "miles/km"
      then it will print out "1 mile" or if it's over 1 mile,
@@ -61,25 +62,19 @@ class FilterViewController: UIViewController
     // Check Rating Filter
     func checkRatingFilter()
     {
-        ratingFilterSliderReference.setValue(USERDEFAULTS.float(forKey: "ratingFilter"), animated: false)
-    
-        
+        let ratingValue = USERDEFAULTS.float(forKey: "ratingFilter")
+        let formattedRating = String(format: "%.1f", ratingValue)
+        ratingFilterSliderReference.setValue(ratingValue, animated: false)
         if USERDEFAULTS.float(forKey: "ratingFilter") > 1
-        {
-            ratingValueLabel.text = "\(USERDEFAULTS.float(forKey: "ratingFilter")) stars"
-        }
+        { ratingValueLabel.text = "\(formattedRating) stars" }
         else
-        {
-            ratingValueLabel.text = "\(USERDEFAULTS.float(forKey: "ratingFilter")) star"
-        }
+        { ratingValueLabel.text = "\(formattedRating) star" }
     }
     // Check Pricing Filter
     func checkPricingFilter()
     {
         let pricing = USERDEFAULTS.float(forKey: "pricingFilter")
-        // SET VALUE OF SLIDER
         pricingFilterSliderReference.setValue(USERDEFAULTS.float(forKey: "pricingFilter"), animated: false)
-        // Set value on a range
         pricingSwitchCase(pricing: Int(pricing))
         
     }
@@ -89,16 +84,11 @@ class FilterViewController: UIViewController
         let radius = USERDEFAULTS.float(forKey: "searchRadiusFilter")
         let radiusInMiles = (radius / 16093.44)
         let formattedValue = String(format: "%.2f", radiusInMiles)
-        // SET VALUE OF SLIDER
         searchRadiusFilterSlider.setValue(radiusInMiles, animated: false)
         if radius > 1
-        {
-            searchRadiusValueLabel.text = "\(formattedValue) miles"
-        }
+        { searchRadiusValueLabel.text = "\(formattedValue) miles" }
         else
-        {
-            searchRadiusValueLabel.text = "\(formattedValue) mile"
-        }
+        { searchRadiusValueLabel.text = "\(formattedValue) mile" }
     }
     /*
      UI SLIDERS:
@@ -112,21 +102,16 @@ class FilterViewController: UIViewController
     @IBAction func ratingFilterSlider(_ sender: UISlider)
     {
         let currentValue = Int(sender.value)
+        let ratingValue = USERDEFAULTS.float(forKey: "ratingFilter")
+        let formattedRating = String(format: "%.1f", ratingValue)
         ratingValueLabel.text = "\(currentValue) star"
-        // SET THE USER DEFAULTS
         USERDEFAULTS.set(ratingFilterSliderReference.value, forKey: "ratingFilter")
-        if USERDEFAULTS.float(forKey: "ratingFilter") > 1
-        {
-            ratingValueLabel.text = "\(USERDEFAULTS.float(forKey: "ratingFilter")) stars"
-        }
-        else if USERDEFAULTS.float(forKey: "ratingFilter") < 2
-        {
-            ratingValueLabel.text = "\(USERDEFAULTS.float(forKey: "ratingFilter")) star"
-        }
+        if ratingValue > 1
+        { ratingValueLabel.text = "\(formattedRating) stars" }
+        else if ratingValue < 2
+        { ratingValueLabel.text = "\(formattedRating) star" }
         else
-        {
-             ratingValueLabel.text = "\(currentValue) star"
-        }
+        { ratingValueLabel.text = "\(currentValue) star" }
     }
     
     // Pricing Filter Slider
@@ -155,15 +140,9 @@ class FilterViewController: UIViewController
         let radiusValue = (currentValue * 16093.44) // Store the radius value in meters
         let formattedValue = String(format: "%.2f", currentValue)
         if currentValue > 1
-        {
-            
-            searchRadiusValueLabel.text = "\(formattedValue) miles"
-        }
+        { searchRadiusValueLabel.text = "\(formattedValue) miles" }
         else
-        {
-            searchRadiusValueLabel.text = "\(formattedValue) mile"
-        }
-        // SET THE USER DEFAULTS
+        { searchRadiusValueLabel.text = "\(formattedValue) mile" }
         USERDEFAULTS.set(radiusValue, forKey: "searchRadiusFilter")
     }
     /*
@@ -177,7 +156,6 @@ class FilterViewController: UIViewController
         {
         case 1...2:
             pricingValueLabel.text = "€"
-        // 3...4
         case 3:
             pricingValueLabel.text = "€€"
         case 4...5:

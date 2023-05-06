@@ -34,6 +34,7 @@ struct Place
     let isOpenNow: Bool
     let types: [String]
     let rating: Double
+    let pricingRange: Int
   //  let photoReference: String
     let latitude: Double
     let longitude: Double

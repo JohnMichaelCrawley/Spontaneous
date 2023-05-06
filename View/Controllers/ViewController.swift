@@ -27,7 +27,6 @@ import CoreLocation
 class ViewController: UIViewController, CLLocationManagerDelegate
 {
     // MARK: - Variables
-    private var isToggleActive = false
     /* VARIABLES */
     // Previous Switch count - store the previous switches that are on/off in this counter
     private var previousSwitchCount = 0
@@ -41,7 +40,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate
     // User Defaults
     private let USERDEFAULTS = UserDefaults.standard
     // Place variable (store single datum of a place found) and places array to store all data found in Google API search
-    private var place: Place = Place(placeID: "", name: "", address: "", isOpenNow: false, types: [""], rating: 0.0, latitude: 0.0, longitude: 0.0)
+    private var place: Place = Place(placeID: "", name: "", address: "", isOpenNow: false, types: [""], rating: 0.0, pricingRange: 0, latitude: 0.0, longitude: 0.0)
     private var places: [Place] = []
     // Store location data
     private var businessLocation = CLLocationCoordinate2D(latitude: 0.0,longitude: 0.0)
@@ -74,9 +73,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate
             else
             {self.locationManager.requestWhenInUseAuthorization()}
         }
-        // Set up MapView
-        mapView.isMyLocationEnabled = true  // SHOWS BLUE DOT FOR USER'S LOCATION
-        mapView.delegate = self
+        mapView.isMyLocationEnabled = true  // Show user's location the map
+        mapView.delegate = self             // Set up MapView
     }
     /*
      viewWillAppear:
@@ -86,12 +84,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        // Enable TabBar
-        self.tabBarController?.tabBar.isHidden = false
-        // Force the map view to redraw itself
-        mapView.setNeedsDisplay()
-        // Force the map view to re-layout its subviews
-        mapView.setNeedsLayout()
+        self.tabBarController?.tabBar.isHidden = false  // Enable TabBar
+        mapView.setNeedsDisplay()   // Force the map view to redraw itself
+        mapView.setNeedsLayout()    // Force the map view to re-layout its subviews
     }
     /*
      Update Map Style:
@@ -204,8 +199,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         // TESTING VARIABLE FOR BIG O
         let startTime = CFAbsoluteTimeGetCurrent() // START TIME
         let dots = "****************************************"
+        
+        
+        // check if the int has changed previously set by the user
+        guard let switcCounterValue = USERDEFAULTS.object(forKey: "switchCount") as? Int else { return }
+
+        
+        
+        // Set the previous counter for switches
         previousSwitchCount = getLoctionSwitchOnCount()
-        if places.count == 0
+        
+        /*
+         NOTE:
+         Both fetchPlaces() and outputFromPlacesArray()
+         need to filter for pricing and rating
+         */
+           
+        if places.count == 0 && previousSwitchCount != switcCounterValue
         {
             #if DEBUG
             print("* Google API: request is being used *")
@@ -267,6 +277,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate
                         let root = try JSONDecoder().decode(Root.self, from: data)
                         for result in root.results
                         {
+                            // Declare and store values
                             let placeID = result.place_id ?? ""
                             let placeName = result.name ?? ""
                             let placeAddress = result.formatted_address ?? ""
@@ -275,17 +286,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate
                             let placeRating = result.rating ?? 0.0
                             let placeLat = result.geometry?.location.lat ?? 0.0
                             let placeLong = result.geometry?.location.lng ?? 0.0
+                            let placePricingRange  = result.price_level ?? 0
                             // If placeID is found in the array, skip this iteration
                             // or if place type is not found by keyword specific, skip this iteration
                             // or if a location / place is closed
                             if self.places.filter({ $0.placeID == placeID }).count > 0 || !placeTypes.contains(KEYWORD) || openingHours == false
+                                
                             {
                                 continue
                             }
                             // Finally, add place to the places array
                             else
                             {
-                                let place = Place(placeID: placeID, name: placeName, address: placeAddress, isOpenNow: openingHours, types: placeTypes, rating: placeRating, latitude: placeLat,longitude: placeLong)
+                                let place = Place(placeID: placeID, name: placeName, address: placeAddress, isOpenNow: openingHours, types: placeTypes, rating: placeRating, pricingRange: placePricingRange, latitude: placeLat,longitude: placeLong)
                                 self.places.append(place)
                             }
                         }
@@ -326,7 +339,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate
      */
     func outputFromPlacesArray()
     {
-        if getLoctionSwitchOnCount() > previousSwitchCount || getLoctionSwitchOnCount() < previousSwitchCount
+        // check if the int has changed previously set by the user
+        guard let switcCounterValue = USERDEFAULTS.object(forKey: "switchCount") as? Int else { return }
+
+        print(" * * > previous switch count: \(previousSwitchCount) < * *")
+        print(" * * > New switch count: \(switcCounterValue) < * *")
+        
+        if previousSwitchCount != switcCounterValue
+        {
+            print("Fetch places has been called!")
+            fetchPlaces()
+        }
+        else
+        {
+            print("Display Random Places has been called!")
+            displayRandomPlace()
+        }
+
+    
+        /*
+        if getLoctionSwitchOnCount() > previousSwitchCount || switchCount > previousSwitchCount
         {
             print("Fetch places has been called!")
             fetchPlaces()
@@ -335,10 +367,41 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         {
             displayRandomPlace()
         }
+        */
     }
     // Return random place to the place variable at the top of the file
     func returnRandomPlace() -> Place
     {
+        
+        // check filters
+        let ratingValueFromUserDefaults = USERDEFAULTS.float(forKey: "ratingFilter")
+        let pricingValueFromUserDefaults = USERDEFAULTS.float(forKey: "pricingFilter")
+        // filter
+        
+        /*
+         ----------------------------------
+         NOTE:
+         What this code below does is
+         it uses the USERDEFAULTS variable
+         get the filters and compare it to
+         the found places of things to do
+         ----------------------------------
+        let filteredPlaces = places.filter { place in
+            Int(place.rating) => Int(ratingValueFromUserDefaults)
+            &&
+            Int(place.rating) <= Int(ratingValueFromUserDefaults+1)
+            &&
+            Int(place.pricingRange) == Int(pricingValueFromUserDefaults)
+        }
+        // error handle
+        guard !filteredPlaces.isEmpty else
+        {
+            return places.getRandomPlace()!
+        }
+        // return
+        let randomIndex = Int.random(in: 0..<filteredPlaces.count)
+        return filteredPlaces[randomIndex]
+        */
         let place = places.getRandomPlace()!
         return place
     }
@@ -371,6 +434,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate
             USERDEFAULTS.set(place.longitude, forKey: "placeLongitude")
         }
     }
+
+    
     /*
      This function iterates through the USERDEFAULS
      for keys containing switches and if the switch
@@ -406,6 +471,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate
         
         return keyword
     }
+    
+
     /*
      Switch Count:
      Return the amount of switches turned on.
@@ -413,7 +480,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate
      */
     func getLoctionSwitchOnCount() -> Int
     {
-        var onCounter = 0
+        var switchesOnCount = 0
         var i = 0
         var switches = [String]()
         for (key, value) in USERDEFAULTS.dictionaryRepresentation()
@@ -425,15 +492,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate
                 if switches[i] != switchValue
                 {
                     i += 1
-                    onCounter += i
+                    switchesOnCount += i
                 }
             }
         }
+         
+        USERDEFAULTS.set(switchesOnCount, forKey: "switchCount")
         #if DEBUG
         print("Switches array counter : \(switches.count)")
         #endif
         return switches.count
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 /*
  This extension has a function that
