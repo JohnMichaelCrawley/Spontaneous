@@ -19,10 +19,22 @@ class FilterViewController: UIViewController
     // USER DEFAULTS//
     private let USERDEFAULTS = UserDefaults.standard
     //USER INTERFACE//
+    @IBOutlet weak var filtersHeader: UILabel!
     @IBOutlet weak var ratingFilterSliderReference: UISlider!
     @IBOutlet weak var pricingFilterSliderReference: UISlider!
     @IBOutlet weak var searchRadiusFilterSlider: UISlider!
     // Labels
+    // Titles
+    @IBOutlet weak var ratingHeaderLabel: UILabel!
+    @IBOutlet weak var pricingHeaderLabel: UILabel!
+    @IBOutlet weak var searchRadiusHeaderLabel: UILabel!
+    // Descriptions
+    @IBOutlet weak var ratingDescriptionLabel: UITextView!
+    @IBOutlet weak var pricingDescriptionLabel: UITextView!
+    @IBOutlet weak var searchRadiusDescriptionLabel: UITextView!
+    
+    
+    // Values
     @IBOutlet weak var ratingValueLabel: UILabel!
     @IBOutlet weak var pricingValueLabel: UILabel!
     @IBOutlet weak var searchRadiusValueLabel: UILabel!
@@ -35,9 +47,23 @@ class FilterViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        // Localisation
+        filtersHeader.text = "Filters".localised()
+        // Labels
+        // Headers
+        ratingHeaderLabel.text = "Rating".localised()
+        pricingHeaderLabel.text = "Pricing".localised()
+        searchRadiusHeaderLabel.text = "Search Radius".localised()
+        // Descriptions
+        ratingDescriptionLabel.text = "Filtering the rating will filter the search specifically and try to find a rating on your selection".localised()
+        pricingDescriptionLabel.text = "Filtering the pricing will search for the price range you want. The price range is €-€€€".localised()
+        searchRadiusDescriptionLabel.text = "Filtering the radius will only filter the search to how big the search will be around your location.".localised()
+
+        
         checkRatingFilter()
         checkPricingFilter()
         checkSearchRadiusFilter()
+        
     }
     /*
      CHECK FUNCTIONS:
@@ -66,9 +92,9 @@ class FilterViewController: UIViewController
         let formattedRating = String(format: "%.1f", ratingValue)
         ratingFilterSliderReference.setValue(ratingValue, animated: false)
         if USERDEFAULTS.float(forKey: "ratingFilter") > 1
-        { ratingValueLabel.text = "\(formattedRating) stars" }
+        { ratingValueLabel.text = "\(formattedRating) stars".localised() }
         else
-        { ratingValueLabel.text = "\(formattedRating) star" }
+        { ratingValueLabel.text = "\(formattedRating) star".localised() }
     }
     // Check Pricing Filter
     func checkPricingFilter()
@@ -86,9 +112,9 @@ class FilterViewController: UIViewController
         let formattedValue = String(format: "%.2f", radiusInMiles)
         searchRadiusFilterSlider.setValue(radiusInMiles, animated: false)
         if radius > 1
-        { searchRadiusValueLabel.text = "\(formattedValue) miles" }
+        { searchRadiusValueLabel.text = "\(formattedValue) miles".localised() }
         else
-        { searchRadiusValueLabel.text = "\(formattedValue) mile" }
+        { searchRadiusValueLabel.text = "\(formattedValue) mile".localised() }
     }
     /*
      UI SLIDERS:
@@ -107,11 +133,11 @@ class FilterViewController: UIViewController
         ratingValueLabel.text = "\(currentValue) star"
         USERDEFAULTS.set(ratingFilterSliderReference.value, forKey: "ratingFilter")
         if ratingValue > 1
-        { ratingValueLabel.text = "\(formattedRating) stars" }
+        { ratingValueLabel.text = "\(formattedRating) stars".localised() }
         else if ratingValue < 2
-        { ratingValueLabel.text = "\(formattedRating) star" }
+        { ratingValueLabel.text = "\(formattedRating) star".localised() }
         else
-        { ratingValueLabel.text = "\(currentValue) star" }
+        { ratingValueLabel.text = "\(currentValue) star".localised() }
     }
     
     // Pricing Filter Slider
@@ -140,9 +166,9 @@ class FilterViewController: UIViewController
         let radiusValue = (currentValue * 16093.44) // Store the radius value in meters
         let formattedValue = String(format: "%.2f", currentValue)
         if currentValue > 1
-        { searchRadiusValueLabel.text = "\(formattedValue) miles" }
+        { searchRadiusValueLabel.text = "\(formattedValue) miles".localised() }
         else
-        { searchRadiusValueLabel.text = "\(formattedValue) mile" }
+        { searchRadiusValueLabel.text = "\(formattedValue) mile".localised() }
         USERDEFAULTS.set(radiusValue, forKey: "searchRadiusFilter")
     }
     /*

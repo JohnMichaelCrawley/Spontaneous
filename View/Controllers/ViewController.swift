@@ -33,6 +33,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate
     // Google Map / Map View / Marker Variables
     @IBOutlet weak var mapView: GMSMapView!
     private  var marker = GMSMarker()
+
+    @IBOutlet weak var beSpontaneousButtonReference: UIButton!
+    
+    
     // Theme Manager
     private let themeManager = ThemeManager()
     // Location Manager
@@ -53,6 +57,28 @@ class ViewController: UIViewController, CLLocationManagerDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        
+    //Mark: - Localisation set up
+    // button
+        beSpontaneousButtonReference.setTitle("Be Spontaneous".localised(), for: .normal)
+      //  Navigation
+        if let tabItems = self.tabBarController?.tabBar.items
+        {
+            let firstTabBarItem = tabItems[0]
+            let secondTabBarItem = tabItems[1]
+            firstTabBarItem.title = "Map".localised()
+            secondTabBarItem.title = "Settings".localised()
+        }
+        
+        // ^^^^ nav
+//        let appLanguage = USERDEFAULTS.string(forKey: "language")!
+  //      print(appLanguage)
+        
+        
+        // Set the map's language to French
+        mapView.settings.accessibilityLanguage = "jp"
+        
         // Check Notification Center for changes in theme
         NotificationCenter.default.addObserver(self, selector: #selector(updateMapStyle(_:)), name: NSNotification.Name(rawValue: "mapThemeDidChange"), object: nil)
         // Theme Manager - Theme Selection
@@ -195,27 +221,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate
      */
     @IBAction func beSpontaneousPressed(_ sender: Any)
     {
+        #if DEBUG
+        print("Pressed the main button")
+        print("Array count: \(places.count)")
+        #endif
         // BUTTON VARIABLES//
         // TESTING VARIABLE FOR BIG O
         let startTime = CFAbsoluteTimeGetCurrent() // START TIME
         let dots = "****************************************"
-        
-        
         // check if the int has changed previously set by the user
-        guard let switcCounterValue = USERDEFAULTS.object(forKey: "switchCount") as? Int else { return }
-
-        
+      //  guard let switcCounterValue = USERDEFAULTS.object(forKey: "switchCount") as? Int else{ return }
         
         // Set the previous counter for switches
         previousSwitchCount = getLoctionSwitchOnCount()
-        
         /*
          NOTE:
          Both fetchPlaces() and outputFromPlacesArray()
          need to filter for pricing and rating
+         && previousSwitchCount != switcCounterValue
          */
            
-        if places.count == 0 && previousSwitchCount != switcCounterValue
+        if places.count == 0
         {
             #if DEBUG
             print("* Google API: request is being used *")
@@ -291,7 +317,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate
                             // or if place type is not found by keyword specific, skip this iteration
                             // or if a location / place is closed
                             if self.places.filter({ $0.placeID == placeID }).count > 0 || !placeTypes.contains(KEYWORD) || openingHours == false
-                                
                             {
                                 continue
                             }
@@ -374,8 +399,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate
     {
         
         // check filters
-        let ratingValueFromUserDefaults = USERDEFAULTS.float(forKey: "ratingFilter")
-        let pricingValueFromUserDefaults = USERDEFAULTS.float(forKey: "pricingFilter")
+     //   let ratingValueFromUserDefaults = USERDEFAULTS.float(forKey: "ratingFilter")
+      //  let pricingValueFromUserDefaults = USERDEFAULTS.float(forKey: "pricingFilter")
         // filter
         
         /*

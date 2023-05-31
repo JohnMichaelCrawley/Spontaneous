@@ -1,0 +1,138 @@
+
+/* Class = "UILabel"; text = "Filters"; ObjectID = "28t-YS-BJl"; */
+"28t-YS-BJl.text" = "Filters";
+
+/* Class = "UILabel"; text = "Night Life"; ObjectID = "3W6-nL-F1N"; */
+"3W6-nL-F1N.text" = "Night Life";
+
+/* Class = "UILabel"; text = "Zoo"; ObjectID = "3yM-0N-UfY"; */
+"3yM-0N-UfY.text" = "Zoo";
+
+/* Class = "UITextView"; text = "Filtering the locations will remove or add locations\nto your search. If you remove, “cafe”, it won’t appear\nin the search for something spontaneous to do.  "; ObjectID = "5vl-g1-Ehf"; */
+"5vl-g1-Ehf.text" = "Filtering the locations will remove or add locations\nto your search. If you remove, “cafe”, it won’t appear\nin the search for something spontaneous to do.  ";
+
+/* Class = "UILabel"; text = "Distance: [x]"; ObjectID = "7wr-1d-Z5G"; */
+"7wr-1d-Z5G.text" = "Distance: [x]";
+
+/* Class = "UIButton"; configuration.title = "Report Bug"; ObjectID = "8VI-oT-dNA"; */
+"8VI-oT-dNA.configuration.title" = "Report Bug";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "8VI-oT-dNA"; */
+"8VI-oT-dNA.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Park"; ObjectID = "AHX-bz-KNR"; */
+"AHX-bz-KNR.text" = "Park";
+
+/* Class = "UILabel"; text = "NCI Demonstration Build"; ObjectID = "BQJ-WC-6fg"; */
+"BQJ-WC-6fg.text" = "NCI Demonstration Build";
+
+/* Class = "UILabel"; text = "Aquarium"; ObjectID = "CDJ-5b-Y7j"; */
+"CDJ-5b-Y7j.text" = "Aquarium";
+
+/* Class = "UILabel"; text = "Locations"; ObjectID = "EeN-Bj-xe7"; */
+"EeN-Bj-xe7.text" = "Locations";
+
+/* Class = "UIButton"; configuration.title = "Start Route"; ObjectID = "FX7-cb-oPb"; */
+"FX7-cb-oPb.configuration.title" = "Start Route";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "FX7-cb-oPb"; */
+"FX7-cb-oPb.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Search Radius"; ObjectID = "FjT-us-Y5N"; */
+"FjT-us-Y5N.text" = "Search Radius";
+
+/* Class = "UITextView"; text = "Filtering the rating will filter the search specifically \nand try to find a rating on your selection"; ObjectID = "FqQ-xx-umL"; */
+"FqQ-xx-umL.text" = "Filtering the rating will filter the search specifically \nand try to find a rating on your selection";
+
+/* Class = "UILabel"; text = "Rating"; ObjectID = "H0p-OP-fak"; */
+"H0p-OP-fak.text" = "Rating";
+
+/* Class = "UIButton"; configuration.title = "Send Feedback"; ObjectID = "HyT-mK-cmu"; */
+"HyT-mK-cmu.configuration.title" = "Send Feedback";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "HyT-mK-cmu"; */
+"HyT-mK-cmu.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Walking Time: [x]"; ObjectID = "IjU-0D-fGz"; */
+"IjU-0D-fGz.text" = "Walking Time: [x]";
+
+/* Class = "UILabel"; text = "Brewery"; ObjectID = "LOa-Tz-e3a"; */
+"LOa-Tz-e3a.text" = "Brewery";
+
+/* Class = "UILabel"; text = "Pricing"; ObjectID = "LgF-8A-CHf"; */
+"LgF-8A-CHf.text" = "Pricing";
+
+/* Class = "UINavigationItem"; title = "Directions"; ObjectID = "MLt-c8-gGQ"; */
+"MLt-c8-gGQ.title" = "Directions";
+
+/* Class = "UITextView"; text = "Filtering the pricing will search for the price \nrange you want. The price range is €-€€€"; ObjectID = "OkZ-a6-M2r"; */
+"OkZ-a6-M2r.text" = "Filtering the pricing will search for the price \nrange you want. The price range is €-€€€";
+
+/* Class = "UILabel"; text = "Cinema"; ObjectID = "R2a-dV-fsq"; */
+"R2a-dV-fsq.text" = "Cinema";
+
+/* Class = "UILabel"; text = "Spa"; ObjectID = "T5Y-6k-9xa"; */
+"T5Y-6k-9xa.text" = "Spa";
+
+/* Class = "UILabel"; text = "1 mile"; ObjectID = "W0T-PP-g2t"; */
+"W0T-PP-g2t.text" = "1 mile";
+
+/* Class = "UIButton"; configuration.title = "Be Spontaneous"; ObjectID = "WYx-Bz-0R0"; */
+"WYx-Bz-0R0.configuration.title" = "Be Spontaneous";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "WYx-Bz-0R0"; */
+"WYx-Bz-0R0.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "€"; ObjectID = "Wxb-9B-6bK"; */
+"Wxb-9B-6bK.text" = "€";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "XDf-qA-q2f"; */
+"XDf-qA-q2f.title" = "Settings";
+
+/* Class = "UILabel"; text = "Bakery"; ObjectID = "Zl8-O9-ZWD"; */
+"Zl8-O9-ZWD.text" = "Bakery";
+
+/* Class = "UIViewController"; title = "filterVC"; ObjectID = "bC5-YL-Gpe"; */
+"bC5-YL-Gpe.title" = "filterVC";
+
+/* Class = "UILabel"; text = "Languages"; ObjectID = "bF8-B9-5JI"; */
+"bF8-B9-5JI.text" = "Languages";
+
+/* Class = "UILabel"; text = "Bowling"; ObjectID = "dnP-yL-BzC"; */
+"dnP-yL-BzC.text" = "Bowling";
+
+/* Class = "UILabel"; text = "Food Market"; ObjectID = "fZ4-p5-aGG"; */
+"fZ4-p5-aGG.text" = "Food Market";
+
+/* Class = "UILabel"; text = "Theme"; ObjectID = "fvA-4H-KY2"; */
+"fvA-4H-KY2.text" = "Theme";
+
+/* Class = "UILabel"; text = "Cafe"; ObjectID = "iFE-GI-Tj1"; */
+"iFE-GI-Tj1.text" = "Cafe";
+
+/* Class = "UILabel"; text = "Art gallery"; ObjectID = "kFa-fK-sjR"; */
+"kFa-fK-sjR.text" = "Art gallery";
+
+/* Class = "UITabBarItem"; title = "Map"; ObjectID = "kZi-8x-5sr"; */
+"kZi-8x-5sr.title" = "Map";
+
+/* Class = "UILabel"; text = "Restaurants"; ObjectID = "kdE-md-eFh"; */
+"kdE-md-eFh.text" = "Restaurants";
+
+/* Class = "UILabel"; text = "Amusement Park"; ObjectID = "l8i-4Q-jTB"; */
+"l8i-4Q-jTB.text" = "Amusement Park";
+
+/* Class = "UITextView"; text = "Filtering the radius will only filter the search to \nhow big the search will be around your location."; ObjectID = "rvR-g4-eU1"; */
+"rvR-g4-eU1.text" = "Filtering the radius will only filter the search to \nhow big the search will be around your location.";
+
+/* Class = "UILabel"; text = "Museum"; ObjectID = "tWa-q5-MDQ"; */
+"tWa-q5-MDQ.text" = "Museum";
+
+/* Class = "UILabel"; text = "3 star"; ObjectID = "vhy-jr-fGp"; */
+"vhy-jr-fGp.text" = "3 star";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "wgN-IZ-Wu3"; */
+"wgN-IZ-Wu3.title" = "Settings";
+
+/* Class = "UILabel"; text = "Credits"; ObjectID = "yvd-Ml-kKs"; */
+"yvd-Ml-kKs.text" = "Credits";

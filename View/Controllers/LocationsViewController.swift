@@ -20,6 +20,27 @@ class LocationsViewController: UIViewController {
     // USER DEFAULTS//
     let USERDEFAULTS = UserDefaults.standard
     /*
+     Labels
+     */
+    @IBOutlet weak var locationsHeaderLabel: UILabel!
+    @IBOutlet weak var locationsSubheaderLabel: UITextView!
+    @IBOutlet weak var cafeLabel: UILabel!
+    @IBOutlet weak var cinemaLabel: UILabel!
+    @IBOutlet weak var restaurantsLabel: UILabel!
+    @IBOutlet weak var nightLifeLabel: UILabel!
+    @IBOutlet weak var breweryLabel: UILabel!
+    @IBOutlet weak var foodMarketLabel: UILabel!
+    @IBOutlet weak var aquariumLabel: UILabel!
+    @IBOutlet weak var amusementParkLabel: UILabel!
+    @IBOutlet weak var museumLabel: UILabel!
+    @IBOutlet weak var zooLabel: UILabel!
+    @IBOutlet weak var artGalleryLabel: UILabel!
+    @IBOutlet weak var bakeryLabel: UILabel!
+    @IBOutlet weak var bowlingLabel: UILabel!
+    @IBOutlet weak var parkLabel: UILabel!
+    @IBOutlet weak var spaLabel: UILabel!
+    
+    /*
      USER INTERFACE SWITCHES
      These user interface references help set or adjust values
      throughout the program on this file
@@ -49,6 +70,54 @@ class LocationsViewController: UIViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        // Localisation
+        
+        //MARK: - LABELS
+        locationsHeaderLabel.text = "Locations".localised()
+        locationsSubheaderLabel.text = "Filtering the locations will remove or add locations to your search. If you remove, 'cafe', it won’t appear in the search for something spontaneous to do.".localised()
+        cafeLabel.text = "Cafe".localised()
+        cinemaLabel.text = "Cinema".localised()
+        restaurantsLabel.text = "Restaurants".localised()
+        nightLifeLabel.text = "Night Life".localised()
+        breweryLabel.text = "Brewery".localised()
+        foodMarketLabel.text = "Food Market".localised()
+        aquariumLabel.text = "Aquarium".localised()
+        amusementParkLabel.text = "Amusement Park".localised()
+        museumLabel.text = "Museum".localised()
+        zooLabel.text = "Zoo".localised()
+        artGalleryLabel.text = "Art Gallery".localised()
+        bakeryLabel.text = "Bakery".localised()
+        bowlingLabel.text = "Bowling".localised()
+        parkLabel.text = "Park".localised()
+        spaLabel.text = "Spa".localised()
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         // Check all the switches
         checkCafeSwitch()
         checkCinemaSwitch()

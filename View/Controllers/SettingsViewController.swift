@@ -18,11 +18,19 @@ import UIKit
 import WebKit
 class SetttingsViewController: UIViewController
 {
+    @IBOutlet weak var settingsNavigationTitleRef: UINavigationItem!
+    @IBOutlet weak var sendFeedbackButton: UIButton!
+    @IBOutlet weak var reportBugButton: UIButton!
+    @IBOutlet weak var buildLabel: UILabel!
+    
+
+    
+    
     /* VARIABLES */
     // USER INTERFACE
     @IBOutlet weak var settingsTableView: UITableView!
     // VARIABLES
-    private let SETTINGS = ["Filters", "Locations", "Languages", "Theme", "Credits"]    // Array to display titles of each settings for the menu
+    private let SETTINGS = ["Filters".localised(), "Locations".localised(), "Languages".localised(), "Theme".localised(), "Credits".localised()]    // Array to display titles of each settings for the menu
     private var index = 0                                                               // Store the index position
     private var selectedIndexPath: IndexPath? = nil                                     // Store the selected index path
     // WEB KIT
@@ -38,6 +46,12 @@ class SetttingsViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        //Localisation
+        settingsNavigationTitleRef.title = "Settings".localised()
+        sendFeedbackButton.setTitle("Send Feedback".localised(), for: .normal)
+        reportBugButton.setTitle("Report Bug".localised(), for: .normal)
+        buildLabel.text = "NCI Demonstration Build".localised()
+        //Localisation
         settingsTableView.register(SettingsTableViewCell.nib(), forCellReuseIdentifier: "SettingsTableViewCell")
         settingsTableView.delegate = self
         settingsTableView.dataSource = self

@@ -51,12 +51,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Build: Pre-Alpha" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQJ-WC-6fg">
-                                <rect key="frame" x="111" y="726" width="169" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HyT-mK-cmu">
                                 <rect key="frame" x="23" y="594" width="344" height="35"/>
                                 <state key="normal" title="Button"/>
@@ -73,6 +67,12 @@
                                     <action selector="showSendBugReportkWebPage:" destination="P4E-8n-3Yy" eventType="touchUpInside" id="BOO-Pv-pJO"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NCI Demonstration Build" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQJ-WC-6fg">
+                                <rect key="frame" x="95" y="727" width="200" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="r28-az-0LK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -81,19 +81,23 @@
                             <constraint firstItem="HyT-mK-cmu" firstAttribute="leading" secondItem="r28-az-0LK" secondAttribute="leading" constant="23" id="Fw9-bU-eGm"/>
                             <constraint firstItem="pZw-ra-oPh" firstAttribute="centerX" secondItem="HyT-mK-cmu" secondAttribute="centerX" id="NrP-oo-K8N"/>
                             <constraint firstItem="HyT-mK-cmu" firstAttribute="trailing" secondItem="8VI-oT-dNA" secondAttribute="trailing" id="RBt-su-QKy"/>
-                            <constraint firstItem="r28-az-0LK" firstAttribute="bottom" secondItem="BQJ-WC-6fg" secondAttribute="bottom" constant="14" id="TKI-lO-mEV"/>
+                            <constraint firstItem="r28-az-0LK" firstAttribute="bottom" secondItem="BQJ-WC-6fg" secondAttribute="bottom" constant="13" id="TKI-lO-mEV"/>
                             <constraint firstItem="pZw-ra-oPh" firstAttribute="trailing" secondItem="oBy-Dc-36y" secondAttribute="trailingMargin" id="Zmo-Jn-Gp0"/>
                             <constraint firstItem="8VI-oT-dNA" firstAttribute="centerX" secondItem="BQJ-WC-6fg" secondAttribute="centerX" id="a9c-VX-mvr"/>
                             <constraint firstItem="HyT-mK-cmu" firstAttribute="top" secondItem="pZw-ra-oPh" secondAttribute="bottom" constant="29" id="fGP-JR-nqq"/>
-                            <constraint firstItem="BQJ-WC-6fg" firstAttribute="leading" secondItem="r28-az-0LK" secondAttribute="leading" constant="111" id="gmg-WR-ayV"/>
+                            <constraint firstItem="BQJ-WC-6fg" firstAttribute="leading" secondItem="r28-az-0LK" secondAttribute="leading" constant="95" id="gmg-WR-ayV"/>
                             <constraint firstItem="pZw-ra-oPh" firstAttribute="leading" secondItem="oBy-Dc-36y" secondAttribute="leadingMargin" id="jLy-wb-J3r"/>
                             <constraint firstItem="pZw-ra-oPh" firstAttribute="top" secondItem="r28-az-0LK" secondAttribute="top" constant="39" id="jeB-3K-dvf"/>
-                            <constraint firstItem="BQJ-WC-6fg" firstAttribute="top" secondItem="8VI-oT-dNA" secondAttribute="bottom" constant="45" id="p5s-us-87q"/>
+                            <constraint firstItem="BQJ-WC-6fg" firstAttribute="top" secondItem="8VI-oT-dNA" secondAttribute="bottom" constant="46" id="p5s-us-87q"/>
                             <constraint firstItem="HyT-mK-cmu" firstAttribute="leading" secondItem="8VI-oT-dNA" secondAttribute="leading" id="phj-lU-kRN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="wgN-IZ-Wu3"/>
                     <connections>
+                        <outlet property="buildLabel" destination="BQJ-WC-6fg" id="wTw-MF-Rjg"/>
+                        <outlet property="reportBugButton" destination="8VI-oT-dNA" id="2Gc-nj-9nQ"/>
+                        <outlet property="sendFeedbackButton" destination="HyT-mK-cmu" id="DTO-xQ-doJ"/>
+                        <outlet property="settingsNavigationTitleRef" destination="wgN-IZ-Wu3" id="2hE-FD-4V9"/>
                         <outlet property="settingsTableView" destination="pZw-ra-oPh" id="DYG-Eb-ewe"/>
                     </connections>
                 </viewController>
@@ -264,12 +268,19 @@ how big the search will be around your location.</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="filtersHeader" destination="28t-YS-BJl" id="h2Q-0j-PVL"/>
+                        <outlet property="pricingDescriptionLabel" destination="OkZ-a6-M2r" id="cCA-0k-qxQ"/>
                         <outlet property="pricingFilterSliderReference" destination="5hl-Kh-gJM" id="eAm-di-XUs"/>
-                        <outlet property="pricingValueLabel" destination="Wxb-9B-6bK" id="jAO-ko-9j2"/>
+                        <outlet property="pricingHeaderLabel" destination="LgF-8A-CHf" id="BHL-Ey-JmO"/>
+                        <outlet property="pricingValueLabel" destination="Wxb-9B-6bK" id="Gv3-ce-zzm"/>
+                        <outlet property="ratingDescriptionLabel" destination="FqQ-xx-umL" id="j4E-1n-R54"/>
                         <outlet property="ratingFilterSliderReference" destination="Gdc-cp-GFC" id="OyJ-AW-Qjp"/>
-                        <outlet property="ratingValueLabel" destination="vhy-jr-fGp" id="gLf-GX-15Q"/>
+                        <outlet property="ratingHeaderLabel" destination="H0p-OP-fak" id="rUF-3Z-Hdd"/>
+                        <outlet property="ratingValueLabel" destination="vhy-jr-fGp" id="7Q0-id-Efu"/>
+                        <outlet property="searchRadiusDescriptionLabel" destination="rvR-g4-eU1" id="xWI-fB-ALQ"/>
                         <outlet property="searchRadiusFilterSlider" destination="qf5-Dc-pKQ" id="CEs-oJ-feq"/>
-                        <outlet property="searchRadiusValueLabel" destination="W0T-PP-g2t" id="2jQ-7i-e9p"/>
+                        <outlet property="searchRadiusHeaderLabel" destination="FjT-us-Y5N" id="5rg-d4-sdl"/>
+                        <outlet property="searchRadiusValueLabel" destination="W0T-PP-g2t" id="HCg-aQ-wcF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0D4-xg-RYg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -291,7 +302,7 @@ how big the search will be around your location.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5vl-g1-Ehf">
-                                <rect key="frame" x="0.0" y="87" width="390" height="66"/>
+                                <rect key="frame" x="0.0" y="79" width="390" height="66"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Filtering the locations will remove or add locations
 to your search. If you remove, “cafe”, it won’t appear
@@ -301,181 +312,181 @@ in the search for something spontaneous to do.  </string>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3mm-qc-Nv9">
-                                <rect key="frame" x="310" y="155" width="51" height="31"/>
+                                <rect key="frame" x="310" y="147" width="51" height="31"/>
                                 <connections>
                                     <action selector="cafeSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="cgE-gD-Xk2"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FVI-WN-n9N">
-                                <rect key="frame" x="310" y="194" width="51" height="31"/>
+                                <rect key="frame" x="310" y="186" width="51" height="31"/>
                                 <connections>
                                     <action selector="cinemaSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="ska-nJ-2gt"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ivF-x3-dbN">
-                                <rect key="frame" x="309" y="233" width="51" height="31"/>
+                                <rect key="frame" x="309" y="225" width="51" height="31"/>
                                 <connections>
                                     <action selector="restaurantsSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="ySg-Cs-zBT"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eQl-MD-Zoj">
-                                <rect key="frame" x="309" y="272" width="51" height="31"/>
+                                <rect key="frame" x="309" y="264" width="51" height="31"/>
                                 <connections>
                                     <action selector="nightLifeSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="6Pk-Wj-Uwk"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iy8-gE-KvY">
-                                <rect key="frame" x="310" y="311" width="51" height="31"/>
+                                <rect key="frame" x="310" y="303" width="51" height="31"/>
                                 <connections>
                                     <action selector="brewerySwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="zFy-iz-6qG"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6tq-iv-Aa3">
-                                <rect key="frame" x="310" y="350" width="51" height="31"/>
+                                <rect key="frame" x="310" y="342" width="51" height="31"/>
                                 <connections>
                                     <action selector="foodMarketSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="JFY-Wn-3nE"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jbq-Fx-wRh">
-                                <rect key="frame" x="309" y="389" width="51" height="31"/>
+                                <rect key="frame" x="309" y="381" width="51" height="31"/>
                                 <connections>
                                     <action selector="aquariumSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="sRb-Wz-PLY"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="avd-kb-PuX">
-                                <rect key="frame" x="309" y="428" width="51" height="31"/>
+                                <rect key="frame" x="309" y="420" width="51" height="31"/>
                                 <connections>
                                     <action selector="amusementParkSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="x2n-cU-P7K"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u9Z-BC-bri">
-                                <rect key="frame" x="309" y="467" width="51" height="31"/>
+                                <rect key="frame" x="309" y="459" width="51" height="31"/>
                                 <connections>
                                     <action selector="museumSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="REV-k9-IHB"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cafe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFE-GI-Tj1">
-                                <rect key="frame" x="37" y="160" width="36" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cafe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFE-GI-Tj1">
+                                <rect key="frame" x="37" y="152" width="36" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cinema" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2a-dV-fsq">
-                                <rect key="frame" x="37" y="199" width="58" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cinema" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2a-dV-fsq">
+                                <rect key="frame" x="37" y="191" width="58" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurants" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdE-md-eFh">
-                                <rect key="frame" x="37" y="238" width="91" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurants" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdE-md-eFh">
+                                <rect key="frame" x="37" y="230" width="91" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Night Life" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3W6-nL-F1N">
-                                <rect key="frame" x="36" y="277" width="130" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Night Life" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3W6-nL-F1N">
+                                <rect key="frame" x="36" y="269" width="76" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brewery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOa-Tz-e3a">
-                                <rect key="frame" x="37" y="316" width="63" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brewery" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOa-Tz-e3a">
+                                <rect key="frame" x="37" y="308" width="63" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food Market" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZ4-p5-aGG">
-                                <rect key="frame" x="37" y="355" width="96" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food Market" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZ4-p5-aGG">
+                                <rect key="frame" x="37" y="347" width="96" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aquarium" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDJ-5b-Y7j">
-                                <rect key="frame" x="36" y="394" width="73" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aquarium" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDJ-5b-Y7j">
+                                <rect key="frame" x="36" y="386" width="73" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amusement Park" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8i-4Q-jTB">
-                                <rect key="frame" x="36" y="429" width="130" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amusement Park" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8i-4Q-jTB">
+                                <rect key="frame" x="36" y="421" width="130" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Museum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWa-q5-MDQ">
-                                <rect key="frame" x="34" y="472" width="66" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Museum" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWa-q5-MDQ">
+                                <rect key="frame" x="34" y="464" width="66" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rms-kj-6oX">
-                                <rect key="frame" x="309" y="506" width="51" height="31"/>
+                                <rect key="frame" x="309" y="498" width="51" height="31"/>
                                 <connections>
                                     <action selector="zooSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="q3x-rf-pCM"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zoo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yM-0N-UfY">
-                                <rect key="frame" x="34" y="511" width="30" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zoo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yM-0N-UfY">
+                                <rect key="frame" x="34" y="503" width="30" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W7t-Av-MjW">
-                                <rect key="frame" x="309" y="545" width="51" height="31"/>
+                                <rect key="frame" x="309" y="537" width="51" height="31"/>
                                 <connections>
                                     <action selector="artGallerySwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="EYN-f4-92h"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Art gallery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFa-fK-sjR">
-                                <rect key="frame" x="33" y="550" width="79" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Art gallery" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFa-fK-sjR">
+                                <rect key="frame" x="33" y="542" width="79" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pgw-jK-N7Y">
-                                <rect key="frame" x="309" y="584" width="51" height="31"/>
+                                <rect key="frame" x="309" y="576" width="51" height="31"/>
                                 <connections>
                                     <action selector="bakerySwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="wBg-jk-g0w"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bakery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zl8-O9-ZWD">
-                                <rect key="frame" x="33" y="589" width="53" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bakery" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zl8-O9-ZWD">
+                                <rect key="frame" x="33" y="581" width="53" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wNz-Uv-5VU">
-                                <rect key="frame" x="309" y="623" width="51" height="31"/>
+                                <rect key="frame" x="309" y="615" width="51" height="31"/>
                                 <connections>
                                     <action selector="bowlingSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="6s5-xe-Jdi"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bowling" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnP-yL-BzC">
-                                <rect key="frame" x="33" y="628" width="60" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bowling" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnP-yL-BzC">
+                                <rect key="frame" x="33" y="620" width="60" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ux-q4-Nba">
-                                <rect key="frame" x="309" y="662" width="51" height="31"/>
+                                <rect key="frame" x="309" y="654" width="51" height="31"/>
                                 <connections>
                                     <action selector="parkSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="XeF-b8-iRy"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Park" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHX-bz-KNR">
-                                <rect key="frame" x="33" y="667" width="34" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Park" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHX-bz-KNR">
+                                <rect key="frame" x="33" y="659" width="34" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="twg-cu-lBU">
-                                <rect key="frame" x="309" y="701" width="51" height="31"/>
+                                <rect key="frame" x="309" y="693" width="51" height="31"/>
                                 <connections>
                                     <action selector="spaSwitch:" destination="4Fv-9C-48k" eventType="valueChanged" id="AcW-FK-BPR"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5Y-6k-9xa">
-                                <rect key="frame" x="33" y="706" width="30" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spa" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5Y-6k-9xa">
+                                <rect key="frame" x="33" y="698" width="30" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -509,7 +520,7 @@ in the search for something spontaneous to do.  </string>
                             <constraint firstItem="iFE-GI-Tj1" firstAttribute="centerY" secondItem="3mm-qc-Nv9" secondAttribute="centerY" id="LT7-Ae-tLq"/>
                             <constraint firstItem="kFa-fK-sjR" firstAttribute="leading" secondItem="Zl8-O9-ZWD" secondAttribute="leading" id="Luf-uN-aw8"/>
                             <constraint firstItem="LOa-Tz-e3a" firstAttribute="centerY" secondItem="Iy8-gE-KvY" secondAttribute="centerY" id="MJy-90-31B"/>
-                            <constraint firstItem="3W6-nL-F1N" firstAttribute="trailing" secondItem="l8i-4Q-jTB" secondAttribute="trailing" id="MXm-Sr-3DU"/>
+                            <constraint firstItem="3W6-nL-F1N" firstAttribute="trailing" secondItem="l8i-4Q-jTB" secondAttribute="trailing" constant="-54" id="MXm-Sr-3DU"/>
                             <constraint firstItem="3mm-qc-Nv9" firstAttribute="leading" secondItem="FVI-WN-n9N" secondAttribute="leading" id="MZL-f4-Lse"/>
                             <constraint firstItem="kFa-fK-sjR" firstAttribute="leading" secondItem="gc4-qJ-0eG" secondAttribute="leading" constant="33" id="Me2-At-6fD"/>
                             <constraint firstItem="R2a-dV-fsq" firstAttribute="centerY" secondItem="FVI-WN-n9N" secondAttribute="centerY" id="NCm-jG-sc4"/>
@@ -522,12 +533,12 @@ in the search for something spontaneous to do.  </string>
                             <constraint firstItem="wNz-Uv-5VU" firstAttribute="top" secondItem="Pgw-jK-N7Y" secondAttribute="bottom" constant="8" id="YPV-dN-rof"/>
                             <constraint firstItem="fZ4-p5-aGG" firstAttribute="centerY" secondItem="6tq-iv-Aa3" secondAttribute="centerY" id="ZIv-eP-gTI"/>
                             <constraint firstItem="6tq-iv-Aa3" firstAttribute="top" secondItem="Iy8-gE-KvY" secondAttribute="bottom" constant="8" id="a3k-hm-j8h"/>
-                            <constraint firstItem="5vl-g1-Ehf" firstAttribute="top" secondItem="EeN-Bj-xe7" secondAttribute="bottom" constant="8" id="b4W-SB-dBB"/>
+                            <constraint firstItem="5vl-g1-Ehf" firstAttribute="top" secondItem="EeN-Bj-xe7" secondAttribute="bottom" id="b4W-SB-dBB"/>
                             <constraint firstItem="W7t-Av-MjW" firstAttribute="top" secondItem="Rms-kj-6oX" secondAttribute="bottom" constant="8" id="epm-QC-q5X"/>
                             <constraint firstItem="kdE-md-eFh" firstAttribute="centerY" secondItem="ivF-x3-dbN" secondAttribute="centerY" id="faM-Yt-NZw"/>
                             <constraint firstItem="LOa-Tz-e3a" firstAttribute="trailing" secondItem="tWa-q5-MDQ" secondAttribute="trailing" id="fbd-fW-KQU"/>
                             <constraint firstItem="kdE-md-eFh" firstAttribute="leading" secondItem="LOa-Tz-e3a" secondAttribute="leading" id="feT-Tx-JVj"/>
-                            <constraint firstItem="gc4-qJ-0eG" firstAttribute="bottom" secondItem="twg-cu-lBU" secondAttribute="bottom" constant="78" id="fhj-ZQ-6Bx"/>
+                            <constraint firstItem="gc4-qJ-0eG" firstAttribute="bottom" secondItem="twg-cu-lBU" secondAttribute="bottom" constant="86" id="fhj-ZQ-6Bx"/>
                             <constraint firstItem="9ux-q4-Nba" firstAttribute="top" secondItem="wNz-Uv-5VU" secondAttribute="bottom" constant="8" id="gYY-QV-cXH"/>
                             <constraint firstItem="T5Y-6k-9xa" firstAttribute="centerY" secondItem="twg-cu-lBU" secondAttribute="centerY" id="i5l-SG-r2d"/>
                             <constraint firstItem="eQl-MD-Zoj" firstAttribute="leading" secondItem="Jbq-Fx-wRh" secondAttribute="leading" id="lrS-Bm-An2"/>
@@ -555,20 +566,37 @@ in the search for something spontaneous to do.  </string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="amusementParkLabel" destination="l8i-4Q-jTB" id="Zrt-fS-uVG"/>
                         <outlet property="amusementParkSwitchReference" destination="avd-kb-PuX" id="ptY-xL-MSo"/>
+                        <outlet property="aquariumLabel" destination="CDJ-5b-Y7j" id="Kqi-Sy-SBe"/>
                         <outlet property="aquariumSwitchReference" destination="Jbq-Fx-wRh" id="LAV-Mn-le7"/>
+                        <outlet property="artGalleryLabel" destination="kFa-fK-sjR" id="vMu-pf-8bU"/>
                         <outlet property="artGallerySwitchReference" destination="W7t-Av-MjW" id="j2k-N6-Uud"/>
+                        <outlet property="bakeryLabel" destination="Zl8-O9-ZWD" id="aGl-gj-n6U"/>
                         <outlet property="bakerySwitchReference" destination="Pgw-jK-N7Y" id="bKi-3X-aOG"/>
+                        <outlet property="bowlingLabel" destination="dnP-yL-BzC" id="1Q8-wE-QOi"/>
                         <outlet property="bowlingSwitchReference" destination="wNz-Uv-5VU" id="HDo-MP-xuQ"/>
+                        <outlet property="breweryLabel" destination="LOa-Tz-e3a" id="gQS-Pf-kUT"/>
                         <outlet property="brewerySwitchReference" destination="Iy8-gE-KvY" id="jJV-ET-Bl5"/>
+                        <outlet property="cafeLabel" destination="iFE-GI-Tj1" id="8Vc-WA-uDZ"/>
                         <outlet property="cafeSwitchReference" destination="3mm-qc-Nv9" id="ARa-2w-AIl"/>
+                        <outlet property="cinemaLabel" destination="R2a-dV-fsq" id="WHP-H0-ixj"/>
                         <outlet property="cinemaSwitchReference" destination="FVI-WN-n9N" id="X48-bx-Ag8"/>
+                        <outlet property="foodMarketLabel" destination="fZ4-p5-aGG" id="ZRA-RI-N4Y"/>
                         <outlet property="foodMarketSwitchReference" destination="6tq-iv-Aa3" id="vcc-M3-4iX"/>
+                        <outlet property="locationsHeaderLabel" destination="EeN-Bj-xe7" id="SWf-PM-eVO"/>
+                        <outlet property="locationsSubheaderLabel" destination="5vl-g1-Ehf" id="Yqy-uQ-mcM"/>
+                        <outlet property="museumLabel" destination="tWa-q5-MDQ" id="7Vq-B8-w8m"/>
                         <outlet property="museumSwitchReference" destination="u9Z-BC-bri" id="vZm-h1-pma"/>
+                        <outlet property="nightLifeLabel" destination="3W6-nL-F1N" id="EZu-gh-iQ7"/>
                         <outlet property="nightLifeSwitchReference" destination="eQl-MD-Zoj" id="pfP-yV-QOV"/>
+                        <outlet property="parkLabel" destination="AHX-bz-KNR" id="ect-2c-DTX"/>
                         <outlet property="parkSwitchReference" destination="9ux-q4-Nba" id="QYy-e0-d75"/>
+                        <outlet property="restaurantsLabel" destination="kdE-md-eFh" id="6TK-8e-ioZ"/>
                         <outlet property="restaurantsSwitchReference" destination="ivF-x3-dbN" id="uAy-et-llI"/>
+                        <outlet property="spaLabel" destination="T5Y-6k-9xa" id="KSQ-vZ-4GO"/>
                         <outlet property="spaSwitchReference" destination="twg-cu-lBU" id="UIu-jU-QP9"/>
+                        <outlet property="zooLabel" destination="3yM-0N-UfY" id="RbR-3o-XMw"/>
                         <outlet property="zooSwitchReference" destination="Rms-kj-6oX" id="Odl-4l-HRQ"/>
                     </connections>
                 </viewController>
@@ -707,7 +735,7 @@ in the search for something spontaneous to do.  </string>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <button opaque="NO" contentMode="center" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYx-Bz-0R0">
-                                <rect key="frame" x="120.66666666666669" y="706" width="149" height="34.333333333333371"/>
+                                <rect key="frame" x="120.66666666666669" y="705.66666666666663" width="149" height="35"/>
                                 <color key="backgroundColor" systemColor="secondaryLabelColor"/>
                                 <size key="titleShadowOffset" width="0.0" height="100"/>
                                 <state key="normal" title="Button"/>
@@ -721,7 +749,7 @@ in the search for something spontaneous to do.  </string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="beSpontaneousPressed:" destination="TXZ-eN-gZh" eventType="touchDown" id="G56-1A-nOO"/>
+                                    <action selector="beSpontaneousPressed:" destination="TXZ-eN-gZh" eventType="touchDown" id="ARG-lv-c5E"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -738,6 +766,7 @@ in the search for something spontaneous to do.  </string>
                     </view>
                     <navigationItem key="navigationItem" id="gvB-DK-D6a"/>
                     <connections>
+                        <outlet property="beSpontaneousButtonReference" destination="WYx-Bz-0R0" id="htH-eG-8Qe"/>
                         <outlet property="mapView" destination="6cH-6P-dSs" id="8A1-Mk-btf"/>
                     </connections>
                 </viewController>
@@ -787,6 +816,7 @@ in the search for something spontaneous to do.  </string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="languageHeaderLabel" destination="bF8-B9-5JI" id="eH2-Gt-TeG"/>
                         <outlet property="languageTableView" destination="Tbg-RE-0wZ" id="0VJ-Lv-Meg"/>
                     </connections>
                 </viewController>
@@ -885,6 +915,7 @@ in the search for something spontaneous to do.  </string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="themeHeaderLabel" destination="fvA-4H-KY2" id="jsH-Yk-PIf"/>
                         <outlet property="themeTableView" destination="H3n-Y7-9ca" id="t2u-4o-PAS"/>
                     </connections>
                 </viewController>

@@ -1,0 +1,189 @@
+/* 
+  Localisable.strings
+  Spontaneous
+
+  Created by John Michael Crawley on 09/05/2023.
+  
+*/
+
+
+// List of activities
+//Mark: - Main VC
+"Be Spontaneous" = "自発的に行動する";
+"Map" = "地図";
+"Settings" = "設定";
+//Mark: - Settings Menu VC
+"" = "";
+"" = "";
+"" = "";
+"Credits" = "クレジット";
+"NCI Demonstration Build" = "NCIデモビルド";
+"Send Feedback" = "フィードバック";
+"Report Bug" = "レポートバグ";
+//Mark: - Filters VC
+"Filters" = "フィルター";
+"Rating" = "評価";
+"Pricing" = "価格設定";
+"Search Radius" = "検索範囲";
+"Filtering the rating will filter the search specifically and try to find a rating on your selection" = "評価をフィルタリングすると、検索が具体的にフィルタリングされ、選択した評価を見つけようとする。";
+
+"Filtering the pricing will search for the price range you want. The price range is €-€€€" = "価格をフィルタリングすると、希望する価格帯をj検索できる。";
+
+"Filtering the radius will only filter the search to how big the search will be around your location." = "範囲をフィルタリングすると、検索があなたの場所の周りにどれだけ大きくなるか、の場合のみ検索がフィルタリングされる";
+"stars" = "";
+"star" = "";
+"miles" = "";
+"mile" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+//Mark: - Locations VC
+"Locations" = "位置";
+"Filtering the locations will remove or add locations to your search. If you remove, 'cafe', it won’t appear in the search for something spontaneous to do." = "評価をフィルタリングすると、検索が具体的にフィルタリングされ、\n選択した評価を見つけようとする。";
+"Cafe" = "カフェ";
+"Cinema" = "映画館";
+"Restaurants" = "レストラン";
+"Night Life" = "夜の光";
+"Brewery" = "醸造所";
+"Food Market" = "食品市場";
+"Aquarium" = "水族館";
+"Amusement Park" = "遊園地";
+"Museum" = "博物館";
+"Zoo" = "動物園";
+"Art Gallery" = "美術館";
+"Bakery" = "ベーカリー";
+"Bowling" = "ボウリング";
+"Park" = "公園";
+"Spa" = "スパ";
+//Mark: - Languages
+"Languages" = "言語";
+"English" = "英語";
+"Japanese" = "日本語";
+//Mark: - Theme VC
+"Theme" = "テーマ";
+"Dark Mode" = "ダークモード";
+"Light Mode" = "ライトモード";
+
+//Mark: - Credits VC
+"Credits" = "クレジット";
+"Development Team" = "";
+"Localisation Team" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+
+
+
+
+
+
+
+
+
+
+
+
+// Misc
+"Languages" = "言語";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+
+
+
+
+
+/*
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+ "" = "";
+
+
+*/

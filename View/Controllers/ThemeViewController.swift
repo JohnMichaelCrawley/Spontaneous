@@ -19,8 +19,11 @@ class ThemeViewController: UIViewController
     // VARIABLES /
     // USER INTERFACE //
     @IBOutlet var themeTableView: UITableView!
+    @IBOutlet weak var themeHeaderLabel: UILabel!
+    
+    
     // THEME SELECTION //
-    private let THEME = ["Dark Mode", "Light Mode"]
+    private let THEME = ["Dark Mode".localised(), "Light Mode".localised()]
     // USER DEFAULTS //
     private let USERDEFAULTS = UserDefaults.standard
     // Theme Manager
@@ -40,6 +43,11 @@ class ThemeViewController: UIViewController
         // Set the value for the theme
         themeManager.setThemeValue(value: USERDEFAULTS.string(forKey: "applicationTheme") ?? "")
         themeManager.setApplicationTheme(theme: themeManager.getThemeValue())
+        
+        // Localise
+        themeHeaderLabel.text = "Theme".localised()
+        
+        
         // Set the cell checkmark
         var indexPath = IndexPath(row: 0, section: 0)
         if themeManager.getThemeValue() == "dark"
