@@ -7,8 +7,6 @@ Status: Under Active Development / Work-In-Progress
 Spontaneous is a dynamic application currently in development, stemming from a six-month university project. The goal is to transform it into a fully functional application ready for deployment on the App Store. The purpose of Spontaneous is designed to help users discover spontaneous activities in their local proximity, such as cafes, restaurants, or cinemas. The application will provide directions to the selected destination.
 
 
-
-
 <a href="https://twitter.com/SpontaneousiOS" ><img src="https://img.shields.io/twitter/follow/SpontaneousiOS.svg?style=social" /> </a>
 
 <a href="https://github.com/JohnMichaelCrawley/Spontaneous/stargazers"><img src="https://img.shields.io/github/stars/JohnMichaelCrawley/Spontaneous?style=social" alt="Star Badge"/></a>
@@ -63,14 +61,14 @@ development cycle but can add suggestions to the next cycle of development. If y
 <details closed>
 <summary>When Will This Application Be Published To The App Store?</summary>
 <br>
-The estimated goal of when the application will go live on the App Store later this year.
+The goal of when the application will go live on the App Store will be later this year.
 </details>
 <!--Qustion 5 -->
 <details closed>
 <summary>Will There Be An Android Port?</summary>
 <br>
-If this application gains enough users and requests for an 
-Android version, then there will be a development for Android.
+If this application gains enough users on iOS and requests for an 
+Android version is heavily requested, then there will be a development for a version on Android.
 </details>
 <!--Qustion 6 -->
 <details closed>
@@ -99,15 +97,18 @@ as it's easier to carry around for this kind of application. In the future I cou
     * [x] Deign UI design, logo, flowcharts etc
 * [x] Development
      * [x] Setup GIT repository
-     * [x] Begin development in Xcode 14
+     * [x] Begin development in Xcode 15
      * [x] Working on functionality 
      * [ ] Work on user-interface
      * [ ] Localisation 
      * [ ] Perform unit-testing
      * [ ] Localisation 
- * [ ] Private Beta
- * [ ] Public Beta
- * [ ] End Beta
+ * [ ] Private beta
+ * [ ] Public beta
+ * [ ] End beta
+ * [ ] Review beta feedback & fix problems / issues
+ * [ ] Further testing
+ * [ ] Release to the App Store
 
 ## Known Bugs
 
@@ -124,4 +125,4 @@ I retain all rights to my source code and no one may reproduce, distribute, or c
 
 ## Credits
 * John Crawley - project developer
- * Chise Negishi - Japanese localisation
+* Chise Negishi - Japanese localisation
