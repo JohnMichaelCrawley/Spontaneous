@@ -62,8 +62,6 @@ class FilterViewController: UIViewController
     func checkRatingFilter()
     {
         ratingFilterSliderReference.setValue(USERDEFAULTS.float(forKey: "ratingFilter"), animated: false)
-    
-        
         if USERDEFAULTS.float(forKey: "ratingFilter") > 1
         {
             ratingValueLabel.text = "\(USERDEFAULTS.float(forKey: "ratingFilter")) stars"
@@ -88,16 +86,15 @@ class FilterViewController: UIViewController
     {
         let radius = USERDEFAULTS.float(forKey: "searchRadiusFilter")
         let radiusInMiles = (radius / 16093.44)
-        let formattedValue = String(format: "%.2f", radiusInMiles)
         // SET VALUE OF SLIDER
         searchRadiusFilterSlider.setValue(radiusInMiles, animated: false)
         if radius > 1
         {
-            searchRadiusValueLabel.text = "\(formattedValue) miles"
+            searchRadiusValueLabel.text = "\(radiusInMiles) miles"
         }
         else
         {
-            searchRadiusValueLabel.text = "\(formattedValue) mile"
+            searchRadiusValueLabel.text = "\(radiusInMiles) mile"
         }
     }
     /*
@@ -153,15 +150,13 @@ class FilterViewController: UIViewController
          */
         let currentValue = Float(sender.value)      // Get value from slider
         let radiusValue = (currentValue * 16093.44) // Store the radius value in meters
-        let formattedValue = String(format: "%.2f", currentValue)
         if currentValue > 1
         {
-            
-            searchRadiusValueLabel.text = "\(formattedValue) miles"
+            searchRadiusValueLabel.text = "\(currentValue) miles"
         }
         else
         {
-            searchRadiusValueLabel.text = "\(formattedValue) mile"
+            searchRadiusValueLabel.text = "\(currentValue) mile"
         }
         // SET THE USER DEFAULTS
         USERDEFAULTS.set(radiusValue, forKey: "searchRadiusFilter")
