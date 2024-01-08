@@ -2,7 +2,12 @@
 
 ## Overview
 
-Spontaneous is a six month long univeristy project I'm working on. Spontaneous application is about allowing an application to find something spontaneous to do in your local proxmity such as a cafe, restaurant or cinema and then give directions.
+Status: Under Active Development / Work-In-Progress
+
+Spontaneous is a dynamic application currently in development, stemming from a six-month university project. The goal is to transform it into a fully functional application ready for deployment on the App Store. The purpose of Spontaneous is designed to help users discover spontaneous activities in their local proximity, such as cafes, restaurants, or cinemas. The application will provide directions to the selected destination.
+
+
+
 
 <a href="https://twitter.com/SpontaneousiOS" ><img src="https://img.shields.io/twitter/follow/SpontaneousiOS.svg?style=social" /> </a>
 
@@ -18,7 +23,7 @@ Spontaneous is a six month long univeristy project I'm working on. Spontaneous a
 | Description | Target |
 | :---------: | :----: |
 | Device | iPhone |
-| Operating System | iOS15-iOS16 |
+| Operating System | iOS15-iOS17 |
 
 ## APIs Used
 
@@ -31,7 +36,7 @@ Spontaneous is a six month long univeristy project I'm working on. Spontaneous a
 <details cloed>
 <summary>What is Spontaneous?</summary>
 <br>
-Spontaneous is an iOS application built for iOS15 - iOS16. The idea
+Spontaneous is an iOS application built for iOS15 - iOS17. The idea
 of the application is to help people who can't decide or want to do 
 something on the spot. This application helps with this problem by allowing 
 the application to do the picking on what to do. The application will 
@@ -58,7 +63,7 @@ development cycle but can add suggestions to the next cycle of development. If y
 <details closed>
 <summary>When Will This Application Be Published To The App Store?</summary>
 <br>
-The estimated goal of when the application will go live on the App Store is around June - August 2023.
+The estimated goal of when the application will go live on the App Store later this year.
 </details>
 <!--Qustion 5 -->
 <details closed>
@@ -114,10 +119,9 @@ N/A
 
 ## LICENSE
 
-Copyright © 2022 - 2023 John Crawley
+Copyright © 2022 - 2024 John Crawley
 I retain all rights to my source code and no one may reproduce, distribute, or create derivative works from my work.
 
 ## Credits
 * John Crawley - project developer
- * Anu Sahni - Project supervisor 
  * Chise Negishi - Japanese localisation

@@ -2,48 +2,57 @@
 //  AppDelegate.swift
 //  Spontaneous
 //
-//  Created by John Michael Crawley on 12/12/2022.
+//  Created by John Crawley on 24/08/2023.
 //
 
 import UIKit
 import GoogleMaps
 
-@main
-class AppDelegate: UIResponder, UIApplicationDelegate
+@UIApplicationMain
+
+class AppDelegate: UIResponder, UIApplicationDelegate 
 {
-    
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // VARIABLES //
-        let API = API() // Get API
-        // / SET GOOGLE API KEY / TOKEN HERE//
-        GMSServices.provideAPIKey(API.returnAPIKey())
+
+    //MARK: - Variables
+    var window: UIWindow?
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool 
+    {
+        // Set up the main interface
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.rootViewController = TabBarNavigation()
+        window.makeKeyAndVisible()
+        self.window = window
+
+        
+        
+        // Google API
+        GMSServices.provideAPIKey("\(GoogleAPIManager.shared.returnAPIKey())")
+        
+        
+        // Set some default values
+        setUserDefaultsRegister()
+     
+        // Set Navigation Bar Settings
+        NavigationBarCustomiser.customiseNavigationBarAppearance()
+        
+        // Set the initial theme
+      //  AppDelegateManager.shared.setTheme(.light)
+        let themeValue = UserDefaults.standard.bool(forKey: "themeMode")
+        // Check if theme is on or off and set the theme to that
+        if themeValue == true{ThemeViewModel().setTheme(.dark)}
+        else {ThemeViewModel().setTheme(.light)}
         // Override point for customization after application launch.
         return true
     }
 
     
+
     
-    // MARK: UISceneSession Lifecycle
+    
+    
 
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
 
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-    }
+
 }
-
-
-
-
-
-
-
-
-
 
