@@ -23,7 +23,9 @@ class MainViewController: UIViewController, CLLocationManagerDelegate
     //MARK: - User Interface variables
     var beSpontaneousButton: UIButton!              // Button to get spontaneous items
     var mapView: GMSMapView!                        // Google Maps
-    var marker = GMSMarker()
+    var marker = GMSMarker()                        // Google Marker
+   
+    
     //MARK: - Variables
     override func viewDidLoad()
     {
@@ -31,5 +33,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate
         configureLocationManagerSetup()
         configureGoogleMapsMapView()
         configureBeSpontaneousButton()
+        
     }
 }

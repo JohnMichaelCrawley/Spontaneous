@@ -15,63 +15,53 @@ import GoogleMaps
 extension MainViewController : GMSMapViewDelegate
 {
     
-    
     /* handles Info Window tap */
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
-        print("didTapInfoWindowOf")
+      //  print("didTapInfoWindowOf")
     }
     
     /* handles Info Window long press */
     func mapView(_ mapView: GMSMapView, didLongPressInfoWindowOf marker: GMSMarker) {
-        print("didLongPressInfoWindowOf")
+       // print("didLongPressInfoWindowOf")
     }
 
-    
     
     //MARK: - Marker Info Window
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView?
     {
-        let infoWindow = Bundle.main.loadNibNamed("GoogleInfoWindow", owner: self, options: nil)?.first as! GoogleInfoWindowView
-              // SET UP VARIABLES
-           
-              // Types output
-
-              // Set data to info window
-        //      infoWindow.placeNameLabel.text = "\(name)"
-          //    infoWindow.placeRatingLabel.text = "Rating: \(rating)"
-          //    infoWindow.placeTypesLabel.text = "Type: \n\(typesOutput)"
-          //    infoWindow.placeOpenHoursLabel.text = "\(openHours)"
+        // Get the custom info window
+        guard let infoWindow = Bundle.main.loadNibNamed("GoogleInfoWindowView", owner: self, options: nil)?.first as? GoogleInfoWindowView else {
+            print("Unable to load GoogleInfoWindow")
+            return nil
+        }
+        // Select random place from collection
+        let place = mainViewModel.getRandomPlace()
+        //var isOpen = place?.isOpenNow
+        // Setup the info window data
+        infoWindow.placeName = place?.name
+        infoWindow.placeRating = "Rating: \(place!.rating)"
+        //  infoWindow.placeIsOpen = place.isOpenNow
+        infoWindow.placeType = "Types: \(place!.types)"
+        // Button target
+        infoWindow.getDirectionsButton.addTarget(self, action: #selector(getDirectionsToRandomlySelectedPlace), for: .touchUpInside)
+        // Corner Radius
+        infoWindow.layer.cornerRadius = 10
+        // Border
+        infoWindow.layer.borderWidth = 0.5
+        infoWindow.layer.borderColor = UIColor.lightGray.cgColor
         
         
-        
-        
-        infoWindow.placeName = "BOB"
-              // Corner Radius
-              infoWindow.layer.cornerRadius = 10
-              // Border
-              infoWindow.layer.borderWidth = 0.5
-              infoWindow.layer.borderColor = UIColor.lightGray.cgColor
-        
-        
-        
-        infoWindow.configureNIB()
-              // Return Info Window
-              return infoWindow
-        
-     //   let view = Bundle.main.loadNibNamed("GoogleInfoWindow", owner: self, options: nil)?.first as! GoogleInfoWindowView
-      //  let frame = CGRect(x: 10, y: 10, width: 200, height: view.frame.height)
-      //  view.frame = frame
-      //  return view
+        // Return Info Window
+        return infoWindow
     }
-    
-    
-    
-    
-    
-    
-    
+    // MARK: - Get Directions To Randomly Selected Place
+    @objc func getDirectionsToRandomlySelectedPlace()
+    {
+        #if DEBUG
+            print("get directions button pressed")
+        #endif
+    }
     //MARK: - Did Tap
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool { return false}
-
-
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        return false}
 }

@@ -32,7 +32,7 @@ class GoogleMapManager
         mapView?.settings.compassButton = true
         mapView?.settings.myLocationButton = false
         // Disable user interaction
-        mapView?.isUserInteractionEnabled = false
+        mapView?.isUserInteractionEnabled = true
         mapView?.settings.scrollGestures = false
         mapView?.settings.zoomGestures = false
     }
