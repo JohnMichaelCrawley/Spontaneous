@@ -41,7 +41,16 @@ extension MainViewController
     //MARK: - Did Update Locations
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
-      //  setBusinessLocation(businessLocation: businessLocation, userLocation: userLocation)
+        // Show user's location when reopening the app
+        // UNCOMMENT below to allow user location tracking
+        /*
+        if let location = locations.last
+        {
+            // Update user coordinates then configure Google Map Camera Position to user location
+            UserCoordinatesManager.shared.setUserCoordinates(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            configureGoogleMapCameraPositionToUserLocation()
+        }
+        */
     }
     // MARK: - Location Manager - Did Change Auth'
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
