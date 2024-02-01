@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B104CA12B55A5B300892745 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B104CA02B55A5B300892745 /* UIViewExtension.swift */; };
 		0B12F8882ACA44FA007A514A /* FiltersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B12F8872ACA44FA007A514A /* FiltersModel.swift */; };
 		0B12F88A2ACA4830007A514A /* FiltersViewControllerSliders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B12F8892ACA4830007A514A /* FiltersViewControllerSliders.swift */; };
 		0B2978D32A97BCFF00703A6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2978D22A97BCFF00703A6B /* AppDelegate.swift */; };
@@ -135,6 +136,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B104CA02B55A5B300892745 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		0B12F8872ACA44FA007A514A /* FiltersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersModel.swift; sourceTree = "<group>"; };
 		0B12F8892ACA4830007A514A /* FiltersViewControllerSliders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewControllerSliders.swift; sourceTree = "<group>"; };
 		0B2978CF2A97BCFF00703A6B /* Spontaneous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spontaneous.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -295,6 +297,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B104C9F2B55A57D00892745 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				0B104CA02B55A5B300892745 /* UIViewExtension.swift */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
 		0B12F8862ACA44E4007A514A /* FiltersModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -455,6 +465,7 @@
 		0B2979102A97C32500703A6B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0B104C9F2B55A57D00892745 /* UIView */,
 				0BDE71BC2A9A8157000DD7D5 /* ViewControllers */,
 				0BDE71B92A9A7E06000DD7D5 /* UIViewController */,
 			);
@@ -1234,6 +1245,7 @@
 				0BCCB4382AA2D11B005A83D2 /* SubscriptionsViewControllerStoreKit.swift in Sources */,
 				0BDE71BB2A9A7E17000DD7D5 /* UIViewController.swift in Sources */,
 				0BFA20C42AA938B500DD40F8 /* MainViewControllerUserInterfaceActions.swift in Sources */,
+				0B104CA12B55A5B300892745 /* UIViewExtension.swift in Sources */,
 				0B94D5932AA24F6C00F826BE /* SubscriptionTiers.swift in Sources */,
 				0B4595912AA024F70091D986 /* LocationsViewModel.swift in Sources */,
 			);

@@ -11,12 +11,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GoogleInfoWindowView" customModule="Spontaneous" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="321" height="204"/>
+            <rect key="frame" x="0.0" y="0.0" width="316" height="279"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-57.251908396946561" y="-208.45070422535213"/>
+            <point key="canvasLocation" x="-61.068702290076331" y="-182.04225352112678"/>
         </view>
     </objects>
     <resources>

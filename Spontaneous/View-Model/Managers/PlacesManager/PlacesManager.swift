@@ -4,27 +4,34 @@
 //
 //  Created by John Crawley on 16/10/2023.
 //
-
+//MARK: - Import List
 import Foundation
-
-
+// MARK: - Place Manager
 class PlacesManager
 {
     // MARK: - Variables
     static  let shared = PlacesManager()
     private var places = [Place]()
     private var boolUserDefaultsKeys: [String] = []
-
-    
-    
-   // private let randomlySelectedPlace: Place
+    // private let randomlySelectedPlace: Place
     
 
-    
-    
-    
-    
-    
+    //MARK: - Find UI Switches Turned On
+    func findUILocationSwitchesTurnedOn() -> [String]
+    {
+        // Get all UserDefaults entries
+          let allUserDefaults = UserDefaults.standard.dictionaryRepresentation()
+
+          // Filter entries that contain "Switch" in the key and are bool variables turned on
+        // If found remove the prefix of the "switch"
+          let turnedOnSwitches = allUserDefaults.compactMap { key, value -> String? in
+              guard key.hasSuffix("Switch"), let boolValue = value as? Bool, boolValue else {
+                  return nil
+              }
+              return key.replacingOccurrences(of: "Switch", with: "")
+          }
+          return turnedOnSwitches
+    }
     //MARK: - Append Place To Collection Array
     func appendPlaceToCollection(place: Place)
     {
@@ -35,29 +42,16 @@ class PlacesManager
     {
         return places.count
     }
-    
     //MARK: - Return Places
     func returnPlacesCollection() -> [Place]
     {
         return places
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    func initializeBoolUserDefaultsKeys() 
+    //MARK: - Initialize Bool User Default sKeys
+    func initializeBoolUserDefaultsKeys()
     {
         // Get the UserDefaults
         let userDefaults = UserDefaults.standard
-        
         // Retrieve all keys from UserDefaults
         let allKeys = userDefaults.dictionaryRepresentation().keys
         
@@ -70,22 +64,6 @@ class PlacesManager
             return nil
         }
     }
-
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     //MARK: - Shuffle Array (Fisher-Yates Algorithm)
     private func shuffleArray<T>(_ array: [T]) -> [T]
     {
@@ -104,15 +82,8 @@ class PlacesManager
     func returnRandomlySelectedPlace() -> Place
     {
         initializeBoolUserDefaultsKeys() 
+        
         let shuffledPlaces = shuffleArray(places)
         return shuffledPlaces.first!
     }
-    
-    
-    
-    
-    
-    
-    
-    
 }

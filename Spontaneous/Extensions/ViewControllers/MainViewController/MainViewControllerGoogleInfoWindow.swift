@@ -11,57 +11,65 @@
  */
 //MARK: - Import list
 import GoogleMaps
+
 //MARK: - Main View Controller Extension - GMS Map View Delegate
 extension MainViewController : GMSMapViewDelegate
 {
-    
-    /* handles Info Window tap */
-    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
-      //  print("didTapInfoWindowOf")
+    //MARK: - Did Tap Window Of
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker)
+    {
+        //  print("didTapInfoWindowOf")
     }
-    
-    /* handles Info Window long press */
-    func mapView(_ mapView: GMSMapView, didLongPressInfoWindowOf marker: GMSMarker) {
-       // print("didLongPressInfoWindowOf")
+    //MARK: - Did Long Press Info Window Of
+    func mapView(_ mapView: GMSMapView, didLongPressInfoWindowOf marker: GMSMarker)
+    {
+        // print("didLongPressInfoWindowOf")
     }
-
-    
+    // This method is called when the map is tapped.
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D)
+    {
+        // Prevent the info window from closing when tapping off the marker
+        mapView.selectedMarker = marker
+    }
     //MARK: - Marker Info Window
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView?
     {
-        // Get the custom info window
-        guard let infoWindow = Bundle.main.loadNibNamed("GoogleInfoWindowView", owner: self, options: nil)?.first as? GoogleInfoWindowView else {
-            print("Unable to load GoogleInfoWindow")
-            return nil
-        }
-        // Select random place from collection
-        let place = mainViewModel.getRandomPlace()
-        //var isOpen = place?.isOpenNow
+        // Create the custom info window once
+        guard let customInfoWindow = customInfoWindow(), let place = marker.userData as? Place else {return nil}
         // Setup the info window data
-        infoWindow.placeName = place?.name
-        infoWindow.placeRating = "Rating: \(place!.rating)"
-        //  infoWindow.placeIsOpen = place.isOpenNow
-        infoWindow.placeType = "Types: \(place!.types)"
-        // Button target
-        infoWindow.getDirectionsButton.addTarget(self, action: #selector(getDirectionsToRandomlySelectedPlace), for: .touchUpInside)
-        // Corner Radius
-        infoWindow.layer.cornerRadius = 10
+        customInfoWindow.placeName = place.name
+        customInfoWindow.placeRating = "Rating: \(place.rating)"
+        customInfoWindow.placeType = "Type/s: \(place.types)".replacingOccurrences(of: "[", with: "").replacingOccurrences(of: "]", with: "").replacingOccurrences(of: "\"", with: "")
+        // Set the custom view UI data and constraints
+        configureCustomView()
+        configureGetDirectionsButton()
+        getDirectionsButton!.alpha = 0.0 // set alpha to 0 which allows it to fade in
+        // Fade in the button
+        getDirectionsButton!.fadeIn()
+        // Add customView as a subview to mapView
+        mapView.addSubview(customView!)
+        mapView.addSubview(getDirectionsButton!)
+        // Add target for button tap
+        getDirectionsButton!.addTarget(self, action: #selector(getDirectionsToRandomlySelectedPlace), for: .touchUpInside)
+        // Info Window Corner Radius
+        customInfoWindow.layer.cornerRadius = 10
         // Border
-        infoWindow.layer.borderWidth = 0.5
-        infoWindow.layer.borderColor = UIColor.lightGray.cgColor
-        
-        
+        customInfoWindow.layer.borderWidth = 0.5
+        customInfoWindow.layer.borderColor = UIColor.lightGray.cgColor
         // Return Info Window
-        return infoWindow
+        return customInfoWindow
     }
     // MARK: - Get Directions To Randomly Selected Place
     @objc func getDirectionsToRandomlySelectedPlace()
     {
         #if DEBUG
-            print("get directions button pressed")
+       // print("Preparing to display a randomly selected place ....")
+        print("-")
+        print("place = \(place.name)")
+        print("-")
+      //  print("add = \()")
         #endif
     }
     //MARK: - Did Tap
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        return false}
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool { return false }
 }

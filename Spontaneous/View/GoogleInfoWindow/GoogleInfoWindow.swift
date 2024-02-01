@@ -78,29 +78,6 @@ class GoogleInfoWindowView: UIView
         label.lineBreakMode = .byWordWrapping
       return label
     }()
-    //MARK: - Get Directions To Place (Button)
-    let getDirectionsButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Get directions", for: .normal)
-        button.setTitleColor(.systemBackground, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        button.backgroundColor = .systemCyan
-        button.layer.cornerRadius = 10
-        button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.white.cgColor
-     // button.addTarget(GoogleInfoWindowView.self, action: #selector(getDirectionsToRandomlySelectedPlace), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    // MARK: - Get Directions To Randomly Selected Place
-    /*
-    @objc func getDirectionsToRandomlySelectedPlace()
-    {
-        #if DEBUG
-            print("get directions button pressed")
-        #endif
-    }*/
     //MARK: - INIT CGREACT
     override init(frame: CGRect)
     {
@@ -129,21 +106,13 @@ class GoogleInfoWindowView: UIView
         labelsStackView.spacing = 10
         labelsStackView.translatesAutoresizingMaskIntoConstraints = false
         // Enable user interaction for the button and its superviews
-        getDirectionsButton.isUserInteractionEnabled = true
         // Add elements to the custom view
         addSubview(labelsStackView)
-        self.addSubview(getDirectionsButton)
         // Set up constraints
         NSLayoutConstraint.activate([
             labelsStackView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             labelsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             labelsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            
-            getDirectionsButton.topAnchor.constraint(equalTo: labelsStackView.bottomAnchor, constant: 10),
-            getDirectionsButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            getDirectionsButton.heightAnchor.constraint(equalToConstant: 40), // Set your custom height
-            getDirectionsButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
-            
         ])
     }
 }

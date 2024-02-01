@@ -36,4 +36,18 @@ extension MainViewController
                  mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
     }
+    //MARK: - Get Directions Button Constraints
+    func configureGetDirectionsConstraints()
+    {
+        // Check if customView is not nil
+        guard let customView = customView, let getDirectionsButton = getDirectionsButton else {return}
+        // Set button constraints relative to the customView with increased width
+        NSLayoutConstraint.activate([
+            getDirectionsButton.centerXAnchor.constraint(equalTo: customView.centerXAnchor),
+            getDirectionsButton.topAnchor.constraint(equalTo: customView.bottomAnchor, constant: 10),
+            getDirectionsButton.widthAnchor.constraint(equalToConstant: 250),       // Adjust the width
+            getDirectionsButton.heightAnchor.constraint(equalToConstant: 60)        // Adjust the height
+        ])
+    }
+    
 }

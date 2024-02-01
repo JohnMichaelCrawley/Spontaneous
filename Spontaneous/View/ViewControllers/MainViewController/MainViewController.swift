@@ -24,15 +24,34 @@ class MainViewController: UIViewController, CLLocationManagerDelegate
     var beSpontaneousButton: UIButton!              // Button to get spontaneous items
     var mapView: GMSMapView!                        // Google Maps
     var marker = GMSMarker()                        // Google Marker
+    var customView: UIView?                         //  custom view for UI Button
+    var getDirectionsButton: UIButton?              // Button to open directions window
    
+
+
     
+    // Declare empty place to be used across the main view controller
+    var place = Place(
+        placeID: "",
+        name: "",
+        address: "",
+        isOpenNow: false,
+        types: [],
+        rating: 0.0,
+        pricingRange: 0,
+        photo: [Photo(height: 0, width: 0, htmlAttributions: [], photoReference: "")],
+        latitude: 0.0,
+        longitude: 0.0
+    )
+
+    
+
     //MARK: - Variables
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        configureLocationManagerSetup()
-        configureGoogleMapsMapView()
-        configureBeSpontaneousButton()
-        
+            configureLocationManagerSetup()
+            configureGoogleMapsMapView()
+            configureBeSpontaneousButton()
     }
 }

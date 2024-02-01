@@ -36,9 +36,9 @@ class MainViewModel
         {
             return Place?.none
         }
-        
-        return PlacesManager.shared.returnRandomlySelectedPlace()
-        
+        //myArray.map { String($0) }.joined(separator: ", ")
+        let returnedPlacesOutput  = PlacesManager.shared.returnRandomlySelectedPlace()
+        return returnedPlacesOutput
     }
     //MARK: - Get User Location
     func getUserLocation() -> String
@@ -59,7 +59,6 @@ class MainViewModel
     {
         // if has more than 1 loop
         // else do first item
-        
         return ""
     }
  

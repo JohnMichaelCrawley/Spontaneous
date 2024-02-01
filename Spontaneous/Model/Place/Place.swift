@@ -21,6 +21,7 @@ struct Place
     let rating: Double
     let pricingRange: Int
   //  let photoReference: String
+    let photo: [Photo]
     let latitude: Double
     let longitude: Double
 }
