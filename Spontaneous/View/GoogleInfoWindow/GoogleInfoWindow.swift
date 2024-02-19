@@ -38,11 +38,13 @@ class GoogleInfoWindowView: UIView
             businessTypeLabel.text = placeType
         }
     }
-    var placePhoto: UIImage? {
-           didSet {
-               photoImageView.image = placePhoto
-           }
-       }
+    var placePhoto: UIImage?
+    {
+        didSet
+        {
+            photoImageView.image = placePhoto
+        }
+    }
     //MARK: - User Interface
     //MARK: - Business Name (Label)
     private var nameLabel: UILabel =
@@ -115,21 +117,18 @@ class GoogleInfoWindowView: UIView
     func configureNIB() 
     {
         // Create horizontal stack view for Rating and Is Open labels
-        let ratingIsOpenStackView = UIStackView(arrangedSubviews: [ratingLabel, isOpenLabel])
+        let ratingIsOpenStackView = UIStackView(arrangedSubviews: [ratingLabel, businessTypeLabel])
         ratingIsOpenStackView.axis = .horizontal
         ratingIsOpenStackView.spacing = 10
         ratingIsOpenStackView.translatesAutoresizingMaskIntoConstraints = false
-
         // Create vertical stack view for labels and photo
-        let labelsStackView = UIStackView(arrangedSubviews: [photoImageView, nameLabel, ratingIsOpenStackView, businessTypeLabel])
+        let labelsStackView = UIStackView(arrangedSubviews: [photoImageView, nameLabel, ratingIsOpenStackView])
         labelsStackView.axis = .vertical
         labelsStackView.spacing = 10
         labelsStackView.translatesAutoresizingMaskIntoConstraints = false
-
         // Enable user interaction for the button and its superviews
         // Add elements to the custom view
         addSubview(labelsStackView)
-
         // Set up constraints
         NSLayoutConstraint.activate([
             photoImageView.heightAnchor.constraint(equalToConstant: 100), // Adjust the height as needed

@@ -26,32 +26,25 @@ class MainViewController: UIViewController, CLLocationManagerDelegate
     var marker = GMSMarker()                        // Google Marker
     var customView: UIView?                         //  custom view for UI Button
     var getDirectionsButton: UIButton?              // Button to open directions window
-   
-
-
-    
-    // Declare empty place to be used across the main view controller
-    var place = Place(
-        placeID: "",
-        name: "",
-        address: "",
-        isOpenNow: false,
-        types: [],
-        rating: 0.0,
-        pricingRange: 0,
-        photo: [Photo(height: 0, width: 0, htmlAttributions: [], photoReference: "")],
-        latitude: 0.0,
-        longitude: 0.0
-    )
-
-    
-
     //MARK: - Variables
     override func viewDidLoad()
     {
         super.viewDidLoad()
-            configureLocationManagerSetup()
-            configureGoogleMapsMapView()
-            configureBeSpontaneousButton()
+        configureLocationManagerSetup()
+        configureGoogleMapsMapView()
+        configureBeSpontaneousButton()
+        
+        #if targetEnvironment(simulator)
+            print("Running on a simulator")
+        #else
+            print("Running on an actual device")
+        #endif
     }
+    // MARK: - Override View Did Load (Remove the top navigation bar from returning from get directions child view
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated) // Hide navigation bar in MainViewController
+    }
+
 }

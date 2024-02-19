@@ -14,14 +14,14 @@ class PlacesManager
     private var places = [Place]()
     private var boolUserDefaultsKeys: [String] = []
     // private let randomlySelectedPlace: Place
-    
-
+    // Declare empty place to be used across the main view controller
+    // Declare place to use
+    private var place = Place(placeID: "",name: "",address: "",isOpenNow: false,types: [],rating: 0.0,pricingRange: 0,photo: [Photo(height: 0, width: 0, htmlAttributions: [], photoReference: "")],latitude: 0.0,longitude: 0.0)
     //MARK: - Find UI Switches Turned On
     func findUILocationSwitchesTurnedOn() -> [String]
     {
         // Get all UserDefaults entries
           let allUserDefaults = UserDefaults.standard.dictionaryRepresentation()
-
           // Filter entries that contain "Switch" in the key and are bool variables turned on
         // If found remove the prefix of the "switch"
           let turnedOnSwitches = allUserDefaults.compactMap { key, value -> String? in
@@ -32,6 +32,8 @@ class PlacesManager
           }
           return turnedOnSwitches
     }
+    
+    
     //MARK: - Append Place To Collection Array
     func appendPlaceToCollection(place: Place)
     {
@@ -81,9 +83,28 @@ class PlacesManager
     //MARK: - Return Randomly Selected Place
     func returnRandomlySelectedPlace() -> Place
     {
-        initializeBoolUserDefaultsKeys() 
-        
+        initializeBoolUserDefaultsKeys()
         let shuffledPlaces = shuffleArray(places)
         return shuffledPlaces.first!
     }
+    
+    
+    
+    
+    //MARK: - Set Single Place
+    func setSinglePlace()
+    {
+        if !places.isEmpty
+        {
+            place = returnRandomlySelectedPlace()
+        }
+    }
+    // MARK: - Return Selected Place
+    func returnSinglePlace() -> Place
+    {
+       return place
+    }
+        
 }
+
+

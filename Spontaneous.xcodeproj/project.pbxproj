@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B06F92B2B7135920005E197 /* GooglePlaces.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B06F9212B7133EC0005E197 /* GooglePlaces.xcframework */; };
+		0B06F92F2B728DF20005E197 /* GetDirectionsLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B06F92E2B728DF20005E197 /* GetDirectionsLocationManager.swift */; };
+		0B06F9322B72A3400005E197 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B06F9312B72A3400005E197 /* UIImageExtension.swift */; };
 		0B104CA12B55A5B300892745 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B104CA02B55A5B300892745 /* UIViewExtension.swift */; };
 		0B12F8882ACA44FA007A514A /* FiltersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B12F8872ACA44FA007A514A /* FiltersModel.swift */; };
 		0B12F88A2ACA4830007A514A /* FiltersViewControllerSliders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B12F8892ACA4830007A514A /* FiltersViewControllerSliders.swift */; };
@@ -60,6 +63,11 @@
 		0B621C1C2AD47CCA004BF1DF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B621C1B2AD47CCA004BF1DF /* QuartzCore.framework */; };
 		0B621C1E2AD47CD0004BF1DF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B621C1D2AD47CD0004BF1DF /* SystemConfiguration.framework */; };
 		0B621C202AD47CD7004BF1DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B621C1F2AD47CD7004BF1DF /* UIKit.framework */; };
+		0B72BA9A2B6C2F8700546E12 /* GetDirectionsViewControllerConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B72BA992B6C2F8700546E12 /* GetDirectionsViewControllerConfigure.swift */; };
+		0B72BA9D2B6C323500546E12 /* GetDirectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B72BA9B2B6C323500546E12 /* GetDirectionsViewController.swift */; };
+		0B72BA9E2B6C323500546E12 /* GetDirectionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B72BA9C2B6C323500546E12 /* GetDirectionsViewController.xib */; };
+		0B72BAA02B6C336F00546E12 /* GetDirectionsViewControllerConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B72BA9F2B6C336F00546E12 /* GetDirectionsViewControllerConstraints.swift */; };
+		0B72BAA32B6C776C00546E12 /* GetDirectionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B72BAA22B6C776C00546E12 /* GetDirectionsViewModel.swift */; };
 		0B8AEF242AA8CB7000B1A452 /* SettingsViewControllerConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8AEF232AA8CB7000B1A452 /* SettingsViewControllerConstraints.swift */; };
 		0B8AEF262AA8CC2300B1A452 /* SettingsViewControllerUserInterfaceActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8AEF252AA8CC2300B1A452 /* SettingsViewControllerUserInterfaceActions.swift */; };
 		0B8AEF282AA8CDF100B1A452 /* LocationsViewControllerConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8AEF272AA8CDF100B1A452 /* LocationsViewControllerConfigure.swift */; };
@@ -87,8 +95,6 @@
 		0BA85EBF2AA6727E00945A29 /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA85EBE2AA6727E00945A29 /* LanguageModel.swift */; };
 		0BCCB4382AA2D11B005A83D2 /* SubscriptionsViewControllerStoreKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCCB4372AA2D11B005A83D2 /* SubscriptionsViewControllerStoreKit.swift */; };
 		0BCCB43B2AA2DF3A005A83D2 /* SubscriptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCCB43A2AA2DF3A005A83D2 /* SubscriptionModel.swift */; };
-		0BCF24F72ADD8804009E3439 /* GooglePlaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCF24F62ADD8804009E3439 /* GooglePlaces.framework */; };
-		0BCF24F92ADD880F009E3439 /* GooglePlaces.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0BCF24F82ADD880F009E3439 /* GooglePlaces.bundle */; };
 		0BCF24FC2ADD88C3009E3439 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF24FB2ADD88C3009E3439 /* Place.swift */; };
 		0BCF24FF2ADDB7AB009E3439 /* PlacesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF24FE2ADDB7AB009E3439 /* PlacesManager.swift */; };
 		0BCF25022ADECA29009E3439 /* GoogleAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF25012ADECA29009E3439 /* GoogleAPIManager.swift */; };
@@ -135,7 +141,35 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0B72BAB12B6D310D00546E12 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0B72BAB42B6D322D00546E12 /* Embed PlugIns */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed PlugIns";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0B06F9212B7133EC0005E197 /* GooglePlaces.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GooglePlaces.xcframework; path = "../../../Desktop/Old/GoogleAPI/GooglePlaces/GooglePlaces-8.2.1/Frameworks/GooglePlaces.xcframework"; sourceTree = "<group>"; };
+		0B06F9232B7134140005E197 /* GooglePlaces.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = ../../../Desktop/Old/GoogleAPI/GooglePlaces/GooglePlacesResources/GooglePlaces.bundle; sourceTree = "<group>"; };
+		0B06F92C2B71413F0005E197 /* GooglePlaces.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GooglePlaces.xcframework; sourceTree = "<group>"; };
+		0B06F92E2B728DF20005E197 /* GetDirectionsLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDirectionsLocationManager.swift; sourceTree = "<group>"; };
+		0B06F9312B72A3400005E197 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		0B104CA02B55A5B300892745 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		0B12F8872ACA44FA007A514A /* FiltersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersModel.swift; sourceTree = "<group>"; };
 		0B12F8892ACA4830007A514A /* FiltersViewControllerSliders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewControllerSliders.swift; sourceTree = "<group>"; };
@@ -176,7 +210,7 @@
 		0B621BF82AD47ABE004BF1DF /* GoogleMapsBase.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GoogleMapsBase.xcframework; sourceTree = "<group>"; };
 		0B621BFA2AD47ADD004BF1DF /* GoogleMaps.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GoogleMaps.xcframework; sourceTree = "<group>"; };
 		0B621BFB2AD47ADE004BF1DF /* GoogleMapsCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GoogleMapsCore.xcframework; sourceTree = "<group>"; };
-		0B621BFE2AD47BB0004BF1DF /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "Spontaneous/Resources/GoogleAPI/GoogleMaps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
+		0B621BFE2AD47BB0004BF1DF /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		0B621C012AD47BE3004BF1DF /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		0B621C032AD47BEC004BF1DF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		0B621C052AD47BF4004BF1DF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -193,6 +227,15 @@
 		0B621C1B2AD47CCA004BF1DF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0B621C1D2AD47CD0004BF1DF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0B621C1F2AD47CD7004BF1DF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0B72BA992B6C2F8700546E12 /* GetDirectionsViewControllerConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDirectionsViewControllerConfigure.swift; sourceTree = "<group>"; };
+		0B72BA9B2B6C323500546E12 /* GetDirectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDirectionsViewController.swift; sourceTree = "<group>"; };
+		0B72BA9C2B6C323500546E12 /* GetDirectionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GetDirectionsViewController.xib; sourceTree = "<group>"; };
+		0B72BA9F2B6C336F00546E12 /* GetDirectionsViewControllerConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDirectionsViewControllerConstraints.swift; sourceTree = "<group>"; };
+		0B72BAA22B6C776C00546E12 /* GetDirectionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDirectionsViewModel.swift; sourceTree = "<group>"; };
+		0B72BAAE2B6D310C00546E12 /* GooglePlaces.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GooglePlaces.xcframework; path = "../../../Desktop/GooglePlaces-8.2.1/Frameworks/GooglePlaces.xcframework"; sourceTree = "<group>"; };
+		0B72BAB22B6D322D00546E12 /* GooglePlaces.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = ../../../Downloads/GooglePlacesResources/GooglePlaces.bundle; sourceTree = "<group>"; };
+		0B72BAB52B6D3B6700546E12 /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlaces.framework; sourceTree = "<group>"; };
+		0B72BABE2B6D9D4900546E12 /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlaces.framework; path = "../../../Desktop/GooglePlaces-8.2.1/Frameworks/GooglePlaces.xcframework/ios-arm64/GooglePlaces.framework"; sourceTree = "<group>"; };
 		0B8AEF232AA8CB7000B1A452 /* SettingsViewControllerConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerConstraints.swift; sourceTree = "<group>"; };
 		0B8AEF252AA8CC2300B1A452 /* SettingsViewControllerUserInterfaceActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerUserInterfaceActions.swift; sourceTree = "<group>"; };
 		0B8AEF272AA8CDF100B1A452 /* LocationsViewControllerConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewControllerConfigure.swift; sourceTree = "<group>"; };
@@ -221,8 +264,6 @@
 		0BCCB4372AA2D11B005A83D2 /* SubscriptionsViewControllerStoreKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewControllerStoreKit.swift; sourceTree = "<group>"; };
 		0BCCB43A2AA2DF3A005A83D2 /* SubscriptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionModel.swift; sourceTree = "<group>"; };
 		0BCCB43C2AA2E224005A83D2 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
-		0BCF24F62ADD8804009E3439 /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlaces.framework; sourceTree = "<group>"; };
-		0BCF24F82ADD880F009E3439 /* GooglePlaces.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = GooglePlaces.framework/Resources/GooglePlaces.bundle; sourceTree = "<group>"; };
 		0BCF24FB2ADD88C3009E3439 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		0BCF24FE2ADDB7AB009E3439 /* PlacesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesManager.swift; sourceTree = "<group>"; };
 		0BCF25012ADECA29009E3439 /* GoogleAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAPIManager.swift; sourceTree = "<group>"; };
@@ -275,8 +316,8 @@
 				0B621C022AD47BE3004BF1DF /* Accelerate.framework in Frameworks */,
 				0B621BFD2AD47ADE004BF1DF /* GoogleMapsCore.xcframework in Frameworks */,
 				0B621BF92AD47ABE004BF1DF /* GoogleMapsBase.xcframework in Frameworks */,
+				0B06F92B2B7135920005E197 /* GooglePlaces.xcframework in Frameworks */,
 				0B621BFC2AD47ADE004BF1DF /* GoogleMaps.xcframework in Frameworks */,
-				0BCF24F72ADD8804009E3439 /* GooglePlaces.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +338,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B06F9302B72A32A0005E197 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				0B06F9312B72A3400005E197 /* UIImageExtension.swift */,
+			);
+			path = UIImage;
+			sourceTree = "<group>";
+		};
 		0B104C9F2B55A57D00892745 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,7 +365,6 @@
 		0B2978C62A97BCFF00703A6B = {
 			isa = PBXGroup;
 			children = (
-				0B621BFE2AD47BB0004BF1DF /* GoogleMaps.bundle */,
 				0B2978D12A97BCFF00703A6B /* Spontaneous */,
 				0B2978E82A97BD0200703A6B /* SpontaneousTests */,
 				0B2978F22A97BD0200703A6B /* SpontaneousUITests */,
@@ -392,6 +440,7 @@
 		0B2979082A97C1D100703A6B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0B72BA932B6C2E3600546E12 /* GetDirectionsViewController */,
 				0BD5D8BB2AA1890600DA82A2 /* SubscriptionViewController */,
 				0B2979022A97BE7500703A6B /* MainViewController */,
 				0B2979122A97CAA500703A6B /* SettingsViewController */,
@@ -465,6 +514,7 @@
 		0B2979102A97C32500703A6B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0B06F9302B72A32A0005E197 /* UIImage */,
 				0B104C9F2B55A57D00892745 /* UIView */,
 				0BDE71BC2A9A8157000DD7D5 /* ViewControllers */,
 				0BDE71B92A9A7E06000DD7D5 /* UIViewController */,
@@ -653,7 +703,7 @@
 		0B621BF62AD479D7004BF1DF /* GoogleAPI */ = {
 			isa = PBXGroup;
 			children = (
-				0BCF24F12ADD8691009E3439 /* GooglePlaces */,
+				0B72BAA42B6D2AA600546E12 /* GooglePlaces */,
 				0B621BF72AD479F1004BF1DF /* GoogleMaps */,
 			);
 			path = GoogleAPI;
@@ -662,6 +712,7 @@
 		0B621BF72AD479F1004BF1DF /* GoogleMaps */ = {
 			isa = PBXGroup;
 			children = (
+				0B621BFE2AD47BB0004BF1DF /* GoogleMaps.bundle */,
 				0B621BFA2AD47ADD004BF1DF /* GoogleMaps.xcframework */,
 				0B621BFB2AD47ADE004BF1DF /* GoogleMapsCore.xcframework */,
 				0B621BF82AD47ABE004BF1DF /* GoogleMapsBase.xcframework */,
@@ -672,6 +723,11 @@
 		0B621C002AD47BE3004BF1DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0B06F9232B7134140005E197 /* GooglePlaces.bundle */,
+				0B06F9212B7133EC0005E197 /* GooglePlaces.xcframework */,
+				0B72BABE2B6D9D4900546E12 /* GooglePlaces.framework */,
+				0B72BAB22B6D322D00546E12 /* GooglePlaces.bundle */,
+				0B72BAAE2B6D310C00546E12 /* GooglePlaces.xcframework */,
 				0B621C1F2AD47CD7004BF1DF /* UIKit.framework */,
 				0B621C1D2AD47CD0004BF1DF /* SystemConfiguration.framework */,
 				0B621C1B2AD47CCA004BF1DF /* QuartzCore.framework */,
@@ -690,6 +746,42 @@
 				0B621C012AD47BE3004BF1DF /* Accelerate.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0B72BA932B6C2E3600546E12 /* GetDirectionsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0B72BA9B2B6C323500546E12 /* GetDirectionsViewController.swift */,
+				0B72BA9C2B6C323500546E12 /* GetDirectionsViewController.xib */,
+			);
+			path = GetDirectionsViewController;
+			sourceTree = "<group>";
+		};
+		0B72BA982B6C2F6000546E12 /* GetDirectionsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0B72BA992B6C2F8700546E12 /* GetDirectionsViewControllerConfigure.swift */,
+				0B72BA9F2B6C336F00546E12 /* GetDirectionsViewControllerConstraints.swift */,
+				0B06F92E2B728DF20005E197 /* GetDirectionsLocationManager.swift */,
+			);
+			path = GetDirectionsViewController;
+			sourceTree = "<group>";
+		};
+		0B72BAA12B6C775400546E12 /* GetDirectionsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0B72BAA22B6C776C00546E12 /* GetDirectionsViewModel.swift */,
+			);
+			path = GetDirectionsViewController;
+			sourceTree = "<group>";
+		};
+		0B72BAA42B6D2AA600546E12 /* GooglePlaces */ = {
+			isa = PBXGroup;
+			children = (
+				0B72BAB52B6D3B6700546E12 /* GooglePlaces.framework */,
+				0B06F92C2B71413F0005E197 /* GooglePlaces.xcframework */,
+			);
+			path = GooglePlaces;
 			sourceTree = "<group>";
 		};
 		0B9403B92AA77033001F6DB7 /* NavigationBars */ = {
@@ -825,6 +917,7 @@
 		0BC58D352A9AE6FD007405E2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0B72BAA12B6C775400546E12 /* GetDirectionsViewController */,
 				0BA85EBA2AA64B2600945A29 /* FiltersViewController */,
 				0BA85EB82AA64B1100945A29 /* UsageViewController */,
 				0BA85EB52AA64AD500945A29 /* LanguagesViewController */,
@@ -862,15 +955,6 @@
 				0BCCB43C2AA2E224005A83D2 /* Configuration.storekit */,
 			);
 			path = StoreKit;
-			sourceTree = "<group>";
-		};
-		0BCF24F12ADD8691009E3439 /* GooglePlaces */ = {
-			isa = PBXGroup;
-			children = (
-				0BCF24F82ADD880F009E3439 /* GooglePlaces.bundle */,
-				0BCF24F62ADD8804009E3439 /* GooglePlaces.framework */,
-			);
-			path = GooglePlaces;
 			sourceTree = "<group>";
 		};
 		0BCF24FA2ADD88B0009E3439 /* Place */ = {
@@ -952,6 +1036,7 @@
 		0BDE71BC2A9A8157000DD7D5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0B72BA982B6C2F6000546E12 /* GetDirectionsViewController */,
 				0BA85EAF2AA6451800945A29 /* UsageViewController */,
 				0BA85EAC2AA62E8200945A29 /* FiltersViewController */,
 				0BA85EA92AA6265300945A29 /* MainViewController */,
@@ -1044,6 +1129,8 @@
 				0B2978CB2A97BCFF00703A6B /* Sources */,
 				0B2978CC2A97BCFF00703A6B /* Frameworks */,
 				0B2978CD2A97BCFF00703A6B /* Resources */,
+				0B72BAB12B6D310D00546E12 /* Embed Frameworks */,
+				0B72BAB42B6D322D00546E12 /* Embed PlugIns */,
 			);
 			buildRules = (
 			);
@@ -1139,12 +1226,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BDE71C92A9AAC09000DD7D5 /* LanguagesViewController.xib in Resources */,
-				0B621BFF2AD47BB0004BF1DF /* GoogleMaps.bundle in Resources */,
 				0B2978DF2A97BD0200703A6B /* LaunchScreen.storyboard in Resources */,
+				0B72BA9E2B6C323500546E12 /* GetDirectionsViewController.xib in Resources */,
+				0B621BFF2AD47BB0004BF1DF /* GoogleMaps.bundle in Resources */,
 				0B53F1242AD8550C0015E1D1 /* darkstyle.json in Resources */,
 				0B2979062A97BE9600703A6B /* MainViewController.xib in Resources */,
 				0B53F13B2AD9F9E90015E1D1 /* lightstyle.json in Resources */,
-				0BCF24F92ADD880F009E3439 /* GooglePlaces.bundle in Resources */,
 				0BDE71AD2A997406000DD7D5 /* FiltersViewController.xib in Resources */,
 				0BDE71CD2A9AAC27000DD7D5 /* UsageViewController.xib in Resources */,
 				0BDE71C52A9AABE3000DD7D5 /* LocationsViewController.xib in Resources */,
@@ -1180,6 +1267,7 @@
 				0BD5D8C02AA1896700DA82A2 /* SubscriptionViewController.swift in Sources */,
 				0B8AEF2C2AA8CF7200B1A452 /* LanguagesViewControllerConstraints.swift in Sources */,
 				0BFEEA112AC62BDB000B101C /* AppDelegateManager.swift in Sources */,
+				0B72BAA32B6C776C00546E12 /* GetDirectionsViewModel.swift in Sources */,
 				0B2978D32A97BCFF00703A6B /* AppDelegate.swift in Sources */,
 				0B53F1302AD88F090015E1D1 /* UserCoordinates.swift in Sources */,
 				0BCCB43B2AA2DF3A005A83D2 /* SubscriptionModel.swift in Sources */,
@@ -1189,6 +1277,7 @@
 				0BCF24FC2ADD88C3009E3439 /* Place.swift in Sources */,
 				0B8AEF392AA8D40500B1A452 /* FiltersViewControllerConfigure.swift in Sources */,
 				0BCF25022ADECA29009E3439 /* GoogleAPIManager.swift in Sources */,
+				0B06F92F2B728DF20005E197 /* GetDirectionsLocationManager.swift in Sources */,
 				0B94D5902AA2409D00F826BE /* CreditsViewControllerTableView.swift in Sources */,
 				0BDE71C42A9AABE3000DD7D5 /* LocationsViewController.swift in Sources */,
 				0BA85EAB2AA6266A00945A29 /* MainViewControllerConfigure.swift in Sources */,
@@ -1212,6 +1301,7 @@
 				0B4595882A9FBC760091D986 /* FiltersUIGroup.swift in Sources */,
 				0B8AEF282AA8CDF100B1A452 /* LocationsViewControllerConfigure.swift in Sources */,
 				0B8AEF322AA8D21100B1A452 /* SubscriptionViewControllerConfigure.swift in Sources */,
+				0B06F9322B72A3400005E197 /* UIImageExtension.swift in Sources */,
 				0BA85EAE2AA62E9400945A29 /* FiltersViewControllerConstraints.swift in Sources */,
 				0B8AEF262AA8CC2300B1A452 /* SettingsViewControllerUserInterfaceActions.swift in Sources */,
 				0B2979242A97CE8400703A6B /* TabBarNavigation.swift in Sources */,
@@ -1219,6 +1309,7 @@
 				0B53F1342AD963D80015E1D1 /* UserCoordinatesManager.swift in Sources */,
 				0B94D5872AA23DFC00F826BE /* CreditsTableViewCell.swift in Sources */,
 				0B9403BF2AA77A79001F6DB7 /* UsageViewModel.swift in Sources */,
+				0B72BA9A2B6C2F8700546E12 /* GetDirectionsViewControllerConfigure.swift in Sources */,
 				0BDE71C82A9AAC09000DD7D5 /* LanguagesViewController.swift in Sources */,
 				0B2979322A97D7FA00703A6B /* SettingsStructs.swift in Sources */,
 				0BFA20C02AA936E500DD40F8 /* UsageViewControllerConstraints.swift in Sources */,
@@ -1240,10 +1331,12 @@
 				0B12F8882ACA44FA007A514A /* FiltersModel.swift in Sources */,
 				0BD5D87A2AA1567A00DA82A2 /* LanguagesViewControllerTableView.swift in Sources */,
 				0BFEEA0B2AC627B9000B101C /* Theme.swift in Sources */,
+				0B72BAA02B6C336F00546E12 /* GetDirectionsViewControllerConstraints.swift in Sources */,
 				0B45958B2AA021AD0091D986 /* LocationsViewControllerExtension.swift in Sources */,
 				0B53F1362AD965A20015E1D1 /* MainViewControllerLocationManager.swift in Sources */,
 				0BCCB4382AA2D11B005A83D2 /* SubscriptionsViewControllerStoreKit.swift in Sources */,
 				0BDE71BB2A9A7E17000DD7D5 /* UIViewController.swift in Sources */,
+				0B72BA9D2B6C323500546E12 /* GetDirectionsViewController.swift in Sources */,
 				0BFA20C42AA938B500DD40F8 /* MainViewControllerUserInterfaceActions.swift in Sources */,
 				0B104CA12B55A5B300892745 /* UIViewExtension.swift in Sources */,
 				0B94D5932AA24F6C00F826BE /* SubscriptionTiers.swift in Sources */,
@@ -1424,10 +1517,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = UBFNYP7C5B;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Spontaneous/Resources/GoogleAPI/GooglePlaces",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Spontaneous/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Spontaneous;
@@ -1462,10 +1552,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = UBFNYP7C5B;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Spontaneous/Resources/GoogleAPI/GooglePlaces",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Spontaneous/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Spontaneous;

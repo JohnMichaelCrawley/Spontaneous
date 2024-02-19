@@ -21,8 +21,9 @@ class NavigationBarCustomiser
         navigationBarAppearance.tintColor = UIColor.white
         let attributes: [NSAttributedString.Key: Any] = 
         [
-            .foregroundColor: UIColor.blue,
+            .foregroundColor: UIColor.tertiarySystemGroupedBackground,
             .font: UIFont.boldSystemFont(ofSize: 17)
+            
         ]
         UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .normal)
     }

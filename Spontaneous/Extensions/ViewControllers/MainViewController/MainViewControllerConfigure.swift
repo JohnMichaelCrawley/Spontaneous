@@ -40,6 +40,7 @@ extension MainViewController
         view.addSubview(mapView)
         configureGoogleMapsConstraints()
         configureGoogleMapCameraPositionToUserLocation()
+        mapView.delegate = self
     }
     //MARK: - Configure Custom View
     func configureCustomView()
@@ -75,14 +76,13 @@ extension MainViewController
         {
             getDirectionsButton = UIButton(type: .roundedRect)
             getDirectionsButton!.setTitle("Get directions", for: .normal)
-            getDirectionsButton!.setTitleColor(.systemBackground, for: .normal)
+            getDirectionsButton!.setTitleColor(customColour.returnDefaultUIColour(), for: .normal)
             getDirectionsButton!.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            getDirectionsButton!.backgroundColor = .systemCyan
+            getDirectionsButton!.backgroundColor = .systemBackground
             getDirectionsButton!.layer.cornerRadius = 10
             getDirectionsButton!.layer.borderWidth = 2
-            getDirectionsButton!.layer.borderColor = UIColor.white.cgColor
+            getDirectionsButton!.layer.borderColor = customColour.returnSecondaryCGColour()
             getDirectionsButton!.translatesAutoresizingMaskIntoConstraints = false
-           
         }
     }
     //MARK: - Google Info Window

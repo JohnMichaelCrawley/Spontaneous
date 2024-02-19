@@ -41,16 +41,21 @@ extension MainViewController
     //MARK: - Did Update Locations
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
-        // Show user's location when reopening the app
-        // UNCOMMENT below to allow user location tracking
-        /*
-        if let location = locations.last
+        // Keep the camera on the user until a place is found then focus on the place
+        guard let location = locations.last else { return }
+        let place = PlacesManager.shared.returnSinglePlace() // Using nil coalescing operator to handle nil case
+        // if the returned place name isn't empty
+        if !PlacesManager.shared.returnSinglePlace().name.isEmpty
         {
-            // Update user coordinates then configure Google Map Camera Position to user location
+            // If a place is available, set the camera position to focus on the place
+            let placeCoordinate = CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude)
+          //  configureGoogleMapCameraPositionToPlace(placeCoordinate)
+        }
+        else
+        {
             UserCoordinatesManager.shared.setUserCoordinates(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             configureGoogleMapCameraPositionToUserLocation()
         }
-        */
     }
     // MARK: - Location Manager - Did Change Auth'
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
@@ -60,7 +65,16 @@ extension MainViewController
         case .authorizedWhenInUse, .authorizedAlways:
             #if DEBUG
             print("auth in use")
+           /*
+            print("""
+                    Lat = \(locationManager.location?.coordinate.latitude ?? 0.0)
+                    Long = \(locationManager.location?.coordinate.longitude ?? 0.0)
+                    """)
+            */
             #endif
+            
+        
+    
             UserCoordinatesManager.shared.setUserCoordinates(latitude: locationManager.location?.coordinate.latitude ?? 0.0,
                                                              longitude: locationManager.location?.coordinate.longitude ?? 0.0)
             configureGoogleMapCameraPositionToUserLocation()

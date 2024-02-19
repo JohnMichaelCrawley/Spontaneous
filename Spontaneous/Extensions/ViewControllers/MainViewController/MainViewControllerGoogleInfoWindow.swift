@@ -92,13 +92,11 @@ extension MainViewController : GMSMapViewDelegate
     // MARK: - Get Directions To Randomly Selected Place
     @objc func getDirectionsToRandomlySelectedPlace()
     {
-        #if DEBUG
-       // print("Preparing to display a randomly selected place ....")
-        print("-")
-        print("place = \(place.name)")
-        print("-")
-      //  print("add = \()")
-        #endif
+        // Present the get directions
+        let getDirections = GetDirectionsViewController()
+        getDirections.hidesBottomBarWhenPushed = true
+        
+        self.navigationController?.pushViewController(getDirections, animated: true)
     }
     //MARK: - Did Tap
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool { return false }
