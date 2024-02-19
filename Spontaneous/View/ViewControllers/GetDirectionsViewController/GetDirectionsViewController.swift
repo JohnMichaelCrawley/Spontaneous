@@ -43,10 +43,7 @@ class GetDirectionsViewController: UIViewController, CLLocationManagerDelegate, 
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated) // Show navigation bar in GetDirectionsViewController
         // Style the navigation bar
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = .black
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        configureTopNavigationBar()
     }
 }
 

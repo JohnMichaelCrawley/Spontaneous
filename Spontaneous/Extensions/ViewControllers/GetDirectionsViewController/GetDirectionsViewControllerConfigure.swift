@@ -14,6 +14,19 @@ import GoogleMaps
 //MARK: - Get Directions View Controller Extension - Configure
 extension GetDirectionsViewController
 {
+    //MARK: - Configure Top Navigation Bar
+    func configureTopNavigationBar()
+    {
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = .black
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        // Add bottom border color
+        let bottomBorderLayer = CALayer()
+        bottomBorderLayer.backgroundColor = customColour.returnDefaultCGColour() // Change to your desired color
+        bottomBorderLayer.frame = CGRect(x: 0, y: navigationController?.navigationBar.frame.height ?? 0 - 1, width: navigationController?.navigationBar.frame.width ?? 0, height: 1)
+        navigationController?.navigationBar.layer.addSublayer(bottomBorderLayer)
+    }
     //MARK: - Configure Google Maps Directions Display
     func configureGoogleMapsDirectionsDisplay()
     {
