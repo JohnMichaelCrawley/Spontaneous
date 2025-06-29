@@ -18,6 +18,13 @@ import CoreLocation
 extension MainViewController
 {
     //MARK: - Configure Location Manager Setup
+    /*
+     Set up the location manager for the application by
+     requesting to the user if the application can access
+     their location, set the delegate to self and then
+     start updating the location with a desired accuracy
+     of greatest finite magnitude.
+     */
     func configureLocationManagerSetup()
     {
         // Request permission to access the user's location
@@ -39,16 +46,19 @@ extension MainViewController
         }
     }
     //MARK: - Did Update Locations
+    /*
+     
+     */
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         // Keep the camera on the user until a place is found then focus on the place
         guard let location = locations.last else { return }
-        let place = PlacesManager.shared.returnSinglePlace() // Using nil coalescing operator to handle nil case
+      //  let place = PlacesManager.shared.returnSinglePlace() // Using nil coalescing operator to handle nil case
         // if the returned place name isn't empty
         if !PlacesManager.shared.returnSinglePlace().name.isEmpty
         {
             // If a place is available, set the camera position to focus on the place
-            let placeCoordinate = CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude)
+         //   let placeCoordinate = CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude)
           //  configureGoogleMapCameraPositionToPlace(placeCoordinate)
         }
         else
@@ -58,6 +68,9 @@ extension MainViewController
         }
     }
     // MARK: - Location Manager - Did Change Auth'
+    /*
+     
+     */
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
     {
         switch status 
@@ -73,15 +86,13 @@ extension MainViewController
             */
             #endif
             
-        
-    
             UserCoordinatesManager.shared.setUserCoordinates(latitude: locationManager.location?.coordinate.latitude ?? 0.0,
                                                              longitude: locationManager.location?.coordinate.longitude ?? 0.0)
             configureGoogleMapCameraPositionToUserLocation()
            // configureGoogleMapCameraPositionToUserLocation()
         case .denied, .restricted:
             #if DEBUG
-            print("denied / rest")
+            print("denied / restricted")
             #endif
             // Location services are disabled or restricted.
             // Handle this case, e.g., show an alert to the user.
@@ -97,6 +108,10 @@ extension MainViewController
         }
     }
     //MARK: - Did Fail With Error
+    /*
+     If the location manager failed with an error, print
+     it to the console window.
+     */
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
     {
         #if DEBUG
@@ -104,6 +119,9 @@ extension MainViewController
         #endif
     }
     //MARK: - Configure Google Map Camera Position To User Location
+    /*
+     
+     */
     func configureGoogleMapCameraPositionToUserLocation()
     {
         let location = UserCoordinatesManager.shared.getUserCoordinates()

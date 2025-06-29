@@ -36,7 +36,7 @@ class LocationsViewController: UIViewController
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         return label
-    }()
+    }()	
     //MARK: - View Did Load
     override func viewDidLoad() 
     {

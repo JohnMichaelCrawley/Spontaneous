@@ -30,7 +30,7 @@ class SubscriptionViewController: UIViewController
     //MARK: - Subscription Tiers
     let freeTier = SubscriptionTiers()
     let basicTier = SubscriptionTiers()
-    let travelersEssentialTier = SubscriptionTiers()
+    let travellersEssentialTier = SubscriptionTiers()
     let premiumTier = SubscriptionTiers()
     // MARK: - Tier Colours
     let freeColour = UIColor(red: 65/255, green: 150/255, blue: 145/255, alpha: 1.0)        // #419691

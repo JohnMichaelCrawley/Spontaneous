@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B06F92B2B7135920005E197 /* GooglePlaces.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B06F9212B7133EC0005E197 /* GooglePlaces.xcframework */; };
 		0B06F92F2B728DF20005E197 /* GetDirectionsLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B06F92E2B728DF20005E197 /* GetDirectionsLocationManager.swift */; };
 		0B06F9322B72A3400005E197 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B06F9312B72A3400005E197 /* UIImageExtension.swift */; };
 		0B104CA12B55A5B300892745 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B104CA02B55A5B300892745 /* UIViewExtension.swift */; };
@@ -101,6 +100,7 @@
 		0BCF25052ADED686009E3439 /* MainViewControllerGoogleInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF25042ADED686009E3439 /* MainViewControllerGoogleInfoWindow.swift */; };
 		0BCF25082ADED79F009E3439 /* GoogleInfoWindowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BCF25072ADED79F009E3439 /* GoogleInfoWindowView.xib */; };
 		0BCF250A2ADED7D2009E3439 /* GoogleInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF25092ADED7D2009E3439 /* GoogleInfoWindow.swift */; };
+		0BD3E02A2C6366E600132E4F /* GooglePlaces.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD3E0292C6366E600132E4F /* GooglePlaces.xcframework */; };
 		0BD5D87A2AA1567A00DA82A2 /* LanguagesViewControllerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD5D8792AA1567A00DA82A2 /* LanguagesViewControllerTableView.swift */; };
 		0BD5D87D2AA15E4200DA82A2 /* CircularProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD5D87C2AA15E4200DA82A2 /* CircularProgressBarView.swift */; };
 		0BD5D8C02AA1896700DA82A2 /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD5D8BE2AA1896700DA82A2 /* SubscriptionViewController.swift */; };
@@ -116,6 +116,8 @@
 		0BDE71CD2A9AAC27000DD7D5 /* UsageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BDE71CB2A9AAC27000DD7D5 /* UsageViewController.xib */; };
 		0BDE71D02A9AAC5E000DD7D5 /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE71CE2A9AAC5E000DD7D5 /* CreditsViewController.swift */; };
 		0BDE71D12A9AAC5E000DD7D5 /* CreditsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BDE71CF2A9AAC5E000DD7D5 /* CreditsViewController.xib */; };
+		0BE3AE8E2B8E7E8D0055C93D /* CustomDialogBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE3AE8C2B8E7E8D0055C93D /* CustomDialogBox.swift */; };
+		0BE3AE8F2B8E7E8D0055C93D /* CustomDialogBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BE3AE8D2B8E7E8D0055C93D /* CustomDialogBox.xib */; };
 		0BFA20C02AA936E500DD40F8 /* UsageViewControllerConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA20BF2AA936E500DD40F8 /* UsageViewControllerConstraints.swift */; };
 		0BFA20C22AA9389700DD40F8 /* MainViewControllerConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA20C12AA9389700DD40F8 /* MainViewControllerConstraints.swift */; };
 		0BFA20C42AA938B500DD40F8 /* MainViewControllerUserInterfaceActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA20C32AA938B500DD40F8 /* MainViewControllerUserInterfaceActions.swift */; };
@@ -165,8 +167,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0B06F9212B7133EC0005E197 /* GooglePlaces.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GooglePlaces.xcframework; path = "../../../Desktop/Old/GoogleAPI/GooglePlaces/GooglePlaces-8.2.1/Frameworks/GooglePlaces.xcframework"; sourceTree = "<group>"; };
-		0B06F9232B7134140005E197 /* GooglePlaces.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = ../../../Desktop/Old/GoogleAPI/GooglePlaces/GooglePlacesResources/GooglePlaces.bundle; sourceTree = "<group>"; };
 		0B06F92C2B71413F0005E197 /* GooglePlaces.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GooglePlaces.xcframework; sourceTree = "<group>"; };
 		0B06F92E2B728DF20005E197 /* GetDirectionsLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDirectionsLocationManager.swift; sourceTree = "<group>"; };
 		0B06F9312B72A3400005E197 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
@@ -232,10 +232,8 @@
 		0B72BA9C2B6C323500546E12 /* GetDirectionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GetDirectionsViewController.xib; sourceTree = "<group>"; };
 		0B72BA9F2B6C336F00546E12 /* GetDirectionsViewControllerConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDirectionsViewControllerConstraints.swift; sourceTree = "<group>"; };
 		0B72BAA22B6C776C00546E12 /* GetDirectionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDirectionsViewModel.swift; sourceTree = "<group>"; };
-		0B72BAAE2B6D310C00546E12 /* GooglePlaces.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GooglePlaces.xcframework; path = "../../../Desktop/GooglePlaces-8.2.1/Frameworks/GooglePlaces.xcframework"; sourceTree = "<group>"; };
 		0B72BAB22B6D322D00546E12 /* GooglePlaces.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = ../../../Downloads/GooglePlacesResources/GooglePlaces.bundle; sourceTree = "<group>"; };
 		0B72BAB52B6D3B6700546E12 /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlaces.framework; sourceTree = "<group>"; };
-		0B72BABE2B6D9D4900546E12 /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlaces.framework; path = "../../../Desktop/GooglePlaces-8.2.1/Frameworks/GooglePlaces.xcframework/ios-arm64/GooglePlaces.framework"; sourceTree = "<group>"; };
 		0B8AEF232AA8CB7000B1A452 /* SettingsViewControllerConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerConstraints.swift; sourceTree = "<group>"; };
 		0B8AEF252AA8CC2300B1A452 /* SettingsViewControllerUserInterfaceActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerUserInterfaceActions.swift; sourceTree = "<group>"; };
 		0B8AEF272AA8CDF100B1A452 /* LocationsViewControllerConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewControllerConfigure.swift; sourceTree = "<group>"; };
@@ -270,6 +268,7 @@
 		0BCF25042ADED686009E3439 /* MainViewControllerGoogleInfoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerGoogleInfoWindow.swift; sourceTree = "<group>"; };
 		0BCF25072ADED79F009E3439 /* GoogleInfoWindowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoogleInfoWindowView.xib; sourceTree = "<group>"; };
 		0BCF25092ADED7D2009E3439 /* GoogleInfoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleInfoWindow.swift; sourceTree = "<group>"; };
+		0BD3E0292C6366E600132E4F /* GooglePlaces.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GooglePlaces.xcframework; sourceTree = "<group>"; };
 		0BD5D8792AA1567A00DA82A2 /* LanguagesViewControllerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesViewControllerTableView.swift; sourceTree = "<group>"; };
 		0BD5D87C2AA15E4200DA82A2 /* CircularProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBarView.swift; sourceTree = "<group>"; };
 		0BD5D8BE2AA1896700DA82A2 /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +284,8 @@
 		0BDE71CB2A9AAC27000DD7D5 /* UsageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsageViewController.xib; sourceTree = "<group>"; };
 		0BDE71CE2A9AAC5E000DD7D5 /* CreditsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
 		0BDE71CF2A9AAC5E000DD7D5 /* CreditsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreditsViewController.xib; sourceTree = "<group>"; };
+		0BE3AE8C2B8E7E8D0055C93D /* CustomDialogBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDialogBox.swift; sourceTree = "<group>"; };
+		0BE3AE8D2B8E7E8D0055C93D /* CustomDialogBox.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomDialogBox.xib; sourceTree = "<group>"; };
 		0BFA20BF2AA936E500DD40F8 /* UsageViewControllerConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewControllerConstraints.swift; sourceTree = "<group>"; };
 		0BFA20C12AA9389700DD40F8 /* MainViewControllerConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerConstraints.swift; sourceTree = "<group>"; };
 		0BFA20C32AA938B500DD40F8 /* MainViewControllerUserInterfaceActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerUserInterfaceActions.swift; sourceTree = "<group>"; };
@@ -316,7 +317,7 @@
 				0B621C022AD47BE3004BF1DF /* Accelerate.framework in Frameworks */,
 				0B621BFD2AD47ADE004BF1DF /* GoogleMapsCore.xcframework in Frameworks */,
 				0B621BF92AD47ABE004BF1DF /* GoogleMapsBase.xcframework in Frameworks */,
-				0B06F92B2B7135920005E197 /* GooglePlaces.xcframework in Frameworks */,
+				0BD3E02A2C6366E600132E4F /* GooglePlaces.xcframework in Frameworks */,
 				0B621BFC2AD47ADE004BF1DF /* GoogleMaps.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,6 +427,7 @@
 		0B2979072A97C1C800703A6B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0BE3AE892B8E7E260055C93D /* CustomDialogBox */,
 				0BCF25062ADED720009E3439 /* GoogleInfoWindow */,
 				0B9403B92AA77033001F6DB7 /* NavigationBars */,
 				0B4595852A9FBC500091D986 /* UserInterfaceGroups */,
@@ -723,11 +725,8 @@
 		0B621C002AD47BE3004BF1DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0B06F9232B7134140005E197 /* GooglePlaces.bundle */,
-				0B06F9212B7133EC0005E197 /* GooglePlaces.xcframework */,
-				0B72BABE2B6D9D4900546E12 /* GooglePlaces.framework */,
+				0BD3E0292C6366E600132E4F /* GooglePlaces.xcframework */,
 				0B72BAB22B6D322D00546E12 /* GooglePlaces.bundle */,
-				0B72BAAE2B6D310C00546E12 /* GooglePlaces.xcframework */,
 				0B621C1F2AD47CD7004BF1DF /* UIKit.framework */,
 				0B621C1D2AD47CD0004BF1DF /* SystemConfiguration.framework */,
 				0B621C1B2AD47CCA004BF1DF /* QuartzCore.framework */,
@@ -1095,6 +1094,15 @@
 			path = CreditsViewController;
 			sourceTree = "<group>";
 		};
+		0BE3AE892B8E7E260055C93D /* CustomDialogBox */ = {
+			isa = PBXGroup;
+			children = (
+				0BE3AE8C2B8E7E8D0055C93D /* CustomDialogBox.swift */,
+				0BE3AE8D2B8E7E8D0055C93D /* CustomDialogBox.xib */,
+			);
+			path = CustomDialogBox;
+			sourceTree = "<group>";
+		};
 		0BFEEA092AC627A6000B101C /* Theme */ = {
 			isa = PBXGroup;
 			children = (
@@ -1233,6 +1241,7 @@
 				0B2979062A97BE9600703A6B /* MainViewController.xib in Resources */,
 				0B53F13B2AD9F9E90015E1D1 /* lightstyle.json in Resources */,
 				0BDE71AD2A997406000DD7D5 /* FiltersViewController.xib in Resources */,
+				0BE3AE8F2B8E7E8D0055C93D /* CustomDialogBox.xib in Resources */,
 				0BDE71CD2A9AAC27000DD7D5 /* UsageViewController.xib in Resources */,
 				0BDE71C52A9AABE3000DD7D5 /* LocationsViewController.xib in Resources */,
 				0B2978DC2A97BD0200703A6B /* Assets.xcassets in Resources */,
@@ -1296,6 +1305,7 @@
 				0B8AEF2E2AA8CFF600B1A452 /* CreditsViewControllerConfigure.swift in Sources */,
 				0BA85EBC2AA64B3B00945A29 /* FiltersViewModel.swift in Sources */,
 				0B2979052A97BE9600703A6B /* MainViewController.swift in Sources */,
+				0BE3AE8E2B8E7E8D0055C93D /* CustomDialogBox.swift in Sources */,
 				0B2979342A97EC7700703A6B /* UserDefaultsRegister.swift in Sources */,
 				0B29792E2A97D19200703A6B /* MainViewModel.swift in Sources */,
 				0B4595882A9FBC760091D986 /* FiltersUIGroup.swift in Sources */,
@@ -1527,6 +1537,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1562,6 +1573,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

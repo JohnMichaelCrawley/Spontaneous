@@ -37,4 +37,23 @@ extension UIImage
         UIGraphicsEndImageContext()
         return coloredImage
     }
+    
+    
+    
+    
+    
+// MARK: - Rotate Image
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

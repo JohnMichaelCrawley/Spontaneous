@@ -17,10 +17,4 @@ class GoogleAPIManager
     {
         return APIKEY
     }
-    
-    
-    
-    
-    
-    
 }

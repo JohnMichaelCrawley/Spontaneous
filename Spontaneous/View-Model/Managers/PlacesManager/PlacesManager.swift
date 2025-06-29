@@ -59,7 +59,7 @@ class PlacesManager
         
         // Filter the keys to get only the boolean keys that are turned on
         boolUserDefaultsKeys = allKeys.compactMap { (key) -> String? in
-            if userDefaults.bool(forKey: key) 
+            if userDefaults.bool(forKey: key)
             {
                 return key
             }

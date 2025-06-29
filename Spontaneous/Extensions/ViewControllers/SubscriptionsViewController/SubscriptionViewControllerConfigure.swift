@@ -9,9 +9,9 @@
  to the subView and configures the rounded corners of
  the stack view items
  */
-// MARK: - Subscription View Controller Extension
-
+// MARK: - Import List
 import UIKit
+//MARK: - Subscription View Controller - Configure
 extension SubscriptionViewController
 {
     //MARK: - Configure Tiers and Add Subview
@@ -23,24 +23,16 @@ extension SubscriptionViewController
         freeTier.setTierStackBackgroundColour(backgroundColour: .secondarySystemBackground )
         freeTier.setBorderColor(borderColor: freeColour)
         freeTier.setSubscribeButtonTitle("")
-        
-        
         //Basic
         basicTier.setTierLabels(title: "Basic", description: "Basics users unlock 100 Spontaneous searches through the app. This is more tailored to users who do the odd spontaneous thing. ", pricing: "$0.99/Month", subDescription: "This subscription is auto-renewal")
         basicTier.setSubscribeButtonTarget(target: self, action: #selector(basicSubscribeButtonPressed(_:)), for: .touchUpInside)
         basicTier.setBorderColor(borderColor: basicColour)
         basicTier.setTierStackBackgroundColour(backgroundColour: .secondarySystemBackground)
-        
-        
-        
-        // Traveler's Esssential
-        travelersEssentialTier.setTierLabels(title: "Traveler's Essential", description: "Traveler's essential allows people who regualarly travel and want to get the most out of it by getting 200 Spontaneous searches through the app", pricing: "$2.99/Month", subDescription: "This subscription is auto-renewal")
-        travelersEssentialTier.setTierStackBackgroundColour(backgroundColour: .secondarySystemBackground)
-        travelersEssentialTier.setBorderColor(borderColor: travelersColour)
-        travelersEssentialTier.setSubscribeButtonTarget(target: self, action: #selector(travelersEssentialSubscribeButtonPressed(_:)), for: .touchUpInside)
-        
-        
-        
+        // Traveller's Esssential
+        travellersEssentialTier.setTierLabels(title: "Traveller's Essential", description: "Traveller's essential allows people who regualarly travel and want to get the most out of it by getting 200 Spontaneous searches through the app", pricing: "$2.99/Month", subDescription: "This subscription is auto-renewal")
+        travellersEssentialTier.setTierStackBackgroundColour(backgroundColour: .secondarySystemBackground)
+        travellersEssentialTier.setBorderColor(borderColor: travelersColour)
+        travellersEssentialTier.setSubscribeButtonTarget(target: self, action: #selector(travelersEssentialSubscribeButtonPressed(_:)), for: .touchUpInside)
         // Premium
         premiumTier.setTierLabels(title: "Premium", description: "With premium, you unlock the most amount of Spontaneous searchs by getting 1,000 Spontaneous searches through the app per month", pricing: "$10.00/Month", subDescription: "This subscription is auto-renewal")
         premiumTier.setBorderColor(borderColor: premiumColour)
@@ -55,7 +47,7 @@ extension SubscriptionViewController
         // Add all the subscription tiers to the stack
         subscriptionTierStackView.addArrangedSubview(freeTier)
         subscriptionTierStackView.addArrangedSubview(basicTier)
-        subscriptionTierStackView.addArrangedSubview(travelersEssentialTier)
+        subscriptionTierStackView.addArrangedSubview(travellersEssentialTier)
         subscriptionTierStackView.addArrangedSubview(premiumTier)
         configureTierSubStackStyle()
     }

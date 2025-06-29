@@ -16,6 +16,16 @@ import GooglePlaces
 extension MainViewController
 {
     //MARK: - Be Spontaneous Button Pressed
+    /*
+     This button loads the data from either Google API request using
+     fetchPlaceFromGoogleAPI() function or if there's cache for the
+     data already loaded in / filters haven't been chanced since
+     the last time it was used then it will load the data from
+     the cache memory (places collection). If nothing is found
+     it will then display a custom dialog box to tell the user
+     to adjsut their filters or that there are no locations currently
+     open for business.
+     */
     @objc func beSpontaneousButtonPressed()
     {
         #if DEBUG
@@ -25,68 +35,57 @@ extension MainViewController
         print("* Be Spontaneous button pressed *")
         //   print("* Be Spontaneous Button Has Been Pressed *")
         #endif
+        // Fetch places from Google API
         fetchPlaceFromGoogleAPI()
+        // Check if places collection (array) isn't equal to 0
         if mainViewModel.returnPlacesCollection().count != 0
         {
             PlacesManager().setSinglePlace()
             
             mainViewModel.displayRandomlySelectedPlaceFromCollection(mapView: mapView, marker: marker)
         }
+        // Else the places collection (array) is equal to 0
         else
         {
-            // print("No items in the collection")
+            
         }
         #if DEBUG
         print("*-------------------------*")
         #endif
     }
-    //MARK: - Fetch Places From Google API 
+    //MARK: - Fetch Places From Google API
+    /*
+     Using the location switches that are turned on
+     (such as cafe, cinema, park etc) it will loop over each one
+     of them using the function searchGoogleAPIForPlacesWithKeywords()
+     in the main view-model class and return the data and then load up
+     the custom view for the info window and the button for getting directions.
+     */
     func fetchPlaceFromGoogleAPI()
     {
-        #if DEBUG
-        /*
-        print("=======================================")
-        print("Printing User Location\n")
-        print(mainViewModel.getUserLocation())
-        print(MainViewModel().getUserLocation())
-        print("=======================================")
-         
-         */
-        print("* fetchPlaceFromGoogleAPI(): Fetching Places *")
-        #endif
-        #if DEBUG
-        /*
-        print("=======================================")
-        print("Printing Location Switches Turned On:\n")
-        print("Switches", locationSwitchesTurnedOn)
-        print("Count", locationSwitchesTurnedOn.count)
-        print("=======================================")
-         */
-        #endif
-        let locationSwitchesTurnedOn = PlacesManager.shared.findUILocationSwitchesTurnedOn() // Array for each switch turned on
-        // Search and store places found using each keyword (UI Switch) turned on
-        mainViewModel.searchGoogleAPIForPlacesWithKeywords(keywords: locationSwitchesTurnedOn)
-        #if DEBUG
-        print("* fetchPlaceFromGoogleAPI(): has \(mainViewModel.returnPlaceCount()) places. *")
-        #endif
-        // If the collection of places isn't empty
-        if mainViewModel.returnPlacesCollection().count != 0
+        let locationSwitchesTurnedOn = PlacesManager.shared.findUILocationSwitchesTurnedOn()
+        mainViewModel.searchGoogleAPIForPlacesWithKeywords(keywords: locationSwitchesTurnedOn) 
         {
-            mainViewModel.displayRandomlySelectedPlaceFromCollection(mapView: mapView, marker: marker)
             #if DEBUG
-            /*
-            for i in mainViewModel.returnPlacesCollection()
-            {
-                print("-----")
-                print("-----")
-                print("-----")
-                print(i.name + " " + i.placeID + " " + "\(i.types)")
-            }
-             */
-            print("* Collection is NOT empty *")
+            print("Search operation completed successfully!")
             #endif
-            configureCustomView()
-            configureGetDirectionsButton()
+            DispatchQueue.main.async 
+            {
+                #if DEBUG
+                print("* fetchPlaceFromGoogleAPI(): has \(self.mainViewModel.returnPlaceCount()) places. *")
+                #endif
+                // If there's an item in the collection
+                if self.mainViewModel.returnPlacesCollection().count != 0
+                {
+                    self.mainViewModel.displayRandomlySelectedPlaceFromCollection(mapView: self.mapView, marker: self.marker)
+                    self.configureCustomInfoWindowView()
+                    self.configureGetDirectionsButton()
+                }
+                else
+                {
+                    self.showCustomDialogBox(title: "No locations found!", description: "No locations found, please adjust the filters / locations and try again or there's no places currently open.", buttonTitle: "Dismiss")
+                }
+            }
         }
     }
 }

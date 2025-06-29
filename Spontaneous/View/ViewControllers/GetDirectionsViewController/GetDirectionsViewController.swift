@@ -22,21 +22,32 @@ class GetDirectionsViewController: UIViewController, CLLocationManagerDelegate, 
     let locationManager = CLLocationManager()       // Location Manager to get user location
     //MARK: - User Interface variables
     var mapView: GMSMapView!                        // Google Maps
+    
+    
     // Markers for the user and the destination icons
     var userMarker: GMSMarker?
     var directionMarker: GMSMarker?
+    
+    
+    
+    // Polyline
+    var currentPolyline: GMSPolyline?
+    var walkedPolyline: GMSPolyline?
+    var remainingPolyline: GMSPolyline?
     // MARK: - View Did Load
-    override func viewDidLoad() 
+    override func viewDidLoad()
     {
-          super.viewDidLoad()
-          self.title = "\(place.name) directions"
-          configureGoogleMapsDirectionsDisplay()
-          configureDestinationIcon()
-          // Configure the location manager
-          locationManager.delegate = self
-          locationManager.requestWhenInUseAuthorization()
-          locationManager.startUpdatingLocation()
-      }
+        super.viewDidLoad()
+        self.title = "\(place.name) directions"
+        configureGoogleMapsDirectionsDisplay()
+        configureDestinationIcon()
+        // Configure the location manager
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        fetchDirections()
+        
+    }
     // MARK: - View Will Appear
     override func viewWillAppear(_ animated: Bool)
     {

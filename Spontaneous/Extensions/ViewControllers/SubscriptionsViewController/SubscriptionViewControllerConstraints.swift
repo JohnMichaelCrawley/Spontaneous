@@ -24,12 +24,12 @@ extension SubscriptionViewController
         freeTier.translatesAutoresizingMaskIntoConstraints = false
         freeTier.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.9).isActive = true
         basicTier.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.9).isActive = true
-        travelersEssentialTier.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.9).isActive = true
+        travellersEssentialTier.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.9).isActive = true
         premiumTier.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.9).isActive = true
         // Assuming tierHeight is a CGFloat representing the desired height
         freeTier.heightAnchor.constraint(equalToConstant: tierHeight).isActive = true
         basicTier.heightAnchor.constraint(equalToConstant: tierHeight).isActive = true
-        travelersEssentialTier.heightAnchor.constraint(equalToConstant: tierHeight).isActive = true
+        travellersEssentialTier.heightAnchor.constraint(equalToConstant: tierHeight).isActive = true
         premiumTier.heightAnchor.constraint(equalToConstant: tierHeight).isActive = true
         // Adjust the subscription Tier Stack View
         subscriptionTierStackView.translatesAutoresizingMaskIntoConstraints = false

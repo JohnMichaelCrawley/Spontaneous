@@ -13,7 +13,7 @@ import UIKit
 import GoogleMaps
 //MARK: - Main View Controller Extension - Constraints
 extension MainViewController
-{
+{    
     //MARK: - Configure Be Spontaneous Button Constraints
     func configureBeSpontaneousButtonConstraints()
     {
@@ -29,12 +29,12 @@ extension MainViewController
     {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         // Create constraints to make the mapView fill the entire parent view
-             NSLayoutConstraint.activate([
-                 mapView.topAnchor.constraint(equalTo: view.topAnchor),
-                 mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                 mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                 mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            ])
+        NSLayoutConstraint.activate([
+            mapView.topAnchor.constraint(equalTo: view.topAnchor),
+            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     //MARK: - Get Directions Button Constraints
     func configureGetDirectionsConstraints()

@@ -1,9 +1,14 @@
-//
-//  GoogleInfoWindowView.swift
-//  Spontaneous
-//
-//  Created by John Crawley on 17/10/2023.
-//
+/*
+ Project:           Spontaneous
+ File:              GoogleInfoWindowView.swift
+ Created:            17/10/2023
+ Author:            John Michael Crawley
+ 
+ Description:
+ This class handles the custom Google Info Window
+ view and set up the layout and constraints for the
+ Info Window.
+ */
 //MARK: Import List
 import UIKit
 // MARK: - Google Info Window View
@@ -12,28 +17,28 @@ class GoogleInfoWindowView: UIView
     //MARK: - Variables
     var placeName: String?
     {
-        didSet 
+        didSet
         {
             nameLabel.text = placeName
         }
     }
-    var placeRating: String? 
+    var placeRating: String?
     {
-        didSet 
+        didSet
         {
             ratingLabel.text = placeRating
         }
     }
-    var placeIsOpen: String? 
+    var placeIsOpen: String?
     {
-        didSet 
+        didSet
         {
             isOpenLabel.text = placeIsOpen
         }
     }
-    var placeType: String? 
+    var placeType: String?
     {
-        didSet 
+        didSet
         {
             businessTypeLabel.text = placeType
         }
@@ -83,10 +88,10 @@ class GoogleInfoWindowView: UIView
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-      return label
+        return label
     }()
     //MARK: - Photo (ImageView)
-    private var photoImageView: UIImageView = 
+    private var photoImageView: UIImageView =
     {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -112,9 +117,13 @@ class GoogleInfoWindowView: UIView
         super.awakeFromNib()
         configureNIB()
     }
-
     //MARK: - Configure NIB
-    func configureNIB() 
+    /*
+     Configure the layout of the info window to
+     display the data to the user and add constraints
+     to the custom info window.
+     */
+    private func configureNIB()
     {
         // Create horizontal stack view for Rating and Is Open labels
         let ratingIsOpenStackView = UIStackView(arrangedSubviews: [ratingLabel, businessTypeLabel])

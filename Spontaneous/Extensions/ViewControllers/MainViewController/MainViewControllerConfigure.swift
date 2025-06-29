@@ -14,7 +14,24 @@ import GoogleMaps
 //MARK: - Main View Controller Extension - Configure
 extension MainViewController
 {
+    //MARK: - Show Custom Dialog Box
+    /*
+     Show a custom dialog box to display a message to the user by creating
+     an instance of CustomDialogBox() and set the data into the dialog box.
+     This method is also implementing a protocol method to use during the
+     view-model.
+     */
+    func showCustomDialogBox(title: String, description: String, buttonTitle: String)
+    {
+        let dialog = CustomDialogBox()
+        dialog.showDialog(title: title, description: description, buttonTitle: buttonTitle)
+    }
     //MARK: - Configure Be Spontaneous Button
+    /*
+     Set up the 'Be Spontaneous' button by configuring the button
+     type, background colour, button text and so forth. Add constraints
+     to the button and add it to the view.
+     */
     func configureBeSpontaneousButton()
     {
         // Create and configure the main button
@@ -30,6 +47,12 @@ extension MainViewController
         configureBeSpontaneousButtonConstraints()
     }
     //MARK: - Configure Google Maps Mapview
+    /*
+     Set up Google Maps to be displayed when the app' loads up to the
+     user and show the user's location through Google Maps. Set the
+     coordinates of Google Maps, configure the theme of Google Maps and
+     add the map to the view and delegate the map to self.
+     */
     func configureGoogleMapsMapView()
     {
         let camera = GMSCameraPosition.camera(withLatitude: UserCoordinatesManager.shared.getUserCoordinates()?.latitude ?? 0.0, longitude: UserCoordinatesManager.shared.getUserCoordinates()?.longitude ?? 0.0, zoom: 15.0)
@@ -42,8 +65,11 @@ extension MainViewController
         configureGoogleMapCameraPositionToUserLocation()
         mapView.delegate = self
     }
-    //MARK: - Configure Custom View
-    func configureCustomView()
+    //MARK: - Configure Custom Info Window View
+    /*
+     
+     */
+    func configureCustomInfoWindowView()
     {
         if customView == nil
         {
@@ -69,7 +95,10 @@ extension MainViewController
         }
     }
     //MARK: - Configure Get Directions Button
-    func configureGetDirectionsButton() 
+    /*
+     
+     */
+    func configureGetDirectionsButton()
     {
         // Check if getDirectionsButton is nil
         if getDirectionsButton == nil 
@@ -86,6 +115,9 @@ extension MainViewController
         }
     }
     //MARK: - Google Info Window
+    /*
+     
+     */
     func customInfoWindow() -> GoogleInfoWindowView?
     {
         // Get the custom info window

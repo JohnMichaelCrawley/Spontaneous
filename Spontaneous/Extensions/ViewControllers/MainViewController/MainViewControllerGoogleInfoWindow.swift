@@ -56,7 +56,7 @@ extension MainViewController : GMSMapViewDelegate
             }
         }
         // Set the custom view UI data and constraints
-        configureCustomView()
+        configureCustomInfoWindowView()
         configureGetDirectionsButton()
         getDirectionsButton!.alpha = 0.0 // set alpha to 0 which allows it to fade in
         // Fade in the button
