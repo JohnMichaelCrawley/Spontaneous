@@ -34,7 +34,7 @@ extension GetDirectionsViewController
             // Create a UIImage with the system icon and apply the symbol configuration
             guard let originalMarkerImage = UIImage(systemName: "location.north.circle.fill")?.withConfiguration(symbolConfiguration) else { return }
             
-            userMarker?.icon = originalMarkerImage
+           // userMarker?.icon = originalMarkerImage
             userMarker?.map = mapView
             userMarker?.rotation = 45
             // userMarker?.icon..rotation = 45.0 // Rotate the marker icon by 45 degrees

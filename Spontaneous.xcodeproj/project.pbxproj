@@ -92,6 +92,8 @@
 		0BA85EB72AA64AF100945A29 /* LanguagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA85EB62AA64AF100945A29 /* LanguagesViewModel.swift */; };
 		0BA85EBC2AA64B3B00945A29 /* FiltersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA85EBB2AA64B3B00945A29 /* FiltersViewModel.swift */; };
 		0BA85EBF2AA6727E00945A29 /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA85EBE2AA6727E00945A29 /* LanguageModel.swift */; };
+		0BAFDDA82E15CFD400EFA031 /* DirectionSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAFDDA72E15CFD200EFA031 /* DirectionSteps.swift */; };
+		0BAFDDAC2E15D03F00EFA031 /* DirectionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAFDDAB2E15D03D00EFA031 /* DirectionsService.swift */; };
 		0BCCB4382AA2D11B005A83D2 /* SubscriptionsViewControllerStoreKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCCB4372AA2D11B005A83D2 /* SubscriptionsViewControllerStoreKit.swift */; };
 		0BCCB43B2AA2DF3A005A83D2 /* SubscriptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCCB43A2AA2DF3A005A83D2 /* SubscriptionModel.swift */; };
 		0BCF24FC2ADD88C3009E3439 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF24FB2ADD88C3009E3439 /* Place.swift */; };
@@ -259,6 +261,8 @@
 		0BA85EB62AA64AF100945A29 /* LanguagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesViewModel.swift; sourceTree = "<group>"; };
 		0BA85EBB2AA64B3B00945A29 /* FiltersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewModel.swift; sourceTree = "<group>"; };
 		0BA85EBE2AA6727E00945A29 /* LanguageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageModel.swift; sourceTree = "<group>"; };
+		0BAFDDA72E15CFD200EFA031 /* DirectionSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionSteps.swift; sourceTree = "<group>"; };
+		0BAFDDAB2E15D03D00EFA031 /* DirectionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsService.swift; sourceTree = "<group>"; };
 		0BCCB4372AA2D11B005A83D2 /* SubscriptionsViewControllerStoreKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewControllerStoreKit.swift; sourceTree = "<group>"; };
 		0BCCB43A2AA2DF3A005A83D2 /* SubscriptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionModel.swift; sourceTree = "<group>"; };
 		0BCCB43C2AA2E224005A83D2 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
@@ -458,6 +462,7 @@
 		0B2979092A97C21900703A6B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0BAFDDA62E15CFC500EFA031 /* DirectionSteps */,
 				0BCF24FA2ADD88B0009E3439 /* Place */,
 				0B53F12E2AD88E710015E1D1 /* UserCoordinates */,
 				0BFEEA092AC627A6000B101C /* Theme */,
@@ -505,6 +510,7 @@
 		0B29790F2A97C2EB00703A6B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0BAFDDA92E15D02B00EFA031 /* Services */,
 				0B53F1222AD854FB0015E1D1 /* GoogleMapThemeJSON */,
 				0B621BF62AD479D7004BF1DF /* GoogleAPI */,
 				0BCCB43D2AA2E248005A83D2 /* StoreKit */,
@@ -913,6 +919,22 @@
 			path = LanguageModel;
 			sourceTree = "<group>";
 		};
+		0BAFDDA62E15CFC500EFA031 /* DirectionSteps */ = {
+			isa = PBXGroup;
+			children = (
+				0BAFDDA72E15CFD200EFA031 /* DirectionSteps.swift */,
+			);
+			path = DirectionSteps;
+			sourceTree = "<group>";
+		};
+		0BAFDDA92E15D02B00EFA031 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0BAFDDAB2E15D03D00EFA031 /* DirectionsService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		0BC58D352A9AE6FD007405E2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1307,10 +1329,12 @@
 				0B2979052A97BE9600703A6B /* MainViewController.swift in Sources */,
 				0BE3AE8E2B8E7E8D0055C93D /* CustomDialogBox.swift in Sources */,
 				0B2979342A97EC7700703A6B /* UserDefaultsRegister.swift in Sources */,
+				0BAFDDA82E15CFD400EFA031 /* DirectionSteps.swift in Sources */,
 				0B29792E2A97D19200703A6B /* MainViewModel.swift in Sources */,
 				0B4595882A9FBC760091D986 /* FiltersUIGroup.swift in Sources */,
 				0B8AEF282AA8CDF100B1A452 /* LocationsViewControllerConfigure.swift in Sources */,
 				0B8AEF322AA8D21100B1A452 /* SubscriptionViewControllerConfigure.swift in Sources */,
+				0BAFDDAC2E15D03F00EFA031 /* DirectionsService.swift in Sources */,
 				0B06F9322B72A3400005E197 /* UIImageExtension.swift in Sources */,
 				0BA85EAE2AA62E9400945A29 /* FiltersViewControllerConstraints.swift in Sources */,
 				0B8AEF262AA8CC2300B1A452 /* SettingsViewControllerUserInterfaceActions.swift in Sources */,
