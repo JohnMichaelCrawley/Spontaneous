@@ -58,8 +58,23 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource
             }) )
         ]))
         //Subscription & API Usage
-        settingsViewModel.models.append(Sections(title: "Subscription & API Usage", options:
-        [
+        let isSignedIn = UserDefaults.standard.bool(forKey: "isSignedInWithApple")
+        let displayName = UserDefaults.standard.string(forKey: "appleUserName") ??
+                          UserDefaults.standard.string(forKey: "appleUserEmail") ??
+                          "Sign in with Apple"
+
+        settingsViewModel.models.append(Sections(title: "Subscription & API Usage", options: [
+            .staticCell(model: SettingsOptions(
+                title: displayName,
+                icon: UIImage(systemName: "person.crop.circle.badge.checkmark"),
+                iconBackgroundColour: customColours.returnDefaultUIColour(),
+                handler: {
+                    if isSignedIn {
+                        self.showLogoutPrompt()
+                    } else {
+                        self.handleAppleSignIn()
+                    }
+                })),
             // Subscription
             .staticCell(model:  SettingsOptions(title: "Subscription", icon: UIImage(systemName: "dollarsign.arrow.circlepath"), iconBackgroundColour: customColours.returnDefaultUIColour(), handler:
                 {

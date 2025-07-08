@@ -43,6 +43,8 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewM
 #endif
         
         
+
+
         
         
     //    print("User Coords: \()")
