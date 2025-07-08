@@ -12,33 +12,49 @@ import GoogleMaps
 extension Notification.Name
 {
     static let didUpdateHeading = Notification.Name("didUpdateHeading")
+    static let didUpdateUserLocation = Notification.Name("didUpdateUserLocation")
 }
+
+
+
 
 // MARK: - Get Directions View Model class
 class GetDirectionsViewModel: NSObject, CLLocationManagerDelegate
 {
-    // MARK: - Dependencies
+
+    // MARK: - Public Bindings
+    var onUserLocationUpdate: ((CLLocationCoordinate2D, CLLocationDirection) -> Void)? // now includes heading
+    var onRouteReady: ((GMSPath, String, String) -> Void)?
+    var onStepUpdate: ((DirectionsStep) -> Void)?
+    var hasFetchedDirections = false
+    var userLocation: CLLocationCoordinate2D?
+    // MARK: - Private Properties
     private let service = DirectionsService()
     private let locationManager = CLLocationManager()
-    private var hasFetchedDirections = false
-    // MARK: - State
+    
+    
+    
     var steps: [DirectionsStep] = []
     var currentStepIndex = 0
-    var onStepUpdate: ((DirectionsStep) -> Void)?
-    var onRouteReady: ((GMSPath, String, String) -> Void)?
-    var onLocationReady: ((CLLocationCoordinate2D) -> Void)?
-    var onUserLocationUpdate: ((CLLocationCoordinate2D) -> Void)?
-    var userLocation: CLLocationCoordinate2D?
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        guard let coord = userLocation else { return }
+        onUserLocationUpdate?(coord, newHeading.trueHeading)
+    }
+
+    
     // MARK: - Init
     override init()
     {
         super.init()
         locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.headingFilter = kCLHeadingFilterNone
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.startUpdatingHeading()
-        locationManager.headingFilter = 5
-        locationManager.headingOrientation = .portrait
+        
     }
     // MARK: - Request Directions
     /*
@@ -64,45 +80,41 @@ class GetDirectionsViewModel: NSObject, CLLocationManagerDelegate
      */
     func getDirections(to destination: CLLocationCoordinate2D, apiKey: String)
     {
-        guard let origin = userLocation else
+  
+              guard let origin = userLocation else
         {
-            #if DEBUG
-            print("[DEBUG]  getDirections called but userLocation is nil")
-            #endif
-            return
-        }
-        #if DEBUG
-        print("[DEBUG]  Getting directions from: \(origin.latitude), \(origin.longitude)")
-        #endif
-        service.fetchWalkingDirections(from: origin, to: destination, apiKey: apiKey) { [weak self] result in
-            switch result
-            {
-            case .success(let (steps, polyline, eta, distance)):
-                DispatchQueue.main.async
-                {
-                    #if DEBUG
-                    print("[DEBUG]  Directions received: ETA = \(eta), Distance = \(distance)")
-                    #endif
-                    self?.steps = steps
-                    self?.currentStepIndex = 0
-                    if let first = steps.first
-                    {
-                        #if DEBUG
-                        print("[DEBUG]  First step: \(first.instruction)")
-                        #endif
-                        self?.onStepUpdate?(first)
-                    }
+                  #if DEBUG
+                  print("[DEBUG] userLocation is nil when fetching directions")
+                  #endif
+                  return
+              }
 
-                    if let path = GMSPath(fromEncodedPath: polyline) {
-                        self?.onRouteReady?(path, eta, distance)
-                    }
-                }
-            case .failure(let error):
-                #if DEBUG
-                print("[DEBUG] Error fetching directions: \(error.localizedDescription)")
-                #endif
-            }
-        }
+        service.fetchWalkingDirections(from: origin, to: destination, apiKey: apiKey) { [weak self] result in
+                   guard let self = self else { return }
+
+                   switch result
+                    {
+                   case .success(let (steps, polyline, eta, distance)):
+                       DispatchQueue.main.async {
+                           self.steps = steps
+                           self.currentStepIndex = 0
+                           if let first = steps.first {
+                               self.onStepUpdate?(first)
+                           }
+                           if let path = GMSPath(fromEncodedPath: polyline)
+                           {
+                               self.onRouteReady?(path, eta, distance)
+                           }
+                       }
+                   case .failure(let error):
+                       #if DEBUG
+                       print("[DEBUG] Error fetching directions: \(error.localizedDescription)")
+                       #endif
+                   }
+               }
+      
+        
+        
     }
 
     // MARK: - CLLocationManagerDelegate
@@ -113,64 +125,20 @@ class GetDirectionsViewModel: NSObject, CLLocationManagerDelegate
 
      The function also checks how close the user is to the current navigation step. If they’re within 20 meters of that step’s start point, it moves to the next step, updates the UI with the new instruction, and logs it. If there are no more steps, it logs that the user has reached the final step.
      */
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let loc = locations.last else { return }
-        let coord = loc.coordinate
-        #if DEBUG
-        print("[DEBUG] ViewModel location updated: \(coord.latitude), \(coord.longitude)")
-        #endif
-        if userLocation == nil
-        {
-            userLocation = coord
-            onLocationReady?(coord)
-         }
-        else
-        {
-            userLocation = coord
-        }
-        onUserLocationUpdate?(coord)
-        
-        
-        if !hasFetchedDirections
-        {
-            userLocation = coord
-            onLocationReady?(coord)
-            hasFetchedDirections = true
-        }
-        // Step advancement logic
-        guard currentStepIndex < steps.count else { return }
-
-        let currentStep = steps[currentStepIndex]
-        let stepLocation = CLLocation(latitude: currentStep.startLocation.latitude, longitude: currentStep.startLocation.longitude)
-        let distanceToStep = loc.distance(from: stepLocation)
-
-        if distanceToStep < 20
-        {
-            currentStepIndex += 1
-            if currentStepIndex < steps.count
-            {
-                let nextStep = steps[currentStepIndex]
-                #if DEBUG
-                print("[DEBUG]  Advancing to step \(currentStepIndex): \(nextStep.instruction)")
-                #endif
-                
-                onStepUpdate?(nextStep)
-            }
-            else
-            {
-                #if DEBUG
-                print("[DEBUG] Reached final step")
-                #endif
-            }
-        }
-    }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading)
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
-        let heading = newHeading.trueHeading > 0 ? newHeading.trueHeading : newHeading.magneticHeading
-        NotificationCenter.default.post(name: .didUpdateHeading, object: heading)
-    }
+        guard let loc = locations.last else { return }
+               guard loc.horizontalAccuracy <= 20 else { return } // avoid unreliable locations
 
+               let coord = loc.coordinate
+               self.userLocation = coord
+
+               // Get latest heading (if available) — fallback to 0
+               let heading = manager.heading?.trueHeading ?? 0
+               
+               // Notify view
+               onUserLocationUpdate?(coord, heading)
+      }
     // MARK: - location Manager Did change Authorisation
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager)
     {

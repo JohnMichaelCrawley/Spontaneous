@@ -47,7 +47,7 @@ extension GetDirectionsViewController
                             {
                                 self.drawPolyline(fromEncodedPath: points)
                                 // Adjust camera zoom after fetching directions
-                                self.adjustCameraZoomDynamically(userCoordinate: CLLocationCoordinate2D(latitude: userCoordinates.latitude, longitude: userCoordinates.longitude), destinationCoordinate: CLLocationCoordinate2D(latitude: self.place.latitude, longitude: self.place.longitude))
+                            //    self.adjustCameraZoomDynamically(userCoordinate: CLLocationCoordinate2D(latitude: userCoordinates.latitude, longitude: userCoordinates.longitude), destinationCoordinate: CLLocationCoordinate2D(latitude: self.place.latitude, longitude: self.place.longitude))
                             }
                         }
                     } 
@@ -77,26 +77,26 @@ extension GetDirectionsViewController
      */
     func drawPolyline(fromEncodedPath encodedPath: String)
     {
-        let path = GMSPath(fromEncodedPath: encodedPath)
-        
-        // PATH already walked
-        if walkedPolyline == nil
+        guard let path = GMSPath(fromEncodedPath: encodedPath) else
         {
-            walkedPolyline = GMSPolyline(path: path)
-            walkedPolyline?.strokeWidth = 10.0  // Originally 10.0
-            walkedPolyline?.strokeColor = UIColor.red
-            walkedPolyline?.map = mapView
+            #if DEBUG
+            print("[DEBUG] Failed to decode polyline")
+            #endif
+            return
         }
-        else
-        {
-            walkedPolyline?.path = path
-        }
-        remainingPolyline?.map = nil // Remove remainingPolyline if exists
-        remainingPolyline = GMSPolyline(path: path)
-        remainingPolyline?.strokeWidth = 40.0 // Originally 10.0
-        remainingPolyline?.strokeColor = customColour.returnDefaultUIColour() // Change color as needed
-        remainingPolyline?.map = mapView
+
+        // Clear any previous polylines
+        currentPolyline?.map = nil
+
+        // Create and assign the new polyline
+        let polyline = GMSPolyline(path: path)
+        polyline.strokeWidth = 9.0
+        polyline.strokeColor = customColour.returnSecondaryUIColour()
+        polyline.map = mapView
+
+        currentPolyline = polyline
     }
+ 
     
     //MARK: - Calculate Distance
     /*
@@ -117,14 +117,11 @@ extension GetDirectionsViewController
      */
     func adjustCameraZoomDynamically(userCoordinate: CLLocationCoordinate2D, destinationCoordinate: CLLocationCoordinate2D)
     {
-        let distance = calculateDistance(from: userCoordinate, to: destinationCoordinate)
-        // Adjust the zoom level based on the distance dynamically
-        let zoomLevel: Float = calculateZoomLevelDynamically(distance: distance)
-        // Set camera position
-       // let camera = GMSCameraPosition.camera(withLatitude: userCoordinate.latitude,  longitude: userCoordinate.longitude, zoom: zoomLevel) // remvove this?
-        let showDirectionsCameraView = GMSCameraPosition(latitude: userCoordinate.latitude,longitude: userCoordinate.longitude,zoom: zoomLevel, bearing: 0, viewingAngle: 90)
-        mapView.animate(to: showDirectionsCameraView)
+        let bounds = GMSCoordinateBounds(coordinate: userCoordinate, coordinate: destinationCoordinate)
+        let update = GMSCameraUpdate.fit(bounds, withPadding: 80)
+        mapView.moveCamera(update)
     }
+
 
     //MARK: - Calculate Zoom Level Dynamically
     /*
@@ -153,12 +150,11 @@ extension GetDirectionsViewController
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = .black
         navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        // Add bottom border color
-        let bottomBorderLayer = CALayer()
-        bottomBorderLayer.backgroundColor = customColour.returnDefaultCGColour() // Change to your desired color
-        bottomBorderLayer.frame = CGRect(x: 0, y: navigationController?.navigationBar.frame.height ?? 0 - 1, width: navigationController?.navigationBar.frame.width ?? 0, height: 1)
-        navigationController?.navigationBar.layer.addSublayer(bottomBorderLayer)
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        let bottomBorder = CALayer()
+        bottomBorder.backgroundColor = customColour.returnDefaultCGColour()
+        bottomBorder.frame = CGRect(x: 0, y: navigationController?.navigationBar.frame.height ?? 0 - 1, width: navigationController?.navigationBar.frame.width ?? 0, height: 1)
+        navigationController?.navigationBar.layer.addSublayer(bottomBorder)
     }
     //MARK: - Configure Google Maps Directions Display
     /*
@@ -168,20 +164,28 @@ extension GetDirectionsViewController
     func configureGoogleMapsDirectionsDisplay()
     {
         let LOCATION = UserCoordinatesManager.shared.getUserCoordinates()!
-         let CAMERA = GMSCameraPosition.camera(withLatitude: LOCATION.latitude , longitude:  LOCATION.longitude , zoom: 22.0)
-        // Tilt the camera
+        let CAMERA = GMSCameraPosition.camera(
+            withLatitude: LOCATION.latitude,
+            longitude: LOCATION.longitude,
+            zoom: 22.0
+        )
+        
         mapView = GMSMapView.map(withFrame: self.view.frame, camera: CAMERA)
-        // Configure Google Map shared instance
+        
+        // Configure gestures
+        mapView.settings.zoomGestures = true
+        mapView.settings.scrollGestures = true
+        mapView.settings.rotateGestures = true
+        mapView.settings.tiltGestures = false
+
         GoogleMapManager.shared.initializeMap(on: mapView)
         GoogleMapManager.shared.setMapStyle()
         view.addSubview(mapView)
         configureGetDirectionsGoogleMapsConstraints()
-        // Animate the map to the new camera position
-        mapView.animate(to: CAMERA)
-        mapView.camera = CAMERA
-        // Disable the rotate gesture
-   //     mapView.settings.rotateGestures = false
+        
+        mapView.animate(to: CAMERA) 
     }
+
     //MARK: - Configure Destination
     /*
      Configure the destination by configuring the latitude and longitude

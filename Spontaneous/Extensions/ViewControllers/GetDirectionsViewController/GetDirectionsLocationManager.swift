@@ -36,15 +36,16 @@ extension GetDirectionsViewController
             
            // userMarker?.icon = originalMarkerImage
             userMarker?.map = mapView
-            userMarker?.rotation = 45
+
             // userMarker?.icon..rotation = 45.0 // Rotate the marker icon by 45 degrees
         } else {
             userMarker?.position = location.coordinate
-            rotateMarker(userMarker, degrees: 45.0) // Rotate marker by 45 degrees
+          //  rotateMarker(userMarker, degrees: 45.0) // Rotate marker by 45 degrees
         }
     }
     
-    func rotateMarker(_ marker: GMSMarker?, degrees: CLLocationDegrees) {
+    func rotateMarker(_ marker: GMSMarker?, degrees: CLLocationDegrees)
+    {
         guard let marker = marker else { return }
         
         // Apply rotation transform to the marker
